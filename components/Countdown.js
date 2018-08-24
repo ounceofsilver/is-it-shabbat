@@ -8,18 +8,38 @@ import {
 export default class CountDown extends Component {
 
     constructor(props) {
+        // Required
+        props.endDate;
+
+        // Optional
+        props.startDate = props.startDate ? props.startDate : new Date();
+        props.callback = props.callback ? props.callback : () => {};
+
         super(props);
         this.realStartDate = new Date();  // real time
         this.state = {
             now: new Date()  // real time
         }
     }
-    render() {
-        console.log("RENDERING COUNTDOWN", this.state.now)
+
+    durationLeft() {
         var elapsedTime = this.state.now - this.realStartDate;
         var totalTime = this.props.endDate - this.props.startDate;
         var distance = totalTime - elapsedTime;
-        console.log(elapsedTime, totalTime, distance);
+        return distance;
+    }
+
+    // totalDuration() {
+    //     return this.props.endDate - this.props.startDate;
+    // }
+
+    getTime() {
+        var elapsedTime = this.state.now - this.realStartDate;
+        return new Date(this.props.startDate.getTime() + elapsedTime);
+    }
+
+    render() {
+        var distance = this.durationLeft();
 
         // Time calculations for days, hours, minutes and seconds
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -46,8 +66,16 @@ export default class CountDown extends Component {
     }
 
     tick() {
+        console.log("TICK");
+        var d = new Date();
         this.setState({
-            now: new Date(),
+            now: d,
         });
+        if (this.durationLeft() <= 0) {
+            this.props.callback(
+                this.getTime()
+            );
+        }
+
     }
 }
