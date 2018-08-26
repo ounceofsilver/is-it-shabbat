@@ -66,7 +66,6 @@ export default class CountDown extends Component {
     }
 
     tick() {
-        console.log("TICK");
         var d = new Date();
         this.setState({
             now: d,

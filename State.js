@@ -6,7 +6,7 @@ defaultState = {
     location: null,
     // now: new Date("8/22/2018 07:00:00"),  //                     NOT_SHABBAT
     // now: new Date("8/24/2018 14:00:00"),  // Friday,             NOT_SHABBAT
-    // now: new Date("8/24/2018 19:13:30"),  // Friday,             NOT_SHABBAT => CANDLELIGHTING
+    // now: new Date("8/24/2018 19:16:32"),  // Friday,             NOT_SHABBAT => CANDLELIGHTING
     // now: new Date("8/24/2018 19:22:30"),  // Friday,             CANDLELIGHTING
     // now: new Date("8/24/2018 19:31:30"),  // Friday,             CANDLELIGHTING => SHABBAT
     // now: new Date("8/24/2018 21:00:00"),  // Friday,             SHABBAT

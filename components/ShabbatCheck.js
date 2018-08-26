@@ -72,6 +72,7 @@ export default class ShabbatCheck extends Component {
     }
 
     isItShabbat(userState) {
+        // TODO: make this core-code testable.
         var now = userState.now;
 
         // SATURDAY
