@@ -125,34 +125,20 @@ export default class ShabbatCheck extends Component {
         }
         var time = this.isItShabbat(s);
 
-        console.log("see countdown", time.countDownTo);
-
         return (
-        <View style = {[Styles.container]}>
-            <Text style = {[Styles.title, Styles.center]} >
+        <View style={this.props.style}>
+            <Text style={[Styles.title, Styles.center]} >
                     {this.message[time.period]}
             </Text>
             <CountDown
-                endDate = {
-                    time.countDownTo
-                }
-                startDate = {
-                    s.now
-                }
-                callback = {
-                    (now) => {
-                        console.log(time.period + " FINISHED", now);
-                        state.user.dispatch({
-                            type: "SET_NOW",
-                            now: now,
-                        })
-                    }
-                }
-                style = {
-                    [Styles.subtitle, Styles.center]
-                }
+                style={[Styles.subtitle, Styles.center]}
+                endDate = {time.countDownTo}
+                startDate = {s.now}
+                callback = {state.set.now}
             />
-            <Text>until {this.endEventName[time.period]}</Text>
+            <Text style={
+                [Styles.subtitle, Styles.center]
+            }>until {this.endEventName[time.period]}</Text>
         </View>
         );
     }

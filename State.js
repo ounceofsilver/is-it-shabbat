@@ -8,7 +8,7 @@ defaultState = {
     // now: new Date("8/24/2018 14:00:00"),  // Friday,             NOT_SHABBAT
     // now: new Date("8/24/2018 19:16:32"),  // Friday,             NOT_SHABBAT => CANDLELIGHTING
     // now: new Date("8/24/2018 19:22:30"),  // Friday,             CANDLELIGHTING
-    // now: new Date("8/24/2018 19:31:30"),  // Friday,             CANDLELIGHTING => SHABBAT
+    // now: new Date("8/24/2018 19:34:30"),  // Friday,             CANDLELIGHTING => SHABBAT
     // now: new Date("8/24/2018 21:00:00"),  // Friday,             SHABBAT
     // now: new Date("8/24/2018 23:59:55"),  // Friday => Saturday, SHABBAT
     // now: new Date("8/25/2018 14:00:00"),  // Saturday,           SHABBAT
@@ -28,4 +28,12 @@ var userState = createStore(function (state = defaultState, action) {
 });
 module.exports = {
     user: userState,
+    set: {
+        now: (now) => {
+            userState.dispatch({
+                type: "SET_NOW",
+                now: now,
+            })
+        }
+    }
 }

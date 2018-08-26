@@ -52,7 +52,7 @@ export default class CountDown extends Component {
             msg = days + "d " + msg;
         }
 
-        return <Text>{msg}</Text>
+        return <Text style={this.props.style}>{msg}</Text>
     }
 
     componentDidMount() {
