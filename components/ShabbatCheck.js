@@ -78,7 +78,7 @@ export default class ShabbatCheck extends Component {
         // SATURDAY
         var countDownTo;
         var period;
-        if (now.getDay() == Day.ofWeek.Saturday) {
+        if (now.getDay() === Day.ofWeek.Saturday) {
             var havdala = this.havdala(userState);
             if (now < havdala) {
                 period = this.is.SHABBAT;
@@ -89,7 +89,7 @@ export default class ShabbatCheck extends Component {
             }
 
         // FRIDAY
-        } else if (now.getDay() == Day.ofWeek.Friday) {
+        } else if (now.getDay() === Day.ofWeek.Friday) {
             var fridaySunset = this.fridaySunset(userState);
             var candleLighting = this.candleLighting(userState);
             if (now > candleLighting) {
