@@ -131,9 +131,9 @@ var tests = [
         outcome: is.NOT_SHABBAT,
     },
 ]
-console.log(candleLighting(tests[0].date, 43, -71), fridaySunset(tests[0].date, 43, -71), havdala(tests[0].date, 43, -71))
+// console.log(candleLighting(tests[0].date, 43, -71), fridaySunset(tests[0].date, 43, -71), havdala(tests[0].date, 43, -71))
 results = tests.map(function(test) {
     var sbt = isItShabbat(test.date, 43, -71)
     return sbt.period == test.outcome
 });
-console.log(results)
+// console.log(results)

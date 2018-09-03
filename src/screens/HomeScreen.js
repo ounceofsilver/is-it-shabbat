@@ -25,7 +25,6 @@ export default class HomeScreen extends Component {
                     style={{
                         position: "absolute",
                         bottom: 0,
-                        // height: 60,
                         width: "100%",
                         paddingVertical: 10,
                         paddingHorizontal: 15,

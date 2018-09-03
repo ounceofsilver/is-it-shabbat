@@ -15,7 +15,6 @@ import State from "../logic/State"
 export default class SettingsScreen extends Component {
     render() {
         var s = State.user.getState();
-        console.log("Making a map", s, s.location.coords.latitude)
         return (
             <MapView
                 style={{ flex: 1 }}

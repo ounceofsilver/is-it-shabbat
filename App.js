@@ -47,24 +47,10 @@ export default class App extends Component {
     const fontAssets = cacheFonts([
       {
         'FredokaOne': require('./assets/fonts/FredokaOne.ttf'),
-        ionicons: require("@expo/vector-icons/fonts/FontAwesome.ttf")
+        fa: require("@expo/vector-icons/fonts/FontAwesome.ttf")
       }
     ]);
     await Promise.all([...imageAssets, ...fontAssets]);
-  }
-
-  componentWillMount() {
-    this._getLocationAsync().then(location => {
-      console.log("Updating location state", location);
-      state.user.dispatch({
-        type: "SET_LOCATION",
-        location,  // JS shorthand for location: location
-      });
-      console.log(state.user.getState());
-    });
-  }
-
-  componentDidMount() {
   }
 
   _getLocationAsync = async () => {
@@ -82,7 +68,7 @@ export default class App extends Component {
       }
     } else {
       let location = await Location.getCurrentPositionAsync({});
-      console.log("Location received", location);
+      console.log("Location received", location.coords.latitude, location.coords.longitude);
       return location;
     }
   };
@@ -91,7 +77,17 @@ export default class App extends Component {
     if (!this.state.isReady) {
       return (
         <AppLoading
-          startAsync={this._loadAssetsAsync}
+          startAsync={async () => {
+            console.log("ASYNC APPLOADING ASSETS APP");
+            this._loadAssetsAsync();
+            console.log("ASYNC APPLOADING LOCATION APP");
+            this._getLocationAsync().then(location => {
+              state.user.dispatch({
+                type: "SET_LOCATION",
+                location,  // JS shorthand for location: location
+              });
+            });
+          }}
           onFinish={() => {
             state.user.dispatch({
               type: "SET_NOW",

@@ -35,7 +35,7 @@ export default class ShabbatCheck extends Component {
     }
 
     render() {
-        console.log("Rendering")
+        console.log("Rendering ShabbatCheck")
         var s = state.user.getState();
         if (!s.location) {
             return null;
