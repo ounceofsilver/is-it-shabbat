@@ -3,6 +3,7 @@ import {
 } from "react-navigation";
 import HomeScreen from "./screens/HomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import InfoScreen from "./screens/InfoScreen";
 import Styles from "./Styles";
 
 const NavigationOptions = {
@@ -24,6 +25,13 @@ export default Router = createStackNavigator({
         screen: SettingsScreen,
         navigationOptions: {
             title: "Settings",
+            ...NavigationOptions,
+        }
+    },
+    Info: {
+        screen: InfoScreen,
+        navigationOptions: {
+            title: "App Information",
             ...NavigationOptions,
         }
     }

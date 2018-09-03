@@ -46,7 +46,7 @@ export default class HomeScreen extends Component {
                     <View>
                         <FontAwesome
                             name="info-circle" size={24} color={Styles.colors.textSubtle}
-                            onPress={() => this.props.navigation.navigate("Settings")}
+                            onPress={() => this.props.navigation.navigate("Info")}
                         />
                     </View>
 
