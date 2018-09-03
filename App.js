@@ -11,6 +11,8 @@ import {
   AppLoading
 } from 'expo';
 
+import Router from "./src/Router";
+
 import ShabbatCheck from './src/components/ShabbatCheck';
 
 import state from "./src/logic/State";
@@ -69,6 +71,11 @@ export default class App extends Component {
     if (status !== 'granted') {
       return {
         // Default location
+        coords: {
+          latitude: 31.776875,
+          longitude: 35.233673
+        }
+
       }
     } else {
       let location = await Location.getCurrentPositionAsync({});
@@ -87,20 +94,6 @@ export default class App extends Component {
         />
       )
     }
-    return this.state.isReady && (
-      <ScrollView style={{ backgroundColor: Styles.colors.background }}>
-        <ShabbatCheck
-          style={[Styles.container, {height: 400}]}
-        />
-        {/* <Text
-          style={{ ...Styles.title, color: Styles.colors.textSubtle, fontSize: 100}}
-          suppressHighlighting={true}
-        >
-        שבת</Text> */}
-        {/* <Text style={Styles.bottomHeading}>
-          Sunset tonight {this.state.date < this.state.sunset ? "is" : "was"} {this.state.sunset.toLocaleTimeString()}
-        </Text> */}
-      </ScrollView>
-    );
+    return this.state.isReady && (<Router />);
   }
 }
