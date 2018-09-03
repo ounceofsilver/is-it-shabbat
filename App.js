@@ -45,7 +45,10 @@ export default class App extends Component {
     ]);
 
     const fontAssets = cacheFonts([
-      {'FredokaOne': require('./assets/fonts/FredokaOne.ttf'),}
+      {
+        'FredokaOne': require('./assets/fonts/FredokaOne.ttf'),
+        ionicons: require("@expo/vector-icons/fonts/FontAwesome.ttf")
+      }
     ]);
     await Promise.all([...imageAssets, ...fontAssets]);
   }
@@ -89,7 +92,25 @@ export default class App extends Component {
       return (
         <AppLoading
           startAsync={this._loadAssetsAsync}
-          onFinish={() => this.setState({ isReady: true })}
+          onFinish={() => {
+            state.user.dispatch({
+              type: "SET_NOW",
+              now: new Date(),
+              // now: new Date("8/22/2018 07:00:00"),  //                     NOT_SHABBAT
+              // now: new Date("8/24/2018 14:00:00"),  // Friday,             NOT_SHABBAT
+              // now: new Date("8/24/2018 19:16:32"),  // Friday,             NOT_SHABBAT => CANDLELIGHTING
+              // now: new Date("8/24/2018 19:22:30"),  // Friday,             CANDLELIGHTING
+              // now: new Date("8/24/2018 19:34:30"),  // Friday,             CANDLELIGHTING => SHABBAT
+              // now: new Date("8/24/2018 21:00:00"),  // Friday,             SHABBAT
+              // now: new Date("8/24/2018 23:59:55"),  // Friday => Saturday, SHABBAT
+              // now: new Date("8/25/2018 14:00:00"),  // Saturday,           SHABBAT
+              // now: new Date("8/25/2018 20:14:55"),  // Saturday,           SHABBAT => NOT_SHABBAT
+              // now: new Date("8/25/2018 21:00:00"),  // Saturday,           NOT_SHABBAT
+            });
+            // console.log((new Date("8/24/2018 19:16:36")) - (new Date("8/24/2018 19:34:36")));
+
+            this.setState({ isReady: true });
+          }}
           onError={console.warn}
         />
       )
