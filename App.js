@@ -11,10 +11,10 @@ import {
   AppLoading
 } from 'expo';
 
-import ShabbatCheck from './components/ShabbatCheck';
+import ShabbatCheck from './src/components/ShabbatCheck';
 
-import state from "./State";
-import Styles from "./Styles";
+import state from "./src/logic/State";
+import Styles from "./src/Styles";
 
 function cacheFonts(fonts) {
   return fonts.map(font => Font.loadAsync(font));
@@ -53,7 +53,7 @@ export default class App extends Component {
       console.log("Updating location state", location);
       state.user.dispatch({
         type: "SET_LOCATION",
-        location: location, //location... that's three
+        location,  // JS shorthand for location: location
       });
       console.log(state.user.getState());
     });
