@@ -1,22 +1,34 @@
 import React, { Component } from 'react';
 import {
     ScrollView,
-    Button,
-    Text,
     View
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import ShabbatCheck from "../components/ShabbatCheck";
+import state from "../logic/State";
 import Styles from "../Styles";
 
 export default class HomeScreen extends Component {
+    _refresh() {
+        state.user.dispatch({
+            type: "SET_NOW",
+            now: new Date(),
+        })
+    }
+
     render() {
         return (
             <View style={{height: "100%"}}>
-                <ScrollView style={{
-                    backgroundColor: Styles.colors.background
-                }}>
+                <ScrollView
+                    style={{
+                        backgroundColor: Styles.colors.background
+                    }}
+                    // refreshControl={<RefreshControl
+                    //     refreshing={false}  // Refresh is fast enough and isn't all that asynchronous.
+                    //     onRefresh={this._refresh}
+                    // />}
+            >
                     <ShabbatCheck
                         style={[Styles.container, { height: 400 }]}
                     />
@@ -35,9 +47,6 @@ export default class HomeScreen extends Component {
                     }}
                 >
                     <View>
-                        {/* <Button
-                            onPress={() => this.props.navigation.navigate("Settings")} title="Change Location"
-                        /> */}
                         <FontAwesome
                             name="map-marker" size={24} color={Styles.colors.textSubtle}
                             onPress={() => this.props.navigation.navigate("Settings")}
