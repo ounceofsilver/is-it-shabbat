@@ -23,8 +23,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "buildNumber": "1.0.0",
+      "supportsTablet": false,
+      "buildNumber": "1.0.1",
       "bundleIdentifier": "com.jamesfulford.isitshabbat"
     }
   }
