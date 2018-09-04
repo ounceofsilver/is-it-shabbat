@@ -28,7 +28,7 @@ export default class HomeScreen extends Component {
                     //     refreshing={false}  // Refresh is fast enough and isn't all that asynchronous.
                     //     onRefresh={this._refresh}
                     // />}
-            >
+                >
                     <ShabbatCheck
                         style={[Styles.container, { height: 400 }]}
                     />

@@ -4,6 +4,7 @@ import {
     View
 } from 'react-native';
 
+import Anchor from "../components/Anchor";
 import Styles from "../Styles";
 
 export default class InfoScreen extends Component {
@@ -16,7 +17,7 @@ export default class InfoScreen extends Component {
                     paddingVertical: 20,
             }}>
                 <Text style={[Styles.title, Styles.center, {fontSize: 24}]}>
-                    Copyright 2018, James Fulford
+                    Copyright 2018, <Anchor href="https://jamesfulford.com">James Fulford</Anchor>
                 </Text>
                 <Text style={{
                     ...Styles.subtitle,
