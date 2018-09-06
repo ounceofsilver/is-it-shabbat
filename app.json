@@ -24,8 +24,11 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "buildNumber": "1.0.2",
-      "bundleIdentifier": "com.jamesfulford.isitshabbat"
+      "buildNumber": "1.0.3",
+      "bundleIdentifier": "com.jamesfulford.isitshabbat",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "IsItShabbat needs your location to calculate sunset times at the start and end of Shabbat."
+      }
     }
   }
 }
