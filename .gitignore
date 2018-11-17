@@ -3,3 +3,4 @@ node_modules/**/*
 npm-debug.*
 .babelrc
 .watchmanconfig
+package-lock.json
