@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "mocha ./src/**/*.spec.js",
+    "unittest": "mocha ./src/**/*.unit.spec.js",
     "tdd": "yarn test -w"
   },
   "dependencies": {
