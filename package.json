@@ -6,7 +6,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "mocha ./src/**/*.spec.js",
+    "tdd": "yarn test -w"
   },
   "dependencies": {
     "expo": "29.0.0",
@@ -15,6 +17,13 @@
     "react-navigation": "2.12.1",
     "redux": "4.0.0",
     "suncalc": "1.8.0"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "proxyquire": "2.1.0",
+    "mocha": "5.2.0",
+    "sinon": "7.1.1",
+    "sinon-chai": "3.2.0"
   },
   "rnpm": {
     "assets": [
