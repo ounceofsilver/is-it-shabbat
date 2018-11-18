@@ -1,21 +1,21 @@
 
-Day = require("./DayMath");
+const DayMath = require("./DayMath");
 
-is = {
+const is = {
     SHABBAT: "SHABBAT",
     NOT_SHABBAT: "NOT_SHABBAT",
     CANDLELIGHTING: "CANDLELIGHTING",
 }
 
 function fridaySunset(now, latitude, longitude) {
-    return Day.data(
-        Day.nextOfWeek(now, Day.ofWeek.Friday),
+    return DayMath.data(
+        DayMath.nextOfWeek(now, DayMath.ofWeek.Friday),
         latitude,
         longitude
     ).sunset;
 }
 
-var candleLighting = function(now, latitude, longitude) {
+const candleLighting = function(now, latitude, longitude) {
     // https://judaism.stackexchange.com/questions/4334/calculating-shabbat-candle-lighting-time
     // 18 minutes *
     // 60 sec/min * [1080]
@@ -24,8 +24,8 @@ var candleLighting = function(now, latitude, longitude) {
 }
 
 function havdala(now, latitude, longitude) {
-    var sunsetSaturday = Day.data(
-        Day.nextOfWeek(now, Day.ofWeek.Saturday),
+    const sunsetSaturday = DayMath.data(
+        DayMath.nextOfWeek(now, DayMath.ofWeek.Saturday),
         latitude,
         longitude
     ).sunset;
@@ -40,10 +40,10 @@ function havdala(now, latitude, longitude) {
 
 function isItShabbat(now, latitude, longitude) {
     // SATURDAY
-    var countDownTo;
-    var period;
-    if (now.getDay() === Day.ofWeek.Saturday) {
-        var havdalaTime = havdala(now, latitude, longitude);
+    const countDownTo;
+    const period;
+    if (now.getDay() === DayMath.ofWeek.Saturday) {
+        const havdalaTime = havdala(now, latitude, longitude);
         if (now < havdalaTime) {
             period = is.SHABBAT;
             countDownTo = havdalaTime;
@@ -53,9 +53,9 @@ function isItShabbat(now, latitude, longitude) {
         }
 
         // FRIDAY
-    } else if (now.getDay() === Day.ofWeek.Friday) {
-        var fridaySunsetTime = fridaySunset(now, latitude, longitude);
-        var candleLightingTime = candleLighting(now, latitude, longitude);
+    } else if (now.getDay() === DayMath.ofWeek.Friday) {
+        const fridaySunsetTime = fridaySunset(now, latitude, longitude);
+        const candleLightingTime = candleLighting(now, latitude, longitude);
         if (now > candleLightingTime) {
             if (now < fridaySunsetTime) {
                 period = is.CANDLELIGHTING;
@@ -88,52 +88,3 @@ module.exports = {
     havdala,
     candleLighting,
 }
-
-var tests = [
-    {
-        date: new Date("8/22/2018 07:00:00"),
-        outcome: is.NOT_SHABBAT,
-    },
-    {
-        date: new Date("8/24/2018 14:00:00"),
-        outcome: is.NOT_SHABBAT,
-    },
-    {
-        date: new Date("8/24/2018 19:16:32"),
-        outcome: is.NOT_SHABBAT,
-    },
-    {
-        date: new Date("8/24/2018 19:22:30"),
-        outcome: is.CANDLELIGHTING,
-    },
-    {
-        date: new Date("8/24/2018 19:34:30"),
-        outcome: is.CANDLELIGHTING,
-    },
-    {
-        date: new Date("8/24/2018 21:00:00"),
-        outcome: is.SHABBAT,
-    },
-    {
-        date: new Date("8/24/2018 23:59:55"),
-        outcome: is.SHABBAT,
-    },
-    {
-        date: new Date("8/25/2018 14:00:00"),
-        outcome: is.SHABBAT,
-    },
-    {
-        date: new Date("8/25/2018 20:14:55"),
-        outcome: is.SHABBAT,
-    },
-    {
-        date: new Date("8/25/2018 21:00:00"),
-        outcome: is.NOT_SHABBAT,
-    },
-]
-// console.log(candleLighting(tests[0].date, 43, -71), fridaySunset(tests[0].date, 43, -71), havdala(tests[0].date, 43, -71))
-results = tests.map(function(test) {
-    var sbt = isItShabbat(test.date, 43, -71)
-    return sbt.period == test.outcome
-});
-// console.log(results)
