@@ -12,6 +12,8 @@ describe("Shabbat", () => {
                 });
         }
 
+        // TODO: add more test dates
+        // TODO: use Luxon to better handle timezones, intervals
         it("should handle Sunday-Thursday", () => {
             testDates([
                 new Date("8/19/2018 12:00:00"),
