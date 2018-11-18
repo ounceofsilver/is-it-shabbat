@@ -6,7 +6,7 @@ describe("DayMath unit", () => {
     const DayMath = proxyquire("../src/logic/DayMath", { suncalc });
 
     afterEach(() => {
-        sinon.restore();
+        sinon.reset();
     });
 
     describe("ofWeek", () => {
