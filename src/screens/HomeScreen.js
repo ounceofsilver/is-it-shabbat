@@ -48,13 +48,13 @@ export default class HomeScreen extends Component {
                 >
                     <View>
                         <FontAwesome
-                            name="map-marker" size={24} color={Styles.colors.textSubtle}
+                            name="map-marker" size={36} color={Styles.colors.textSubtle}
                             onPress={() => this.props.navigation.navigate("Settings")}
                         />
                     </View>
                     <View>
                         <FontAwesome
-                            name="info-circle" size={24} color={Styles.colors.textSubtle}
+                            name="info-circle" size={36} color={Styles.colors.textSubtle}
                             onPress={() => this.props.navigation.navigate("Info")}
                         />
                     </View>
