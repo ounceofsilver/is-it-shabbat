@@ -1,4 +1,7 @@
+const DateTime = require("luxon").DateTime;
+
 describe("Shabbat unit", () => {
+
     const DayMath = {
         ofWeek: {
             Friday: 5,
@@ -23,9 +26,9 @@ describe("Shabbat unit", () => {
     describe("isItShabbat", () => {
 
         const times = {
-            candleLighting: new Date("11/16/2018 12:00:00 Z"),
-            fridaySunset: new Date("11/16/2018 18:00:00 Z"),
-            havdala: new Date("11/17/2018 18:00:00 Z")
+            candleLighting: DateTime.utc(2018, 11, 16, 12),
+            fridaySunset: DateTime.utc(2018, 11, 16, 18),
+            havdala: DateTime.utc(2018, 11, 17, 18),
         };  // times are not accurate, but dates and ordering should work properly
 
         beforeEach(() => {
@@ -44,11 +47,11 @@ describe("Shabbat unit", () => {
 
         it("should handle Sunday-Thursday", () => {
             testDates([
-                new Date("11/11/18 12:00:00 Z"),
-                new Date("11/12/18 12:00:00 Z"),
-                new Date("11/13/18 12:00:00 Z"),
-                new Date("11/14/18 12:00:00 Z"),
-                new Date("11/15/18 12:00:00 Z"),
+                DateTime.utc(2018, 11, 11, 12),
+                DateTime.utc(2018, 11, 12, 12),
+                DateTime.utc(2018, 11, 13, 12),
+                DateTime.utc(2018, 11, 14, 12),
+                DateTime.utc(2018, 11, 15, 12),
             ], {
                 period: Shabbat.is.NOT_SHABBAT,
                 countDownTo: times.candleLighting
@@ -57,8 +60,8 @@ describe("Shabbat unit", () => {
 
         it("should handle Friday before candlelighting", () => {
             testDates([
-                new Date("11/16/18 00:00:01 Z"),
-                new Date("11/16/18 11:59:59 Z"),
+                DateTime.utc(2018, 11, 16).startOf("day"),
+                DateTime.utc(2018, 11, 16, 11, 59, 59),  // before noon
             ], {
                 period: Shabbat.is.NOT_SHABBAT,
                 countDownTo: times.candleLighting
@@ -67,8 +70,8 @@ describe("Shabbat unit", () => {
 
         it("should handle Friday after candlelighting but before sunset", () => {
             testDates([
-                new Date("11/16/18 12:00:01 Z"),
-                new Date("11/16/18 17:59:59 Z"),
+				DateTime.utc(2018, 11, 16, 12),
+				DateTime.utc(2018, 11, 16, 17, 59, 59)
             ], {
                 period: Shabbat.is.CANDLELIGHTING,
                 countDownTo: times.fridaySunset
@@ -77,8 +80,8 @@ describe("Shabbat unit", () => {
 
         it("should handle Friday after sunset", () => {
             testDates([
-                new Date("11/16/18 18:00:01 Z"),
-                new Date("11/16/18 23:59:59 Z"),
+				DateTime.utc(2018, 11, 16, 18),
+				DateTime.utc(2018, 11, 16).endOf("day"),
             ], {
                 period: Shabbat.is.SHABBAT,
                 countDownTo: times.havdala
@@ -87,8 +90,8 @@ describe("Shabbat unit", () => {
 
         it("should handle Saturday before havdala", () => {
             testDates([
-                new Date("11/17/18 00:00:01 Z"),
-                new Date("11/17/18 17:59:59 Z"),
+				DateTime.utc(2018, 11, 17).startOf("day"),
+				DateTime.utc(2018, 11, 17, 17, 59, 59),
             ], {
                 period: Shabbat.is.SHABBAT,
                 countDownTo: times.havdala
@@ -96,11 +99,11 @@ describe("Shabbat unit", () => {
         });
 
         it("should handle Saturday after havdala", () => {
-            const nextCandlelighting = new Date("11/23/18 18:00:00");
+            const nextCandlelighting = DateTime.utc(2018, 11, 23, 18);
             HebrewTimes.candleLighting.returns(nextCandlelighting);
             testDates([
-                new Date("11/17/18 18:00:01 Z"),
-                new Date("11/17/18 23:59:59 Z"),
+				DateTime.utc(2018, 11, 17, 18),
+				DateTime.utc(2018, 11, 17).endOf("day")
             ], {
                 period: Shabbat.is.NOT_SHABBAT,
                 countDownTo: nextCandlelighting
@@ -113,43 +116,43 @@ describe("Shabbat unit", () => {
 
 // const tests = [
 //     {
-//         date: new Date("8/22/2018 07:00:00"),
+//         date: DateTime.fromJSDate(new Date("8/22/2018 07:00:00")),
 //         outcome: is.NOT_SHABBAT,
 //     },
 //     {
-//         date: new Date("8/24/2018 14:00:00"),
+//         date: DateTime.fromJSDate(new Date("8/24/2018 14:00:00")),
 //         outcome: is.NOT_SHABBAT,
 //     },
 //     {
-//         date: new Date("8/24/2018 19:16:32"),
+//         date: DateTime.fromJSDate(new Date("8/24/2018 19:16:32")),
 //         outcome: is.NOT_SHABBAT,
 //     },
 //     {
-//         date: new Date("8/24/2018 19:22:30"),
+//         date: DateTime.fromJSDate(new Date("8/24/2018 19:22:30")),
 //         outcome: is.CANDLELIGHTING,
 //     },
 //     {
-//         date: new Date("8/24/2018 19:34:30"),
+//         date: DateTime.fromJSDate(new Date("8/24/2018 19:34:30")),
 //         outcome: is.CANDLELIGHTING,
 //     },
 //     {
-//         date: new Date("8/24/2018 21:00:00"),
+//         date: DateTime.fromJSDate(new Date("8/24/2018 21:00:00")),
 //         outcome: is.SHABBAT,
 //     },
 //     {
-//         date: new Date("8/24/2018 23:59:55"),
+//         date: DateTime.fromJSDate(new Date("8/24/2018 23:59:55")),
 //         outcome: is.SHABBAT,
 //     },
 //     {
-//         date: new Date("8/25/2018 14:00:00"),
+//         date: DateTime.fromJSDate(new Date("8/25/2018 14:00:00")),
 //         outcome: is.SHABBAT,
 //     },
 //     {
-//         date: new Date("8/25/2018 20:14:55"),
+//         date: DateTime.fromJSDate(new Date("8/25/2018 20:14:55")),
 //         outcome: is.SHABBAT,
 //     },
 //     {
-//         date: new Date("8/25/2018 21:00:00"),
+//         date: DateTime.fromJSDate(new Date("8/25/2018 21:00:00")),
 //         outcome: is.NOT_SHABBAT,
 //     },
 // ]

@@ -1,63 +1,69 @@
+const DateTime = require("luxon").DateTime;
+
 describe("Shabbat", () => {
+
     const Shabbat = require("./Shabbat");
     const location = [43, -71];
 
     describe("isItShabbat", () => {
 
         function testDates(dates, expectation) {
-            dates
-                .map(d => Shabbat.isItShabbat(d, ...location))
-                .forEach(o => {
-                    expect(o.period).to.equal(expectation);
-                    console.log(o.countDownTo);
-                });
+            dates.forEach(d => {
+				const o = Shabbat.isItShabbat(d, ...location);
+                expect(o.period).to.equal(expectation);
+				expect(o.countDownTo.zone).to.equal(d.zone);
+            });
         }
 
-        // TODO: add more test dates
-        // TODO: use Luxon to better handle timezones, intervals
         it("should handle Sunday-Thursday", () => {
             testDates([
-                new Date("8/19/2018 12:00:00 EST"),
-                new Date("8/20/2018 12:00:00 EST"),
-                new Date("8/21/2018 12:00:00 EST"),
-                new Date("8/22/2018 12:00:00 EST"),
-                new Date("8/23/2018 12:00:00 EST"),
+				DateTime.local(2018, 8, 19).startOf("day"),
+				DateTime.local(2018, 8, 19, 12),
+				DateTime.local(2018, 8, 19).endOf("day"),
+				DateTime.local(2018, 8, 20).startOf("day"),
+				DateTime.local(2018, 8, 20, 12),
+				DateTime.local(2018, 8, 20).endOf("day"),
+				DateTime.local(2018, 8, 21).startOf("day"),
+				DateTime.local(2018, 8, 21, 12),
+				DateTime.local(2018, 8, 21).endOf("day"),
+				DateTime.local(2018, 8, 22).startOf("day"),
+				DateTime.local(2018, 8, 22, 12),
+				DateTime.local(2018, 8, 22).endOf("day"),
+				DateTime.local(2018, 8, 23).startOf("day"),
+				DateTime.local(2018, 8, 23, 12),
+				DateTime.local(2018, 8, 23).endOf("day"),
             ], Shabbat.is.NOT_SHABBAT);
         });
 
         it("should handle Friday before candlelighting", () => {
             testDates([
-                // new Date("8/24/2018 12:00:01 EST"),
-                // new Date("8/24/2018 19:16:36 EST"),
+				DateTime.local(2018, 8, 24).startOf("day"),
             ], Shabbat.is.NOT_SHABBAT);
         });
 
         it("should handle Friday after candlelighting but before sunset", () => {
             testDates([
-                // new Date("8/24/2018 19:22:30 EST"),
-                // new Date("8/24/2018 19:34:30 EST"),
+                DateTime.fromObject({year: 2018, month: 8, day: 24, hour: 19, minute: 22, second: 30, zone: "America/New_York"}),
+                DateTime.fromObject({year: 2018, month: 8, day: 24, hour: 19, minute: 34, second: 30, zone: "America/New_York"}),
             ], Shabbat.is.CANDLELIGHTING);
         });
 
         it("should handle Friday after sunset", () => {
             testDates([
-                new Date("8/24/2018 21:00:00 EST"),
-                new Date("8/24/2018 23:59:55 EST"),
+				DateTime.local(2018, 8, 24).endOf("day"),
             ], Shabbat.is.SHABBAT);
         });
 
         it("should handle Saturday before havdala", () => {
             testDates([
-                // new Date("8/25/2018 14:00:00 EST"),
-                // new Date("8/25/2018 20:14:55 EST"),
+				DateTime.local(2018, 8, 25).startOf("day"),
             ], Shabbat.is.SHABBAT);
         });
 
         it("should handle Saturday after havdala", () => {
             testDates([
-                new Date("8/25/2018 21:00:00")
+				DateTime.local(2018, 8, 25).endOf("day"),
             ], Shabbat.is.NOT_SHABBAT);
         });
     });
 });
-

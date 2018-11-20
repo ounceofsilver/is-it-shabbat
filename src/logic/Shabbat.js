@@ -1,4 +1,3 @@
-
 const DayMath = require("./DayMath");
 const HebrewTimes = require("./HebrewTimes");
 
@@ -12,7 +11,7 @@ function isItShabbat(now, latitude, longitude) {
     // SATURDAY
     let countDownTo;
     let period;
-    if (now.getDay() === DayMath.ofWeek.Saturday) {
+    if (now.weekday === DayMath.ofWeek.Saturday) {
         const havdalaTime = HebrewTimes.havdala(now, latitude, longitude);
         if (now < havdalaTime) {
             period = is.SHABBAT;
@@ -23,10 +22,10 @@ function isItShabbat(now, latitude, longitude) {
         }
 
         // FRIDAY
-    } else if (now.getDay() === DayMath.ofWeek.Friday) {
+    } else if (now.weekday === DayMath.ofWeek.Friday) {
         const fridaySunsetTime = HebrewTimes.fridaySunset(now, latitude, longitude);
         const candleLightingTime = HebrewTimes.candleLighting(now, latitude, longitude);
-        if (now > candleLightingTime) {
+        if (now >= candleLightingTime) {
             if (now < fridaySunsetTime) {
                 period = is.CANDLELIGHTING;
                 countDownTo = fridaySunsetTime;
