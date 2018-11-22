@@ -1,5 +1,3 @@
-const DateTime = require("luxon").DateTime;
-
 describe("Big Shabbat Test", () => {
 	function range(x, y, n = 1) {
 		const numbers = [];

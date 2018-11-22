@@ -1,5 +1,3 @@
-const DateTime = require("luxon").DateTime;
-
 describe("DayMath", () => {
 	const DayMath = require("./DayMath");
 	const location = [43, -71];
@@ -18,7 +16,7 @@ describe("DayMath", () => {
 
 	describe("nextOfWeek", () => {
         it("should handle basic case", () => {
-            const d = DateTime.local(2018, 10, 16, 20, 42, 30);
+            const d = local(2018, 10, 16, 20, 42, 30);
             const outcome = DayMath.nextOfWeek(d, DayMath.ofWeek.Saturday);
 			expect(outcome.weekday).to.equal(DayMath.ofWeek.Saturday);
 			expect(outcome.day).to.equal(20);
@@ -29,7 +27,7 @@ describe("DayMath", () => {
         });
 
         it("should wrap-around to next week", () => {
-			const d = DateTime.local(2018, 10, 17, 20, 42, 30);
+			const d = local(2018, 10, 17, 20, 42, 30);
             const outcome = DayMath.nextOfWeek(d, DayMath.ofWeek.Monday);
 			expect(outcome.weekday).to.equal(DayMath.ofWeek.Monday);
 			expect(outcome.day).to.equal(22);
@@ -40,7 +38,7 @@ describe("DayMath", () => {
         });
 
         it("should return input if day is already the requested day of week", () => {
-			const d = DateTime.local(2018, 10, 22, 20, 42, 30);
+			const d = local(2018, 10, 22, 20, 42, 30);
             const outcome = DayMath.nextOfWeek(d, DayMath.ofWeek.Monday);
 			expect(outcome.weekday).to.equal(DayMath.ofWeek.Monday);
 			expect(outcome.day).to.equal(22);
@@ -54,15 +52,15 @@ describe("DayMath", () => {
 	describe("sunset", () => {
 		it("returns sunset with same zone and day as original DateTime", () => {
 			[
-				DateTime.local(2018, 11, 19).startOf("day"),
-				DateTime.local(2018, 11, 19, 12),
-				DateTime.local(2018, 11, 19).endOf("day"),
+				local(2018, 11, 19).startOf("day"),
+				local(2018, 11, 19, 12),
+				local(2018, 11, 19).endOf("day"),
 				DateTime.utc(2018, 11, 19).startOf("day"),
 				DateTime.utc(2018, 11, 19, 12),
 				DateTime.utc(2018, 11, 19).endOf("day"),
 
-				DateTime.local(2018, 8, 24).startOf("day"),
-				DateTime.local(2018, 8, 24).endOf("day"),
+				local(2018, 8, 24).startOf("day"),
+				local(2018, 8, 24).endOf("day"),
 			].forEach(d => {
 				const o = DayMath.sunset(d, ...location)
 				expect(o.year).to.equal(d.year);

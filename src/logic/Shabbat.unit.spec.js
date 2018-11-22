@@ -1,5 +1,3 @@
-const DateTime = require("luxon").DateTime;
-
 describe("Shabbat unit", () => {
 
     const DayMath = {

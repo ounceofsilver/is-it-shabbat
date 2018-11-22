@@ -1,5 +1,3 @@
-const DateTime = require("luxon").DateTime;
-
 describe("HebrewTimes", () => {
     const HebrewTimes = require("./HebrewTimes");
 
@@ -17,29 +15,29 @@ describe("HebrewTimes", () => {
 
 		it("should handle commmon case", () => {
 			testDates([
-				DateTime.local(2018, 11, 17),
-				DateTime.local(2018, 11, 18),
-				DateTime.local(2018, 11, 19),
-				DateTime.local(2018, 11, 20),
-				DateTime.local(2018, 11, 21),
-				DateTime.local(2018, 11, 22),
+				local(2018, 11, 17),
+				local(2018, 11, 18),
+				local(2018, 11, 19),
+				local(2018, 11, 20),
+				local(2018, 11, 21),
+				local(2018, 11, 22),
 			], 23);
 		});
 
 		it("should handle friday before sunset", () => {
 			testDates([
-				DateTime.local(2018, 11, 23).startOf("day"),
-				DateTime.local(2018, 11, 23, 12),
+				local(2018, 11, 23).startOf("day"),
+				local(2018, 11, 23, 12),
 			], 23);
 
 			testDates([
-				DateTime.local(2018, 8, 24).startOf("day"),
+				local(2018, 8, 24).startOf("day"),
 			], 24)
 		});
 
 		it("should handle friday after sunset", () => {
 			testDates([
-				DateTime.local(2018, 11, 16, 23, 59, 59)
+				local(2018, 11, 16, 23, 59, 59)
 			], 16);
 		});
     });
@@ -55,16 +53,16 @@ describe("HebrewTimes", () => {
 
 		it("should be 18 minutes before fridaySunset", () => {
 			testDates([
-				DateTime.local(2018, 11, 17),
-				DateTime.local(2018, 11, 18),
-				DateTime.local(2018, 11, 19),
-				DateTime.local(2018, 11, 20),
-				DateTime.local(2018, 11, 21),
-				DateTime.local(2018, 11, 22),
-				DateTime.local(2018, 11, 23),
-				DateTime.local(2018, 11, 23, 0).startOf("day"),
-				DateTime.local(2018, 11, 23).endOf("day"),
-				DateTime.local(2018, 11, 24),
+				local(2018, 11, 17),
+				local(2018, 11, 18),
+				local(2018, 11, 19),
+				local(2018, 11, 20),
+				local(2018, 11, 21),
+				local(2018, 11, 22),
+				local(2018, 11, 23),
+				local(2018, 11, 23, 0).startOf("day"),
+				local(2018, 11, 23).endOf("day"),
+				local(2018, 11, 24),
 			]);
 		});
     });
@@ -82,30 +80,30 @@ describe("HebrewTimes", () => {
 
 		it("should handle common case", () => {
 			testDates([
-				DateTime.local(2018, 11, 18),
-				DateTime.local(2018, 11, 19),
-				DateTime.local(2018, 11, 20),
-				DateTime.local(2018, 11, 21),
-				DateTime.local(2018, 11, 22),
-				DateTime.local(2018, 11, 23),
+				local(2018, 11, 18),
+				local(2018, 11, 19),
+				local(2018, 11, 20),
+				local(2018, 11, 21),
+				local(2018, 11, 22),
+				local(2018, 11, 23),
 			], 24);
 		});
 
 		it("should handle Saturday before havdala", () => {
 			testDates([
-				DateTime.local(2018, 11, 24).startOf("day"),
+				local(2018, 11, 24).startOf("day"),
 			], 24);
 			testDates([
-				DateTime.local(2018, 8, 25).endOf("day"),
+				local(2018, 8, 25).endOf("day"),
 			], 25);
 		});
 
 		it("should handle Saturday after havdala", () => {
 			testDates([
-				DateTime.local(2018, 11, 24).endOf("day"),
+				local(2018, 11, 24).endOf("day"),
 			], 24);
 			testDates([
-				DateTime.local(2018, 8, 25).endOf("day"),
+				local(2018, 8, 25).endOf("day"),
 			], 25);
 		});
     });
