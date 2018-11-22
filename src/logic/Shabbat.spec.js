@@ -2,6 +2,7 @@ const DateTime = require("luxon").DateTime;
 
 describe("Shabbat", () => {
 
+    const HebrewTimes = require("./HebrewTimes");
     const Shabbat = require("./Shabbat");
     const location = [43, -71];
 
@@ -42,9 +43,13 @@ describe("Shabbat", () => {
         });
 
         it("should handle Friday after candlelighting but before sunset", () => {
+			const cl = HebrewTimes.candleLighting(
+				DateTime.fromObject({year: 2018, month: 8, day: 24, hour: 19, minute: 22, second: 30, zone: "America/New_York"}),
+				...location
+			);
             testDates([
-                DateTime.fromObject({year: 2018, month: 8, day: 24, hour: 19, minute: 22, second: 30, zone: "America/New_York"}),
-                DateTime.fromObject({year: 2018, month: 8, day: 24, hour: 19, minute: 34, second: 30, zone: "America/New_York"}),
+                cl.plus({ seconds: 1 }),
+                cl.plus({ minutes: 17 }),
             ], Shabbat.is.CANDLELIGHTING);
         });
 

@@ -16,7 +16,9 @@ pipelines:
           - export PATH=$HOME/.yarn/bin:$PATH
           - yarn
           - yarn install
+          - yarn unittest
           - yarn test
+          - yarn brutetest
 definitions:
   caches:
     yarncustom: /usr/local/share/.cache/yarn/v1
