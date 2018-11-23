@@ -1,66 +1,69 @@
 import React, {
-    Component
+	Component,
 } from 'react';
 import {
-    Text,
-    View
+	Text,
+	View,
 } from 'react-native';
 
-import CountDown from '../components/Countdown';
+import CountDown from './Countdown';
 
-import state from "../logic/State";
+import state from '../logic/State';
 
-import Shabbat from "../logic/Shabbat";
+import Shabbat from '../logic/Shabbat';
 
-import Styles from "../Styles";
+import Styles from '../Styles';
 
-export default class ShabbatCheck extends Component {
+const message = {
+	[Shabbat.is.SHABBAT]: 'Yes!',
+	[Shabbat.is.NOT_SHABBAT]: 'No...',
+	[Shabbat.is.CANDLELIGHTING]: 'Almost...',
+}
 
-    componentDidMount() {
-        state.user.subscribe(() => {
-            this.setState(state.user.getState());
-        });
-    }
+const endEventName = {
+	[Shabbat.is.SHABBAT]: 'Shabbat ends',
+	[Shabbat.is.NOT_SHABBAT]: 'candle lighting',
+	[Shabbat.is.CANDLELIGHTING]: 'Shabbat begins',
+}
 
-    message = {
-        [Shabbat.is.SHABBAT]: "Yes!",
-        [Shabbat.is.NOT_SHABBAT]: "No...",
-        [Shabbat.is.CANDLELIGHTING]: "Almost..."
-    }
+class ShabbatCheck extends Component {
+	componentDidMount() {
+		state.user.subscribe(() => {
+			this.setState(state.user.getState());
+		});
+	}
 
-    endEventName = {
-        [Shabbat.is.SHABBAT]: "Shabbat ends",
-        [Shabbat.is.NOT_SHABBAT]: "candle lighting",
-        [Shabbat.is.CANDLELIGHTING]: "Shabbat begins",
-    }
+	render() {
+		const { now, location } = state.user.getState();
+		if (!location) {
+			return null;
+		}
+		const { coords: { latitude, longitude } } = location;
+		const { period, countDownTo } = Shabbat.isItShabbat(now, latitude, longitude);
 
-    render() {
-        console.log("Rendering ShabbatCheck")
-        var s = state.user.getState();
-        if (!s.location) {
-            return null;
-        }
-        var time = Shabbat.isItShabbat(
-            s.now,
-            s.location.coords.latitude,
-            s.location.coords.longitude
-        );
+		const { style } = this.props;
 
-        return (
-        <View style={this.props.style}>
-            <Text style={[Styles.title, Styles.center]} >
-                    {this.message[time.period]}
-            </Text>
-            <CountDown
-                style={[Styles.subtitle, Styles.center]}
-                endDate = {time.countDownTo}
-                startDate = {s.now}
-                callback = {state.set.now}
-            />
-            <Text style={
-                [Styles.subtitle, Styles.center]
-            }>until {this.endEventName[time.period]}</Text>
-        </View>
-        );
-    }
+		return (
+			<View style={style}>
+				<Text
+					style={[Styles.title, Styles.center]}
+				>
+					{`${message[period]}`}
+				</Text>
+				<CountDown
+					style={[Styles.subtitle, Styles.center]}
+					endDate={countDownTo}
+					startDate={now}
+					callback={state.set.now}
+				/>
+				<Text
+					style={
+						[Styles.subtitle, Styles.center]
+					}
+				>
+					{`until ${endEventName[period]}`}
+				</Text>
+			</View>
+		);
+	}
 }

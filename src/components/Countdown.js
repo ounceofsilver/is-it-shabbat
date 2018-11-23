@@ -1,80 +1,56 @@
 import React, {
-    Component
+	Component,
 } from 'react';
 import {
-    Text
+	Text,
 } from 'react-native';
+import { DateTime } from 'luxon';
 
 export default class CountDown extends Component {
+	constructor(props) {
+		super(props);
+		this.realStart = DateTime.local();
+		this.state = {
+			realNow: DateTime.local(),
+		};
+	}
 
-    constructor(props) {
-        // Required
-        props.endDate;
+	componentDidMount() {
+		this.timerId = setInterval(
+			() => this.tick(),
+			1000,
+		);
+	}
 
-        // Optional
-        props.startDate = props.startDate ? props.startDate : new Date();
-        props.callback = props.callback ? props.callback : () => {};
+	componentWillUnmount() {
+		clearInterval(this.timerId);
+	}
 
-        super(props);
-        this.realStartDate = new Date();  // real time
-        this.state = {
-            now: new Date()  // real time
-        }
-    }
+	getTime() {
+		const { realNow } = this.state;
+		const { start } = this.props;
+		return start.plus(realNow - this.realStartDate);
+	}
 
-    durationLeft() {
-        var elapsedTime = this.state.now - this.realStartDate;
-        var totalTime = this.props.endDate - this.props.startDate;
-        var distance = totalTime - elapsedTime;
-        return distance;
-    }
+	durationLeft() {
+		const { end, start } = this.props;
+		const { realNow } = this.state;
+		return (end - start).minus(realNow - this.realStartDate);
+	}
 
-    // totalDuration() {
-    //     return this.props.endDate - this.props.startDate;
-    // }
+	tick() {
+		const callback = this.props;
+		this.setState({
+			realNow: DateTime.utc(),
+		});
+		if (this.durationLeft() <= 0) {
+			callback(this.getTime());
+		}
+	}
 
-    getTime() {
-        var elapsedTime = this.state.now - this.realStartDate;
-        return new Date(this.props.startDate.getTime() + elapsedTime);
-    }
-
-    render() {
-        var distance = this.durationLeft();
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        var msg = hours + "h " + minutes + "m " + seconds + "s";
-        if(days) {
-            msg = days + "d " + msg;
-        }
-
-        return <Text style={this.props.style}>{msg}</Text>
-    }
-
-    componentDidMount() {
-        this.timerId = setInterval(
-            () => this.tick(),
-            1000
-        );
-    }
-    componentWillUnmount() {
-        clearInterval(this.timerId);
-    }
-
-    tick() {
-        var d = new Date();
-        this.setState({
-            now: d,
-        });
-        if (this.durationLeft() <= 0) {
-            this.props.callback(
-                this.getTime()
-            );
-        }
-
-    }
+	render() {
+		const { style } = this.props;
+		const d = this.durationLeft().normalize();
+		return <Text style={style}>{`${d.days}d ${d.hours}h ${d.minutes}m ${d.seconds}s`}</Text>;
+	}
 }

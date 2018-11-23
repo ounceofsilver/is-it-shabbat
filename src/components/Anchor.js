@@ -1,23 +1,17 @@
-import React, {
-    Component
-} from 'react';
+import React from 'react';
 import { Linking, Text } from 'react-native';
 
-export default class Anchor extends Component {
-    _handlePress = () => {
-        Linking.openURL(this.props.href);
-        this.props.onPress && this.props.onPress();
-    };
-
-    render() {
-        return (
-            <Text
-                { ...this.props }
-                style={{textDecorationLine: "underline", ...this.props.style}}
-                onPress={this._handlePress}
-            >
-                {this.props.children}
-            </Text>
-        );
-    }
-}
+export default ({ style, href, onPress, children, ...props }) => (
+	<Text
+		{...props}
+		style={{ textDecorationLine: 'underline', ...style }}
+		onPress={async () => {
+			Linking.openURL(href);
+			if (onPress) {
+				onPress();
+			}
+		}}
+	>
+		{children}
+	</Text>
+);

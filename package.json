@@ -9,8 +9,9 @@
     "eject": "expo eject",
     "test": "mocha ./src/**/*.spec.js",
     "unittest": "mocha ./src/**/*.unit.spec.js",
-	"brutetest": "mocha ./src/**/*.brutetest.js",
-    "tdd": "yarn test -w"
+    "brutetest": "mocha ./src/**/*.brutetest.js",
+    "tdd": "yarn test -w",
+    "lint": "eslint ./src/**/*.js"
   },
   "dependencies": {
     "expo": "29.0.0",
@@ -22,8 +23,15 @@
     "suncalc": "1.8.0"
   },
   "devDependencies": {
+    "babel-eslint": "10.0.1",
     "chai": "4.2.0",
+    "eslint": "5.9.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1",
     "mocha": "5.2.0",
+    "mocha-eslint": "4.1.0",
     "proxyquire": "2.1.0",
     "sinon": "7.1.1",
     "sinon-chai": "3.2.0"
