@@ -3,15 +3,19 @@ import {
 } from 'redux';
 import { DateTime } from 'luxon';
 
+import lookup from 'tz-lookup';
+
 const defaultState = {
 	location: null,
 	now: DateTime.local(),
 };
 const userState = createStore((state = defaultState, action) => {
 	if (action.type === 'SET_LOCATION') {
-		return Object.assign({}, state, { location: action.location });
+		const zone = lookup(action.location.coords.latitude, action.location.coords.longitude);
+		return Object.assign({}, state, { location: action.location, now: state.now.setZone(zone) });
 	} if (action.type === 'SET_NOW') {
-		return Object.assign({}, state, { now: action.now });
+		const zone = lookup(state.location.coords.latitude, state.location.coords.longitude);
+		return Object.assign({}, state, { now: action.now.setZone(zone) });
 	}
 	return state;
 });
@@ -27,8 +31,8 @@ module.exports = {
 		location: (location) => {
 			userState.dispatch({
 				type: 'SET_LOCATION',
-				location
-			})
-		}
+				location,
+			});
+		},
 	},
 };
