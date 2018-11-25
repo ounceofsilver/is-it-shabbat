@@ -1,5 +1,6 @@
 import {
 	createStackNavigator,
+	createAppContainer
 } from 'react-navigation';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -13,7 +14,7 @@ const NavigationOptions = {
 	},
 };
 
-export default Router = createStackNavigator({
+export default Router = createAppContainer(createStackNavigator({
 	// Name the screen
 	Home: {
 		screen: HomeScreen,
@@ -37,4 +38,4 @@ export default Router = createStackNavigator({
 	},
 }, {
 	initialRouterName: 'Home',
-});
+}));

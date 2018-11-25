@@ -4,7 +4,7 @@
     "description": "Is it the Sabbath yet? Get an up-to-date countdown to candle-lighting, sundown Friday, and Havdala on your phone!",
     "slug": "IsItShabbat",
     "privacy": "public",
-    "sdkVersion": "29.0.0",
+    "sdkVersion": "31.0.0",
     "platforms": [
       "ios"
     ],

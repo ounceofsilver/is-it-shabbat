@@ -29,13 +29,13 @@ export default class CountDown extends Component {
 	getTime() {
 		const { realNow } = this.state;
 		const { start } = this.props;
-		return start.plus(realNow - this.realStartDate);
+		return start.plus(realNow - this.realStart);
 	}
 
 	durationLeft() {
 		const { end, start } = this.props;
 		const { realNow } = this.state;
-		return (end - start).minus(realNow - this.realStartDate);
+		return (end.diff(start)).minus(realNow - this.realStart).shiftTo("days", "hours", "minutes", "seconds");
 	}
 
 	tick() {
@@ -50,7 +50,8 @@ export default class CountDown extends Component {
 
 	render() {
 		const { style } = this.props;
-		const d = this.durationLeft().normalize();
+		const d = this.durationLeft().toObject();
+		d.seconds = Math.floor(d.seconds);
 		return <Text style={style}>{`${d.days}d ${d.hours}h ${d.minutes}m ${d.seconds}s`}</Text>;
 	}
 }

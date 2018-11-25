@@ -24,5 +24,11 @@ module.exports = {
 				now,
 			});
 		},
+		location: (location) => {
+			userState.dispatch({
+				type: 'SET_LOCATION',
+				location
+			})
+		}
 	},
 };

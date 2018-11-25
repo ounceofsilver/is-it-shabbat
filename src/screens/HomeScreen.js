@@ -36,23 +36,34 @@ export default class HomeScreen extends Component {
 						justifyContent: 'space-between',
 					}}
 				>
-					<View>
-						<FontAwesome
-							name="cog"
-							size={36}
-							color={Styles.colors.textSubtle}
-							onPress={() => navigate('Settings')}
-						/>
-					</View>
-					<View>
-						<FontAwesome
-							name="info-circle"
-							size={36}
-							color={Styles.colors.textSubtle}
-							onPress={() => navigate('Info')}
-						/>
-					</View>
 				</View>
+				<View
+                    style={{
+                        position: "absolute",
+                        bottom: 0,
+                        width: "100%",
+                        paddingVertical: 10,
+                        paddingHorizontal: 15,
+
+                        flex: 1,
+                        flexDirection: "row",
+                        justifyContent: "space-between"
+                    }}
+                >
+                    <View>
+                        <FontAwesome
+                            name="map-marker" size={36} color={Styles.colors.textSubtle}
+                            onPress={() => this.props.navigation.navigate("Settings")}
+                        />
+                    </View>
+                    <View>
+                        <FontAwesome
+                            name="info-circle" size={36} color={Styles.colors.textSubtle}
+                            onPress={() => this.props.navigation.navigate("Info")}
+                        />
+                    </View>
+
+                </View>
 			</View>
 		);
 	}

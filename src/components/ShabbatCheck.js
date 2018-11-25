@@ -6,12 +6,11 @@ import {
 	View,
 } from 'react-native';
 
+import { DateTime } from 'luxon';
+
 import CountDown from './Countdown';
-
 import state from '../logic/State';
-
 import Shabbat from '../logic/Shabbat';
-
 import Styles from '../Styles';
 
 const message = {
@@ -26,7 +25,7 @@ const endEventName = {
 	[Shabbat.is.CANDLELIGHTING]: 'Shabbat begins',
 }
 
-class ShabbatCheck extends Component {
+export default class ShabbatCheck extends Component {
 	componentDidMount() {
 		state.user.subscribe(() => {
 			this.setState(state.user.getState());
@@ -52,8 +51,8 @@ class ShabbatCheck extends Component {
 				</Text>
 				<CountDown
 					style={[Styles.subtitle, Styles.center]}
-					endDate={countDownTo}
-					startDate={now}
+					end={countDownTo}
+					start={now}
 					callback={state.set.now}
 				/>
 				<Text

@@ -13,6 +13,7 @@ import {
 import { DateTime } from 'luxon';
 
 import state from './src/logic/State';
+import Router from './src/Router';
 
 function cacheFonts(fonts) {
 	return fonts.map(font => Font.loadAsync(font));
@@ -28,7 +29,7 @@ function cacheImages(images) {
 }
 
 export default class App extends Component {
-	static async loadAssetsAsync() {
+	async loadAssetsAsync() {
 		const imageAssets = cacheImages([
 			// 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
 			// require('./assets/images/circle.jpg'),
@@ -40,7 +41,7 @@ export default class App extends Component {
 				fa: require('@expo/vector-icons/fonts/FontAwesome.ttf'),
 			},
 		]);
-		await Promise.all([...imageAssets, ...fontAssets]);
+		return Promise.all([...imageAssets, ...fontAssets]);
 	}
 
 	state = {
@@ -72,39 +73,32 @@ export default class App extends Component {
 			return (
 				<AppLoading
 					startAsync={async () => {
-						this.loadAssetsAsync();
-						console.log('ASYNC APPLOADING LOCATION APP');
-						this.getLocationAsync().then((location) => {
-							state.user.dispatch({
-								type: 'SET_LOCATION',
-								location,
-							});
-						});
+						return await Promise.all([
+							this.loadAssetsAsync(),
+							this.getLocationAsync().then(location => {
+								state.set.location(location);
+							}),
+						]);
 					}}
 					onFinish={() => {
-						state.user.dispatch({
-							type: 'SET_NOW',
-							now: DateTime.local(),
-							// now: new Date("8/22/2018 07:00:00"),  //                 NOT_SHABBAT
-							// now: new Date("8/24/2018 14:00:00"),  // Friday,             NOT_SHABBAT
-							// now: new Date("8/24/2018 19:16:32"),  // Friday,             NOT_SHABBAT => CANDLELIGHTING
-							// now: new Date("8/24/2018 19:22:30"),  // Friday,             CANDLELIGHTING
-							// now: new Date("8/24/2018 19:34:30"),  // Friday,             CANDLELIGHTING => SHABBAT
-							// now: new Date("8/24/2018 21:00:00"),  // Friday,             SHABBAT
-							// now: new Date("8/24/2018 23:59:55"),  // Friday => Saturday, SHABBAT
-							// now: new Date("8/25/2018 14:00:00"),  // Saturday,           SHABBAT
-							// now: new Date("8/25/2018 20:14:55"),  // Saturday,           SHABBAT => NOT_SHABBAT
-							// now: new Date("8/25/2018 21:00:00"),  // Saturday,           NOT_SHABBAT
-						});
-						// console.log((new Date("8/24/2018 19:16:36")) - (new Date("8/24/2018 19:34:36")));
-
+						state.set.now(DateTime.local());
+						// now: new Date("8/22/2018 07:00:00"),  //                 NOT_SHABBAT
+						// now: new Date("8/24/2018 14:00:00"),  // Friday,             NOT_SHABBAT
+						// now: new Date("8/24/2018 19:16:32"),  // Friday,             NOT_SHABBAT => CANDLELIGHTING
+						// now: new Date("8/24/2018 19:22:30"),  // Friday,             CANDLELIGHTING
+						// now: new Date("8/24/2018 19:34:30"),  // Friday,             CANDLELIGHTING => SHABBAT
+						// now: new Date("8/24/2018 21:00:00"),  // Friday,             SHABBAT
+						// now: new Date("8/24/2018 23:59:55"),  // Friday => Saturday, SHABBAT
+						// now: new Date("8/25/2018 14:00:00"),  // Saturday,           SHABBAT
+						// now: new Date("8/25/2018 20:14:55"),  // Saturday,           SHABBAT => NOT_SHABBAT
+						// now: new Date("8/25/2018 21:00:00"),  // Saturday,           NOT_SHABBAT
 						this.setState({ isReady: true });
 					}}
 					onError={console.warn}
 				/>
 			);
 		}
-		return isReady;
-		// return isReady && (<Router />);
+		console.log("Loading App");
+		return isReady && (<Router />);
 	}
 }

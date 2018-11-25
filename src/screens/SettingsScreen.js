@@ -10,11 +10,17 @@ import {
 
 // import ShabbatCheck from '../components/ShabbatCheck';
 // import Styles from '../Styles';
-import State from '../logic/State';
+import state from '../logic/State';
 
 export default class SettingsScreen extends Component {
+	componentDidMount() {
+		state.user.subscribe(() => {
+			this.setState({});
+		});
+	}
+
 	render() {
-		const s = State.user.getState();
+		const s = state.user.getState();
 		return (
 			<MapView
 				style={{ flex: 1 }}
@@ -25,13 +31,10 @@ export default class SettingsScreen extends Component {
 					longitudeDelta: 0.1,
 				}}
 				onPress={(e) => {
-					State.user.dispatch({
-						type: 'SET_LOCATION',
-						location: {
-							coords: {
-								latitude: e.nativeEvent.coordinate.latitude,
-								longitude: e.nativeEvent.coordinate.longitude,
-							},
+					state.set.location({
+						coords: {
+							latitude: e.nativeEvent.coordinate.latitude,
+							longitude: e.nativeEvent.coordinate.longitude,
 						},
 					});
 					this.setState({}); // Re-renders Marker

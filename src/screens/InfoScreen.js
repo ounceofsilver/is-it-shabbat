@@ -18,7 +18,7 @@ export default class InfoScreen extends Component {
 				}}
 			>
 				<Text style={[Styles.title, Styles.center, { fontSize: 24 }]}>
-					{'Copyright 2018,'}
+					{'Copyright 2018, '}
 
 					<Anchor href="https://jamesfulford.com">
 						{'James Fulford'}
