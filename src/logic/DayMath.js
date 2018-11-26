@@ -2,11 +2,11 @@ const SunCalc = require('suncalc');
 
 function sunset(day, latitude, longitude) {
 	const o = day.toObject();
-	const { sunset } = SunCalc.getTimes(new Date(o.year, o.month - 1, o.day), latitude, longitude);
+	const ss = SunCalc.getTimes(new Date(o.year, o.month - 1, o.day), latitude, longitude).sunset;
 	return day.set({
-		hour: sunset.getHours(),
-		minute: sunset.getMinutes(),
-		second: sunset.getSeconds(),
+		hour: ss.getHours(),
+		minute: ss.getMinutes(),
+		second: ss.getSeconds(),
 	});
 }
 

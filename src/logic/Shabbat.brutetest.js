@@ -18,7 +18,7 @@ describe('Big Shabbat Test', () => {
 		{ zone: 'Asia/Tokyo', lat: 36, long: 140 },
 		{ zone: 'Europe/London', lat: 52, long: 0 },
 	].forEach(({ zone, lat, long }) => {
-		it(`should work in ${zone}`, () => {
+		it(`should work in ${zone}`, function zoneTest() {
 			this.timeout(120 * 1000);
 			range(1, 13, 3).forEach((month) => { // every month
 				range(1, 8).forEach((day) => { // first week

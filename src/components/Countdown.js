@@ -5,20 +5,22 @@ import {
 	Text,
 } from 'react-native';
 import { DateTime } from 'luxon';
+import PropTypes from 'prop-types';
+
 
 export default class CountDown extends Component {
 	constructor(props) {
 		super(props);
-		this.realStart = DateTime.local();
 		this.state = {
 			realNow: DateTime.local(),
 		};
+		this.startCountdown();
 	}
 
 	componentDidMount() {
 		this.timerId = setInterval(
 			() => this.tick(),
-			1000,
+			199,
 		);
 	}
 
@@ -32,26 +34,43 @@ export default class CountDown extends Component {
 		return start.plus(realNow - this.realStart);
 	}
 
+	startCountdown() {
+		this.realStart = DateTime.local();
+	}
+
 	durationLeft() {
 		const { end, start } = this.props;
 		const { realNow } = this.state;
-		return (end.diff(start)).minus(realNow - this.realStart).shiftTo("days", "hours", "minutes", "seconds");
+		return (end.diff(start)).minus(realNow - this.realStart).shiftTo('days', 'hours', 'minutes', 'seconds', 'milliseconds');
 	}
 
-	tick() {
-		const callback = this.props;
+	update() {
 		this.setState({
 			realNow: DateTime.utc(),
 		});
+	}
+
+	tick() {
+		const { callback } = this.props;
+		this.update();
 		if (this.durationLeft() <= 0) {
 			callback(this.getTime());
+			this.startCountdown();
+			this.update();
 		}
 	}
 
 	render() {
 		const { style } = this.props;
 		const d = this.durationLeft().toObject();
-		d.seconds = Math.floor(d.seconds);
 		return <Text style={style}>{`${d.days}d ${d.hours}h ${d.minutes}m ${d.seconds}s`}</Text>;
 	}
 }
+CountDown.propTypes = {
+	start: PropTypes.instanceOf(DateTime).isRequired,
+	end: PropTypes.instanceOf(DateTime).isRequired,
+	callback: PropTypes.func,
+};
+CountDown.defaultProps = {
+	callback: () => {},
+};

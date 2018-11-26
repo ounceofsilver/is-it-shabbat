@@ -6,7 +6,6 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 
 import ShabbatCheck from '../components/ShabbatCheck';
-// import state from '../logic/State';
 import Styles from '../Styles';
 
 export default class HomeScreen extends Component {
@@ -35,35 +34,34 @@ export default class HomeScreen extends Component {
 						flexDirection: 'row',
 						justifyContent: 'space-between',
 					}}
-				>
-				</View>
+				/>
 				<View
-                    style={{
-                        position: "absolute",
-                        bottom: 0,
-                        width: "100%",
-                        paddingVertical: 10,
-                        paddingHorizontal: 15,
+					style={{
+						position: 'absolute',
+						bottom: 0,
+						width: '100%',
+						paddingVertical: 10,
+						paddingHorizontal: 15,
 
-                        flex: 1,
-                        flexDirection: "row",
-                        justifyContent: "space-between"
-                    }}
-                >
-                    <View>
-                        <FontAwesome
-                            name="map-marker" size={36} color={Styles.colors.textSubtle}
-                            onPress={() => this.props.navigation.navigate("Settings")}
-                        />
-                    </View>
-                    <View>
-                        <FontAwesome
-                            name="info-circle" size={36} color={Styles.colors.textSubtle}
-                            onPress={() => this.props.navigation.navigate("Info")}
-                        />
-                    </View>
+						flex: 1,
+						flexDirection: 'row',
+						justifyContent: 'space-between'
+					}}
+				>
+					<View>
+						<FontAwesome
+							name="map-marker" size={36} color={Styles.colors.textSubtle}
+							onPress={() => this.props.navigation.navigate('Settings')}
+						/>
+					</View>
+					<View>
+						<FontAwesome
+							name="info-circle" size={36} color={Styles.colors.textSubtle}
+							onPress={() => this.props.navigation.navigate('Info')}
+						/>
+					</View>
 
-                </View>
+				</View>
 			</View>
 		);
 	}

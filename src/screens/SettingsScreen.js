@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-// import {
-// 	ScrollView,
-// 	View,
-// 	Text,
-// } from 'react-native';
 import {
 	MapView,
 } from 'expo';
 
-// import ShabbatCheck from '../components/ShabbatCheck';
-// import Styles from '../Styles';
 import state from '../logic/State';
 
 export default class SettingsScreen extends Component {

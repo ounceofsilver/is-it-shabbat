@@ -6,8 +6,6 @@ import {
 	View,
 } from 'react-native';
 
-import { DateTime } from 'luxon';
-
 import CountDown from './Countdown';
 import state from '../logic/State';
 import Shabbat from '../logic/Shabbat';
@@ -17,13 +15,13 @@ const message = {
 	[Shabbat.is.SHABBAT]: 'Yes!',
 	[Shabbat.is.NOT_SHABBAT]: 'No...',
 	[Shabbat.is.CANDLELIGHTING]: 'Almost...',
-}
+};
 
 const endEventName = {
 	[Shabbat.is.SHABBAT]: 'Shabbat ends',
 	[Shabbat.is.NOT_SHABBAT]: 'candle lighting',
 	[Shabbat.is.CANDLELIGHTING]: 'Shabbat begins',
-}
+};
 
 export default class ShabbatCheck extends Component {
 	componentDidMount() {
@@ -39,7 +37,6 @@ export default class ShabbatCheck extends Component {
 		}
 		const { coords: { latitude, longitude } } = location;
 		const { period, countDownTo } = Shabbat.isItShabbat(now, latitude, longitude);
-
 		const { style } = this.props;
 
 		return (

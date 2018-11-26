@@ -63,7 +63,7 @@ export default class App extends Component {
 			};
 		}
 		const location = await Location.getCurrentPositionAsync({});
-		console.log('Location received', location.coords.latitude, location.coords.longitude);
+		console.log('Location received:', location.coords.latitude, location.coords.longitude);
 		return location;
 	};
 
@@ -81,24 +81,28 @@ export default class App extends Component {
 						]);
 					}}
 					onFinish={() => {
-						state.set.now(DateTime.local());
-						// now: new Date("8/22/2018 07:00:00"),  //                 NOT_SHABBAT
-						// now: new Date("8/24/2018 14:00:00"),  // Friday,             NOT_SHABBAT
-						// now: new Date("8/24/2018 19:16:32"),  // Friday,             NOT_SHABBAT => CANDLELIGHTING
-						// now: new Date("8/24/2018 19:22:30"),  // Friday,             CANDLELIGHTING
-						// now: new Date("8/24/2018 19:34:30"),  // Friday,             CANDLELIGHTING => SHABBAT
-						// now: new Date("8/24/2018 21:00:00"),  // Friday,             SHABBAT
-						// now: new Date("8/24/2018 23:59:55"),  // Friday => Saturday, SHABBAT
-						// now: new Date("8/25/2018 14:00:00"),  // Saturday,           SHABBAT
-						// now: new Date("8/25/2018 20:14:55"),  // Saturday,           SHABBAT => NOT_SHABBAT
-						// now: new Date("8/25/2018 21:00:00"),  // Saturday,           NOT_SHABBAT
+						let init;
+						init = DateTime.local()
+						// // Done at (43, -71)
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 22, hour: 7, minute: 0, second: 0 })  //                        NOT_SHABBAT
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 24, hour: 14, minute: 0, second: 0 })  // Friday,               NOT_SHABBAT
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 24, hour: 19, minute: 18, second: 10 })  // Friday,             NOT_SHABBAT => CANDLELIGHTING
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 24, hour: 19, minute: 22, second: 30 })  // Friday,             CANDLELIGHTING
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 24, hour: 19, minute: 36, second: 10 })  // Friday,             CANDLELIGHTING => SHABBAT
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 24, hour: 21, minute: 0, second: 0 })  // Friday,               SHABBAT
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 24, hour: 23, minute: 59, second: 55 })  // Friday => Saturday, SHABBAT
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 25, hour: 14, minute: 0, second: 0 })  // Saturday,             SHABBAT
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 25, hour: 20, minute: 16, second: 32 })  // Saturday,           SHABBAT => NOT_SHABBAT
+						// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 25, hour: 21, minute: 0, second: 0 })  // Saturday,             NOT_SHABBAT
+						state.set.now(init);
+
 						this.setState({ isReady: true });
 					}}
 					onError={console.warn}
 				/>
 			);
 		}
-		console.log("Loading App");
+		console.log('Loading App');
 		return isReady && (<Router />);
 	}
 }

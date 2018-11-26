@@ -93,7 +93,7 @@ describe('HebrewTimes', () => {
 				local(2018, 11, 24).startOf('day'),
 			], 24);
 			testDates([
-				local(2018, 8, 25).startOf("day"),
+				local(2018, 8, 25).startOf('day'),
 			], 25);
 		});
 
