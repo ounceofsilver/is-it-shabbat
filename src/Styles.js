@@ -1,39 +1,73 @@
-// import { StyleSheet } from 'react-native';
+import {
+	Text,
+	View,
+} from 'react-native';
+import styled from 'styled-components';
 
-const colors = {
+//
+// Constants
+//
+export const colors = {
 	background: '#3D2F40',
 	textMain: '#F4BDFF',
 	textSubtle: '#7A5F7F',
 };
-const fonts = {
+export const fonts = {
 	primary: 'FredokaOne',
 };
-module.exports = {
-	colors,
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	title: {
-		fontSize: 65,
-		margin: 5,
-		color: colors.textMain,
-		// fontWeight: "bold",
-		fontFamily: fonts.primary,
-	},
-	heading: {
-		fontSize: 30,
-		margin: 15,
-		color: colors.textSubtle,
-		fontFamily: fonts.primary,
-	},
-	subtitle: {
-		fontSize: 15,
-		color: colors.textSubtle,
-		fontFamily: fonts.primary,
-	},
-	center: {
-		textAlign: 'center',
-	},
+export const size = {
+	title: 65,
 };
+export const centerStyle = `
+	textAlign: center;
+`;
+
+//
+// Text
+//
+export const StyledText = styled(Text)`
+	fontFamily: ${fonts.primary};
+`;
+
+// Primary
+export const PrimaryText = styled(StyledText)`
+	color: ${colors.textMain};
+`;
+export const TitleText = styled(PrimaryText)`
+	fontSize: ${size.title};
+	margin: 5px;
+`;
+export const TitleCenterText = styled(TitleText)([centerStyle]);
+
+// Secondary
+export const SecondaryText = styled(StyledText)`
+	color: ${colors.textSubtle};
+`;
+export const SubtitleText = styled(SecondaryText)([centerStyle]);
+
+//
+// Containers
+//
+export const CenteredContainer = styled(View)`
+	flex: 1;
+	justifyContent: center;
+	alignItems: center;
+`;
+export const BackgroundView = styled(View)`
+	height: 100%;
+	backgroundColor: ${colors.background};
+`;
+
+export const Footer = styled(View)`
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	paddingVertical: 10;
+	paddingHorizontal: 20;
+
+	flex: 1;
+	flexDirection: row;
+	justifyContent: space-between;
+`;
+
+export default {}

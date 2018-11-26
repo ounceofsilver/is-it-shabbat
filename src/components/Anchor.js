@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Linking, Text } from 'react-native';
+import PropTypes from 'prop-types';
 
-export default ({
-	style, href, onPress, children, ...props
-}) => (
-	<Text
-		{...props}
-		style={{ textDecorationLine: 'underline', ...(style || {}) }}
-		onPress={async () => {
-			Linking.openURL(href);
-			if (onPress) {
-				onPress();
-			}
-		}}
-	>
-		{children}
-	</Text>
-);
+export default class Anchor extends Component {
+	render() {
+		const { href, children } = this.props;
+		return (
+			<Text
+				style={{ textDecorationLine: 'underline' }}
+				onPress={async () => {
+					Linking.openURL(href);
+				}}
+			>
+				{children}
+			</Text>
+		);
+	}
+}
+Anchor.propTypes = {
+	href: PropTypes.string.isRequired,
+	children: PropTypes.node,
+};
+Anchor.defaultProps = {
+	children: '',
+};

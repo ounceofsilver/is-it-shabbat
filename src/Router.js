@@ -5,12 +5,12 @@ import {
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import InfoScreen from './screens/InfoScreen';
-import Styles from './Styles';
+import { colors } from './Styles';
 
 const NavigationOptions = {
 	headerTintColor: '#ffffff',
 	headerStyle: {
-		backgroundColor: Styles.colors.background,
+		backgroundColor: colors.background,
 	},
 };
 

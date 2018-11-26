@@ -1,12 +1,6 @@
-import React, {
-	Component,
-} from 'react';
-import {
-	Text,
-} from 'react-native';
-import { DateTime } from 'luxon';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { DateTime } from 'luxon';
 
 export default class CountDown extends Component {
 	constructor(props) {
@@ -61,16 +55,18 @@ export default class CountDown extends Component {
 	}
 
 	render() {
-		const { style } = this.props;
 		const d = this.durationLeft().toObject();
-		return <Text style={style}>{`${d.days}d ${d.hours}h ${d.minutes}m ${d.seconds}s`}</Text>;
+		const { children } = this.props;
+		return children(d);
 	}
 }
 CountDown.propTypes = {
 	start: PropTypes.instanceOf(DateTime).isRequired,
 	end: PropTypes.instanceOf(DateTime).isRequired,
 	callback: PropTypes.func,
+	children: PropTypes.func,
 };
 CountDown.defaultProps = {
 	callback: () => {},
+	children: () => {},
 };

@@ -20,8 +20,8 @@ export default class SettingsScreen extends Component {
 				initialRegion={{
 					latitude: s.location.coords.latitude,
 					longitude: s.location.coords.longitude,
-					latitudeDelta: 0.2,
-					longitudeDelta: 0.1,
+					latitudeDelta: 2,
+					longitudeDelta: 1,
 				}}
 				onPress={(e) => {
 					state.set.location({
