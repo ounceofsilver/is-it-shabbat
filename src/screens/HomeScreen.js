@@ -51,11 +51,21 @@ export default class HomeScreen extends Component {
 									>
 										{({
 											days, hours, minutes, seconds,
-										}) => (
-											<SubtitleText>
-												{`${days}d ${hours}h ${minutes}m ${seconds}s`}
-											</SubtitleText>
-										)}
+										}) => {
+											let x = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+											if (minutes === 0 && hours === 0 && days === 0) {
+												x = `${seconds}s`;
+											} else if (hours === 0 && days === 0) {
+												x = `${minutes}m ${seconds}s`;
+											} else if (days === 0) { //
+												x = `${hours}h ${minutes}m ${seconds}s`;
+											}
+											return (
+												<SubtitleText>
+													{x}
+												</SubtitleText>
+											);
+										}}
 									</CountDown>
 									<SubtitleText>
 										{`until ${endEventName[period]}`}
