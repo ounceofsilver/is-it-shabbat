@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "8.0.0",
+    "axios": "0.18.0",
     "expo": "31.0.2",
     "luxon": "1.8.0",
     "prop-types": "15.6.2",

@@ -18,11 +18,15 @@ import {
 	TitleCenterText,
 	SubtitleText,
 } from '../Styles';
-import state from '../logic/State';
+import spacetime from '../logic/SpaceTimeState';
+import holidayState from '../logic/HolidayState';
 
 export default class HomeScreen extends Component {
 	componentDidMount() {
-		state.user.subscribe(() => {
+		spacetime.user.subscribe(() => {
+			this.setState({});
+		});
+		holidayState.state.subscribe(() => {
 			this.setState({});
 		});
 	}
@@ -30,9 +34,13 @@ export default class HomeScreen extends Component {
 	render() {
 		const { navigation: { navigate } } = this.props;
 
-		const { now, location } = state.user.getState();
+		const { now, location } = spacetime.user.getState();
+		const { holidays } = holidayState.state.getState();
+
+		console.log(holidays.map(h => h.title));
+
 		// TODO: add in Redux Provider to avoid having subscription be triggered
-		// when user is on another screen and state.user store is updated.
+		// when user is on another screen and spacetime.user store is updated.
 		return (
 			<BackgroundView>
 				<ScrollView>
@@ -47,7 +55,7 @@ export default class HomeScreen extends Component {
 									<CountDown
 										end={countDownTo}
 										start={now}
-										callback={state.set.now}
+										callback={spacetime.set.now}
 									>
 										{({
 											days, hours, minutes, seconds,

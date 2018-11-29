@@ -3,7 +3,7 @@ import {
 	MapView,
 } from 'expo';
 
-import state from '../logic/State';
+import state from '../logic/SpaceTimeState';
 
 export default class SettingsScreen extends Component {
 	componentDidMount() {
