@@ -104,7 +104,7 @@ export default class HomeScreen extends Component {
 
 					<View style={{ marginTop: 140, paddingHorizontal: '7%', paddingBottom: 56 }}>
 						{
-							holidays.filter(h => h.date > now.startOf('day')).slice(0, 3).map(holiday => (
+							holidays.filter(h => h.date > now).slice(0, 3).map(holiday => (
 								<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
 									<SecondaryText>
 										{ holiday.title }
