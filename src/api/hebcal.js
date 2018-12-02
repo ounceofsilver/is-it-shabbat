@@ -70,11 +70,22 @@ const getHolidaysAsync = async (now, months = 2, overrides = {}) => {
 	const holidays = days
 		.filter(i => i.category !== 'hebdate');
 
-	return holidays.map(h => ({
-		...h,
-		hebdate: hebdates[h.date],
-		date: DateTime.local(...h.date.split('-').map(Number), 0, 0, 0, 0),
-	}));
+	return holidays.map((h) => {
+		const [year, month, day] = h.date.split('-').map(Number);
+		return ({
+			...h,
+			hebdate: hebdates[h.date],
+			date: DateTime.fromObject({
+				year,
+				month,
+				day,
+				hour: 0,
+				minute: 0,
+				second: 0,
+				zone: now.zone,
+			}),
+		});
+	});
 };
 
 // getHolidaysAsync(DateTime.local(), 2).then(console.log);

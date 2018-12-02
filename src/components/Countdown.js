@@ -35,12 +35,12 @@ export default class CountDown extends Component {
 	durationLeft() {
 		const { end, start } = this.props;
 		const { realNow } = this.state;
-		return (end.diff(start)).minus(realNow - this.realStart).shiftTo('days', 'hours', 'minutes', 'seconds', 'milliseconds');
+		return (end.diff(start)).minus(realNow - this.realStart);
 	}
 
 	update() {
 		this.setState({
-			realNow: DateTime.utc(),
+			realNow: DateTime.local(),
 		});
 	}
 
@@ -55,7 +55,7 @@ export default class CountDown extends Component {
 	}
 
 	render() {
-		const d = this.durationLeft().toObject();
+		const d = this.durationLeft();
 		const { children } = this.props;
 		return children(d);
 	}

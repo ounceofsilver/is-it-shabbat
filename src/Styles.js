@@ -16,7 +16,9 @@ export const fonts = {
 	primary: 'FredokaOne',
 };
 export const size = {
-	title: 65,
+	title: 80,
+	secondary: 22,
+	subtitle: 18,
 };
 export const centerStyle = `
 	textAlign: center;
@@ -39,15 +41,24 @@ export const TitleText = styled(PrimaryText)`
 `;
 export const TitleCenterText = styled(TitleText)([centerStyle]);
 
+// Subtitle
+export const SubtitleText = styled(StyledText)`
+	color: ${colors.textSubtle};
+	fontSize: ${size.subtitle};
+`;
+
+export const SubtitleCenterText = styled(SubtitleText)([centerStyle]);
+
 // Secondary
 export const SecondaryText = styled(StyledText)`
-	color: ${colors.textSubtle};
+	color: ${colors.textMain};
+	fontSize: ${size.secondary}
 `;
-export const SubtitleText = styled(SecondaryText)([centerStyle]);
 
 //
 // Containers
 //
+
 export const CenteredContainer = styled(View)`
 	flex: 1;
 	justifyContent: center;
@@ -59,6 +70,8 @@ export const BackgroundView = styled(View)`
 `;
 
 export const Footer = styled(View)`
+	backgroundColor: ${colors.background};
+
 	position: absolute;
 	bottom: 0;
 	width: 100%;
@@ -70,4 +83,4 @@ export const Footer = styled(View)`
 	justifyContent: space-between;
 `;
 
-export default {}
+export default {};

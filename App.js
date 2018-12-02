@@ -12,22 +12,34 @@ import {
 
 import { DateTime } from 'luxon';
 
+import { sunset } from './src/logic/DayMath';
 import spacetime from './src/logic/SpaceTimeState';
 import holidays from './src/logic/HolidayState';
 import { getHolidaysAsync } from './src/api/hebcal';
 import Router from './src/Router';
 
-// State synchronizations
-spacetime.user.subscribe(() => {
+const updateHolidays = (force = false) => {
 	// When location or time updates
 	// and time is a different month or year,
 	// update holidays list again
-	const { now } = spacetime.user.getState();
+	const { now, location } = spacetime.user.getState();
 	const { lastMonthRequested, lastYearRequested } = holidays.state.getState();
-	if (now.month !== lastMonthRequested || now.year !== lastYearRequested) {
-		getHolidaysAsync(now, 2, {}).then(hs => holidays.set.holidays(hs, now));
+
+	if (force || (now.month !== lastMonthRequested || now.year !== lastYearRequested)) {
+		// TODO: if config for Israel is "infer", infer here and pass in as override
+		getHolidaysAsync(now, 2, {})
+			.then(hs => holidays.set.holidays(
+				hs.map(h => ({
+					...h,
+					date: sunset(h.date, location.coords.latitude, location.coords.longitude),
+				})),
+				now,
+			));
 	}
-});
+};
+
+// State synchronizations
+spacetime.user.subscribe(updateHolidays);
 
 function cacheFonts(fonts) {
 	return fonts.map(font => Font.loadAsync(font));
@@ -90,10 +102,6 @@ export default class App extends Component {
 					startAsync={async () => Promise.all([
 						this.loadAssetsAsync(),
 						this.getLocationAsync().then((location) => {
-							// Initializing location
-							spacetime.set.location(location);
-
-							// Initializing time
 							let init;
 							init = DateTime.local();
 							// // Done at (43, -71)
@@ -107,12 +115,9 @@ export default class App extends Component {
 							// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 25, hour: 14, minute: 0, second: 0 });  // Saturday,             SHABBAT
 							// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 25, hour: 20, minute: 16, second: 32 });  // Saturday,           SHABBAT => NOT_SHABBAT
 							// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 25, hour: 21, minute: 0, second: 0 });  // Saturday,             NOT_SHABBAT
-							spacetime.set.now(init);
-
-							// Time is adjusted to match location
-							const { now } = spacetime.user.getState();
-							// TODO: if config for Israel is "infer", infer here and pass in as override
-							return getHolidaysAsync(now, 2, {}).then(hs => holidays.set.holidays(hs, now));
+							// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 12, day: 2, hour: 15, minute: 0, second: 0 });
+							spacetime.set.initialize(init, location);
+							updateHolidays(true);
 						}),
 					])
 					}

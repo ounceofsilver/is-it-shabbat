@@ -3,7 +3,6 @@ import Anchor from '../components/Anchor';
 import {
 	BackgroundView,
 	TitleCenterText,
-	SubtitleText,
 } from '../Styles';
 
 export default class InfoScreen extends Component {
@@ -15,10 +14,8 @@ export default class InfoScreen extends Component {
 					<Anchor href="https://jamesfulford.com">
 						{'James Fulford'}
 					</Anchor>
+					{' and Jessica Fulford'}
 				</TitleCenterText>
-				<SubtitleText>
-					{'Concept and styles from Jessica Fulford.'}
-				</SubtitleText>
 			</BackgroundView>
 		);
 	}
