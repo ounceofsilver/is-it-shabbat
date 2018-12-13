@@ -8,8 +8,18 @@ image: atlassian/default-image:2
 pipelines:
   default:
     - step:
-        name: Setup and Test
-        script: # Modify the commands below to build your repository.
+        name: Setup codebase
+        script:
+          - npm install expo-cli -g
           - npm install
+    - step:
+        name: Test
+        script:
+          - npm run lint
           - npm run test
-          - npm run brutetest
+    - step:
+        name: Deploy
+        deployment: production
+        trigger: manual
+        script:
+          - expo publish
