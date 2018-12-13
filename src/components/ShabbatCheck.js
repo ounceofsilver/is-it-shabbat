@@ -4,7 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import { DateTime } from 'luxon';
 
-import Shabbat from '../logic/Shabbat';
+import { isItShabbat } from 'shabbat-logic';
 
 export default class ShabbatCheck extends Component {
 	render() {
@@ -13,7 +13,7 @@ export default class ShabbatCheck extends Component {
 			return null;
 		}
 		const { coords: { latitude, longitude } } = location;
-		const { period, countDownTo } = Shabbat.isItShabbat(now, latitude, longitude);
+		const { period, countDownTo } = isItShabbat(now, latitude, longitude);
 		return children(period, countDownTo);
 	}
 }

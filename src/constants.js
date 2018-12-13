@@ -1,4 +1,4 @@
-import { is } from './logic/Shabbat';
+import { is } from 'shabbat-logic';
 
 export const message = {
 	[is.SHABBAT]: 'Yes!',

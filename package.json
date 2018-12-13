@@ -8,8 +8,6 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "mocha ./src/**/*.spec.js",
-    "unittest": "mocha ./src/**/*.unit.spec.js",
-    "brutetest": "mocha ./src/**/*.brutetest.js",
     "tdd": "yarn test -w",
     "lint": "eslint ./src/**/*.js"
   },
@@ -23,8 +21,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-navigation": "3.0.0",
     "redux": "4.0.0",
+    "shabbat-logic": "git+ssh://bitbucket.org:ounceofsilver/shabbat-logic.git#master",
     "styled-components": "4.1.1",
-    "suncalc": "1.8.0",
     "tz-lookup": "6.1.8"
   },
   "devDependencies": {

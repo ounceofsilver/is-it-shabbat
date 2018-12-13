@@ -12,7 +12,7 @@ import {
 
 import { DateTime } from 'luxon';
 
-import { sunset } from './src/logic/DayMath';
+import { sunset } from 'shabbat-logic';
 import spacetime from './src/logic/SpaceTimeState';
 import holidays from './src/logic/HolidayState';
 import { getHolidaysAsync } from './src/api/hebcal';
