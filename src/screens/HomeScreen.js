@@ -6,11 +6,9 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { message, endEventName } from '../constants';
-import ShabbatCheck from '../components/ShabbatCheck';
-import CountDown from '../components/Countdown';
+import { localization, components, state, styles } from 'is-it-shabbat-core';
+
 import {
-	colors,
 	BackgroundView,
 	Footer,
 	CenteredContainer,
@@ -21,8 +19,11 @@ import {
 	SubtitleText,
 	SecondaryText,
 } from '../Styles';
-import spacetime from '../logic/SpaceTimeState';
-import holidayState from '../logic/HolidayState';
+
+
+const { ShabbatCheck, CountDown } = components;
+const { spacetime, holidays } = state;
+const { en_US: { isItShabbat: { status, endEventName } } } = localization;
 
 export default class HomeScreen extends Component {
 	constructor(props) {
@@ -34,7 +35,7 @@ export default class HomeScreen extends Component {
 		spacetime.user.subscribe(() => {
 			this.setState({});
 		});
-		holidayState.state.subscribe(() => {
+		holidays.state.subscribe(() => {
 			this.setState({});
 		});
 	}
@@ -43,9 +44,10 @@ export default class HomeScreen extends Component {
 		const { navigation: { navigate } } = this.props;
 
 		const { now, location } = spacetime.user.getState();
-		const { holidays } = holidayState.state.getState();
+		const holidaysArray = holidays.state.getState().holidays;
 
-		// console.log(holidays.map(h => h.date));
+		console.log(now);
+		console.log(holidaysArray.map(h => h));
 
 		// TODO: add in Redux Provider to avoid having subscription be triggered
 		// when user is on another screen and spacetime.user store is updated.
@@ -58,12 +60,12 @@ export default class HomeScreen extends Component {
 							{(period, countDownTo) => (
 								<View>
 									<TitleCenterText>
-										{`${message[period]}`}
+										{`${status[period]}`}
 									</TitleCenterText>
 									<CountDown
 										end={countDownTo}
 										start={now}
-										callback={spacetime.set.now}
+										callback={spacetime.action.setNow}
 									>
 										{(dur) => {
 											const {
@@ -97,14 +99,14 @@ export default class HomeScreen extends Component {
 						<FontAwesome
 							name="angle-down"
 							size={64}
-							color={colors.textSubtle}
+							color={styles.colors.textSubtle}
 							onPress={() => this.scrollView.current.scrollToEnd()}
 						/>
 					</CenteredContainer>
 
 					<View style={{ marginTop: 140, paddingHorizontal: '7%', paddingBottom: 56 }}>
 						{
-							holidays.filter(h => h.date > now).slice(0, 3).map(holiday => (
+							holidaysArray.filter(h => h.date > now).slice(0, 3).map(holiday => (
 								<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
 									<SecondaryText>
 										{ holiday.title }
@@ -112,7 +114,7 @@ export default class HomeScreen extends Component {
 									<CountDown
 										end={holiday.date}
 										start={now}
-										callback={spacetime.set.now}
+										callback={spacetime.action.setNow}
 									>
 										{(dur) => {
 											const {
@@ -145,13 +147,13 @@ export default class HomeScreen extends Component {
 					<FontAwesome
 						name="map-marker"
 						size={36}
-						color={colors.textSubtle}
+						color={styles.colors.textSubtle}
 						onPress={() => navigate('Settings')}
 					/>
 					<FontAwesome
 						name="info-circle"
 						size={36}
-						color={colors.textSubtle}
+						color={styles.colors.textSubtle}
 						onPress={() => navigate('Info')}
 					/>
 				</Footer>

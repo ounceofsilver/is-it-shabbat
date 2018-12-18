@@ -1,20 +1,21 @@
 import {
 	createStackNavigator,
-	createAppContainer
+	createAppContainer,
 } from 'react-navigation';
+import { styles } from 'is-it-shabbat-core';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import InfoScreen from './screens/InfoScreen';
-import { colors } from './Styles';
+
 
 const NavigationOptions = {
 	headerTintColor: '#ffffff',
 	headerStyle: {
-		backgroundColor: colors.background,
+		backgroundColor: styles.colors.background,
 	},
 };
 
-export default Router = createAppContainer(createStackNavigator({
+export default createAppContainer(createStackNavigator({
 	// Name the screen
 	Home: {
 		screen: HomeScreen,

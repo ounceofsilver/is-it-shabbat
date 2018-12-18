@@ -10,36 +10,11 @@ import {
 	AppLoading,
 } from 'expo';
 
-import { DateTime } from 'luxon';
-
-import { sunset } from 'shabbat-logic';
-import spacetime from './src/logic/SpaceTimeState';
-import holidays from './src/logic/HolidayState';
-import { getHolidaysAsync } from './src/api/hebcal';
+import { state, utilities } from 'is-it-shabbat-core';
 import Router from './src/Router';
 
-const updateHolidays = (force = false) => {
-	// When location or time updates
-	// and time is a different month or year,
-	// update holidays list again
-	const { now, location } = spacetime.user.getState();
-	const { lastMonthRequested, lastYearRequested } = holidays.state.getState();
-
-	if (force || (now.month !== lastMonthRequested || now.year !== lastYearRequested)) {
-		// TODO: if config for Israel is "infer", infer here and pass in as override
-		getHolidaysAsync(now, 2, {})
-			.then(hs => holidays.set.holidays(
-				hs.map(h => ({
-					...h,
-					date: sunset(h.date, location.coords.latitude, location.coords.longitude),
-				})),
-				now,
-			));
-	}
-};
-
-// State synchronizations
-spacetime.user.subscribe(updateHolidays);
+const { spacetime, updateHolidays } = state;
+const { DateTime } = utilities;
 
 function cacheFonts(fonts) {
 	return fonts.map(font => Font.loadAsync(font));
@@ -116,7 +91,7 @@ export default class App extends Component {
 							// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 25, hour: 20, minute: 16, second: 32 });  // Saturday,           SHABBAT => NOT_SHABBAT
 							// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 8, day: 25, hour: 21, minute: 0, second: 0 });  // Saturday,             NOT_SHABBAT
 							// init = DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 12, day: 2, hour: 15, minute: 0, second: 0 });
-							spacetime.set.initialize(init, location);
+							spacetime.action.initialize(init, location);
 							updateHolidays(true);
 						}),
 					])

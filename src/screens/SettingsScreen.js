@@ -3,17 +3,19 @@ import {
 	MapView,
 } from 'expo';
 
-import state from '../logic/SpaceTimeState';
+import { state } from 'is-it-shabbat-core';
+
+const { spacetime } = state;
 
 export default class SettingsScreen extends Component {
 	componentDidMount() {
-		state.user.subscribe(() => {
+		spacetime.user.subscribe(() => {
 			this.setState({});
 		});
 	}
 
 	render() {
-		const s = state.user.getState();
+		const s = spacetime.user.getState();
 		return (
 			<MapView
 				style={{ flex: 1 }}
@@ -24,7 +26,7 @@ export default class SettingsScreen extends Component {
 					longitudeDelta: 1,
 				}}
 				onPress={(e) => {
-					state.set.location({
+					spacetime.action.setLocation({
 						coords: {
 							latitude: e.nativeEvent.coordinate.latitude,
 							longitude: e.nativeEvent.coordinate.longitude,

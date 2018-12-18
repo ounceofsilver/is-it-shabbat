@@ -4,22 +4,14 @@ import {
 } from 'react-native';
 import styled from 'styled-components';
 
+import { styles } from 'is-it-shabbat-core';
+
+const { fonts, colors, size } = styles;
+console.log(styles, fonts, colors, size);
+
 //
 // Constants
 //
-export const colors = {
-	background: '#3D2F40',
-	textMain: '#F4BDFF',
-	textSubtle: '#7A5F7F',
-};
-export const fonts = {
-	primary: 'FredokaOne',
-};
-export const size = {
-	title: 80,
-	secondary: 22,
-	subtitle: 18,
-};
 export const centerStyle = `
 	textAlign: center;
 `;
