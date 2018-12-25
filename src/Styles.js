@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { styles } from 'is-it-shabbat-core';
 
 const { fonts, colors, size } = styles;
-console.log(styles, fonts, colors, size);
 
 //
 // Constants

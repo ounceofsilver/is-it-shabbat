@@ -1,3 +1,4 @@
+.DS_Store
 node_modules/**/*
 .expo/*
 npm-debug.*
@@ -5,7 +6,6 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
-.babelrc
 .watchmanconfig
 package-lock.json
 yarn.lock

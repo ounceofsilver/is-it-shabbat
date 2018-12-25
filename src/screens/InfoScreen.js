@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Anchor from '../components/Anchor';
+import Anchor from '../elements/Anchor';
 import {
 	BackgroundView,
 	TitleCenterText,
