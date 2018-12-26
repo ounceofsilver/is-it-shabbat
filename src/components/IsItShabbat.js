@@ -3,11 +3,12 @@ import {
 	View,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import {
 	localization,
 	components,
-	state,
+	action,
 	utilities,
 } from 'is-it-shabbat-core';
 
@@ -22,12 +23,11 @@ import {
 
 const { ShabbatCheck, CountDown } = components;
 const { en: { translate: { status, endEventName } } } = localization;
-const { spacetime } = state;
 const { DateTime } = utilities;
 
 
-export default function IsItShabbat(props) {
-	const { now, location } = props;
+function IsItShabbat(props) {
+	const { now, location, setNow } = props;
 	return (
 		<ShabbatCheck now={now} location={location}>
 			{(period, countDownTo) => (
@@ -38,7 +38,7 @@ export default function IsItShabbat(props) {
 					<CountDown
 						end={countDownTo}
 						start={now}
-						callback={spacetime.action.setNow}
+						callback={setNow}
 					>
 						{dur => (
 							<SubtitleCenterText>
@@ -62,4 +62,16 @@ IsItShabbat.propTypes = {
 			longitude: PropTypes.number,
 		}),
 	}).isRequired,
+	setNow: PropTypes.func,
 };
+IsItShabbat.defaultProps = {
+	setNow: () => {}, // noop
+};
+
+export default connect(
+	state => ({
+		now: state.now,
+		location: state.location,
+	}),
+	{ setNow: action.setNow },
+)(IsItShabbat);

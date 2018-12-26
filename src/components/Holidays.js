@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import {
 	View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import {
 	components,
-	state,
+	action,
 	utilities,
 } from 'is-it-shabbat-core';
 
@@ -20,34 +21,32 @@ import {
 } from '../utilities/durationFormatter';
 
 const { CountDown } = components;
-const { spacetime } = state;
 const { DateTime } = utilities;
 
 
-export default function Holidays(props) {
-	const { holidays, now } = props;
-	const top3futureHolidays = holidays
-		.filter(h => h.date > now)
-		.slice(0, 3);
+function Holidays(props) {
+	const { holidays, now, setNow } = props;
 
-	return top3futureHolidays.map(holiday => (
-		<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
-			<SecondaryText>
-				{holiday.title}
-			</SecondaryText>
-			<CountDown
-				end={holiday.date}
-				start={now}
-				callback={spacetime.action.setNow}
-			>
-				{dur => (
-					<SubtitleText style={{ paddingLeft: 15 }}>
-						{formatHolidayDuration(dur)}
-					</SubtitleText>
-				)}
-			</CountDown>
-		</View>
-	));
+	return holidays
+		.slice(0, 3)
+		.map(holiday => (
+			<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
+				<SecondaryText>
+					{holiday.title}
+				</SecondaryText>
+				<CountDown
+					end={holiday.date}
+					start={now}
+					callback={setNow}
+				>
+					{dur => (
+						<SubtitleText style={{ paddingLeft: 15 }}>
+							{formatHolidayDuration(dur)}
+						</SubtitleText>
+					)}
+				</CountDown>
+			</View>
+		));
 }
 Holidays.propTypes = {
 	now: PropTypes.instanceOf(DateTime).isRequired,
@@ -57,4 +56,16 @@ Holidays.propTypes = {
 			date: PropTypes.instanceOf(DateTime).isRequired,
 		}),
 	).isRequired,
+	setNow: PropTypes.func,
 };
+Holidays.defaultProps = {
+	setNow: () => {}, // noop
+};
+
+export default connect(
+	state => ({
+		now: state.now,
+		holidays: state.holidays,
+	}),
+	{ setNow: action.setNow },
+)(Holidays);

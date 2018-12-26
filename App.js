@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {
 	AppLoading,
 } from 'expo';
+import { Provider } from 'react-redux';
+
+import { state } from 'is-it-shabbat-core';
 
 import initialize from './src/initialization';
 import Router from './src/Router';
@@ -15,7 +18,9 @@ class BaseApp extends Component {
 		const { isReady } = this.state;
 		return isReady
 			? (
-				<Router />
+				<Provider store={state}>
+					<Router />
+				</Provider>
 			)
 			: (
 				<AppLoading

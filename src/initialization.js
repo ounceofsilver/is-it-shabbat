@@ -12,9 +12,11 @@ import {
 // import i18n from 'i18next';
 // import { reactI18nextModule } from 'react-i18next';
 
-import { state, utilities } from 'is-it-shabbat-core';
+import {
+	utilities,
+	action,
+} from 'is-it-shabbat-core';
 
-const { spacetime, updateHolidays } = state;
 const { DateTime } = utilities;
 
 //
@@ -89,7 +91,7 @@ export default async () => Promise.all([
 	// initializeI18n(),
 	loadAssetsAsync(),
 	getLocationAsync().then((location) => {
-		spacetime.action.initialize(
+		action.initialize(
 			DateTime.local(),
 			// // Done at (43, -71)
 			// eslint-disable-next-line
@@ -116,6 +118,5 @@ export default async () => Promise.all([
 			// DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 12, day: 2, hour: 15, minute: 0, second: 0 }),
 			location,
 		);
-		updateHolidays(true);
 	}),
 ]);

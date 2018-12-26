@@ -3,19 +3,20 @@ import {
 	MapView,
 } from 'expo';
 
-import { state } from 'is-it-shabbat-core';
-
-const { spacetime } = state;
+import {
+	action,
+	state,
+} from 'is-it-shabbat-core';
 
 export default class SettingsScreen extends Component {
 	componentDidMount() {
-		spacetime.user.subscribe(() => {
+		state.subscribe(() => {
 			this.setState({});
 		});
 	}
 
 	render() {
-		const s = spacetime.user.getState();
+		const s = state.getState();
 		return (
 			<MapView
 				style={{ flex: 1 }}
@@ -25,15 +26,12 @@ export default class SettingsScreen extends Component {
 					latitudeDelta: 2,
 					longitudeDelta: 1,
 				}}
-				onPress={(e) => {
-					spacetime.action.setLocation({
-						coords: {
-							latitude: e.nativeEvent.coordinate.latitude,
-							longitude: e.nativeEvent.coordinate.longitude,
-						},
-					});
-					this.setState({}); // Re-renders Marker
-				}}
+				onPress={e => action.setLocation({
+					coords: {
+						latitude: e.nativeEvent.coordinate.latitude,
+						longitude: e.nativeEvent.coordinate.longitude,
+					},
+				})}
 				showsMyLocationButton={false}
 				showsPointsOfInterest={false}
 				showsCompass={false}
