@@ -1,25 +1,29 @@
-# This is a sample build configuration for JavaScript.
-# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
-# Only use spaces to indent your .yml configuration.
-# -----
-# You can specify a custom docker image from Docker Hub as your build environment.
 image: atlassian/default-image:2
-
+definitions:
+  caches:
+    npm: ~/.npm
 pipelines:
-  default:
-    - step:
-        name: Setup codebase
-        script:
-          - npm install expo-cli -g
-          - npm install
-    - step:
-        name: Test
-        script:
-          - npm run lint
-          - npm run test
-    - step:
-        name: Deploy
-        deployment: production
-        trigger: manual
-        script:
-          - expo publish
+  pull-requests:
+    '**':
+      - step:
+          name: Lint and Test
+          caches:
+            - npm
+          script:
+            - npm install
+            - npm explore is-it-shabbat-core -- npm install
+            - npm explore is-it-shabbat-core -- npm run build
+            - npm run lint
+            - npm run test
+      - step:
+          name: Deploy to Expo
+          deployment: production
+          trigger: manual
+          caches:
+            - npm
+          script:
+            - npm install
+            - npm explore is-it-shabbat-core -- npm install
+            - npm explore is-it-shabbat-core -- npm run build
+            - npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+            - npx expo publish --non-interactive
