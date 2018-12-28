@@ -1,29 +1,13 @@
 image: atlassian/default-image:2
-definitions:
-  caches:
-    npm: ~/.npm
+
 pipelines:
   pull-requests:
     '**':
       - step:
-          name: Lint and Test
+          name: Test
           caches:
-            - npm
+            - node
           script:
             - npm install
-            - npm explore is-it-shabbat-core -- npm install
-            - npm explore is-it-shabbat-core -- npm run build
             - npm run lint
             - npm run test
-      - step:
-          name: Deploy to Expo
-          deployment: production
-          trigger: manual
-          caches:
-            - npm
-          script:
-            - npm install
-            - npm explore is-it-shabbat-core -- npm install
-            - npm explore is-it-shabbat-core -- npm run build
-            - npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-            - npx expo publish --non-interactive
