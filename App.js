@@ -9,7 +9,7 @@ import { state } from 'is-it-shabbat-core';
 import initialize from './src/initialization';
 import Router from './src/Router';
 
-class BaseApp extends Component {
+class App extends Component {
 	state = {
 		isReady: false,
 	};
@@ -34,4 +34,4 @@ class BaseApp extends Component {
 	}
 }
 
-export default BaseApp;
+export default App;
