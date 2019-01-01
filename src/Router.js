@@ -2,11 +2,15 @@ import {
 	createStackNavigator,
 	createAppContainer,
 } from 'react-navigation';
-import { styles } from 'is-it-shabbat-core';
+import {
+	styles,
+	localization,
+} from 'is-it-shabbat-core';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import InfoScreen from './screens/InfoScreen';
 
+const { en: { translate } } = localization;
 
 const NavigationOptions = {
 	headerTintColor: '#ffffff',
@@ -26,14 +30,14 @@ export default createAppContainer(createStackNavigator({
 	Settings: {
 		screen: SettingsScreen,
 		navigationOptions: {
-			title: 'Settings',
+			title: translate.screens.settings,
 			...NavigationOptions,
 		},
 	},
 	Info: {
 		screen: InfoScreen,
 		navigationOptions: {
-			title: 'App Information',
+			title: translate.screens.info,
 			...NavigationOptions,
 		},
 	},

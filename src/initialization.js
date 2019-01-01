@@ -15,6 +15,7 @@ import {
 import {
 	utilities,
 	action,
+	state,
 } from 'is-it-shabbat-core';
 
 const { DateTime } = utilities;
@@ -91,7 +92,7 @@ export default async () => Promise.all([
 	// initializeI18n(),
 	loadAssetsAsync(),
 	getLocationAsync().then((location) => {
-		action.initialize(
+		let act = action.initialize(
 			DateTime.local(),
 			// // Done at (43, -71)
 			// eslint-disable-next-line
@@ -118,5 +119,6 @@ export default async () => Promise.all([
 			// DateTime.fromObject({ zone: "America/New_York", year: 2018, month: 12, day: 2, hour: 15, minute: 0, second: 0 }),
 			location,
 		);
+		state.dispatch(act);
 	}),
 ]);

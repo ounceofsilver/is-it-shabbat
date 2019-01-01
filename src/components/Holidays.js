@@ -25,7 +25,7 @@ const { DateTime } = utilities;
 
 
 function Holidays(props) {
-	const { holidays, now, setNow } = props;
+	const { holidays, now, dispatch } = props;
 
 	return holidays
 		.slice(0, 3)
@@ -37,7 +37,7 @@ function Holidays(props) {
 				<CountDown
 					end={holiday.date}
 					start={now}
-					callback={setNow}
+					callback={end => dispatch(action.setNow(end))}
 				>
 					{dur => (
 						<SubtitleText style={{ paddingLeft: 15 }}>
@@ -56,10 +56,7 @@ Holidays.propTypes = {
 			date: PropTypes.instanceOf(DateTime).isRequired,
 		}),
 	).isRequired,
-	setNow: PropTypes.func,
-};
-Holidays.defaultProps = {
-	setNow: () => {}, // noop
+	dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(
@@ -67,5 +64,4 @@ export default connect(
 		now: state.now,
 		holidays: state.holidays,
 	}),
-	{ setNow: action.setNow },
 )(Holidays);

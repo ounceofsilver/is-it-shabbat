@@ -1,22 +1,24 @@
-import React, { Component } from 'react';
-import Anchor from '../elements/Anchor';
+import React from 'react';
+
+import { localization } from 'is-it-shabbat-core';
+
 import {
 	BackgroundView,
 	TitleCenterText,
+	SubtitleCenterText,
 } from '../Styles';
 
-export default class InfoScreen extends Component {
-	render() {
-		return (
-			<BackgroundView style={{ paddingVertical: 20 }}>
-				<TitleCenterText style={{ fontSize: 24 }}>
-					{'Copyright 2018, '}
-					<Anchor href="https://jamesfulford.com">
-						{'James Fulford'}
-					</Anchor>
-					{' and Jessica Fulford'}
-				</TitleCenterText>
-			</BackgroundView>
-		);
-	}
-}
+const { en: { translate } } = localization;
+
+const InfoScreen = () => (
+	<BackgroundView style={{ paddingVertical: 20 }}>
+		<TitleCenterText style={{ fontSize: 24 }}>
+			{translate.copyright}
+		</TitleCenterText>
+		<SubtitleCenterText>
+			{translate.credit}
+		</SubtitleCenterText>
+	</BackgroundView>
+);
+
+export default InfoScreen;

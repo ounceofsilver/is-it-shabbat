@@ -1,14 +1,17 @@
 {
-  "name": "IsItShabbat",
+  "name": "is-it-shabbat-app",
+  "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "author": "James Fulford <james.fulford@outlook.com>",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "mocha ./src/**/*.spec.js",
-    "tdd": "yarn test -w",
+    "tdd": "npm run test -- -w",
+    "dev:rebuild": "rm -f yarn.lock package-lock.json && npm install && npm explore is-it-shabbat-core -- npm run build",
     "lint": "eslint ./src/**/*.js"
   },
   "husky": {

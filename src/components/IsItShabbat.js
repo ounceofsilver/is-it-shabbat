@@ -22,23 +22,23 @@ import {
 } from '../utilities/durationFormatter';
 
 const { ShabbatCheck, CountDown } = components;
-const { en: { translate: { status, endEventName } } } = localization;
+const { en: { translate } } = localization;
 const { DateTime } = utilities;
 
 
 function IsItShabbat(props) {
-	const { now, location, setNow } = props;
+	const { now, location, dispatch } = props;
 	return (
 		<ShabbatCheck now={now} location={location}>
 			{(period, countDownTo) => (
 				<View>
 					<TitleCenterText>
-						{`${status[period]}`}
+						{`${translate.status[period]}`}
 					</TitleCenterText>
 					<CountDown
 						end={countDownTo}
 						start={now}
-						callback={setNow}
+						callback={end => dispatch(action.setNow(end))}
 					>
 						{dur => (
 							<SubtitleCenterText>
@@ -47,7 +47,7 @@ function IsItShabbat(props) {
 						)}
 					</CountDown>
 					<SubtitleCenterText>
-						{endEventName[period]}
+						{translate.endEventName[period]}
 					</SubtitleCenterText>
 				</View>
 			)}
@@ -62,10 +62,7 @@ IsItShabbat.propTypes = {
 			longitude: PropTypes.number,
 		}),
 	}).isRequired,
-	setNow: PropTypes.func,
-};
-IsItShabbat.defaultProps = {
-	setNow: () => {}, // noop
+	dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(
@@ -73,5 +70,4 @@ export default connect(
 		now: state.now,
 		location: state.location,
 	}),
-	{ setNow: action.setNow },
 )(IsItShabbat);
