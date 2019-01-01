@@ -1,13 +1,19 @@
 image: atlassian/default-image:2
 
+definitions:
+  caches:
+    sonarcloud: ~/.sonar/cache
+    node-scanner: ~/.sonar/native-sonar-scanner
+
 pipelines:
   pull-requests:
     '**':
       - step:
-          name: Test
+          name: Test and Sonar
           caches:
             - node
+            - sonarcloud
+            - node-scanner
           script:
             - npm install
-            - npm run lint
-            - npm run test
+            - npm run scan
