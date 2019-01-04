@@ -19,6 +19,7 @@ import {
 import {
 	formatHolidayDuration,
 } from '../utilities/durationFormatter';
+import filterHolidays from '../utilities/holidayFiltering';
 
 const { CountDown } = components;
 const { DateTime } = utilities;
@@ -27,26 +28,24 @@ const { DateTime } = utilities;
 function Holidays(props) {
 	const { holidays, now, dispatch } = props;
 
-	return holidays
-		.slice(0, 3)
-		.map(holiday => (
-			<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
-				<SecondaryText>
-					{holiday.title}
-				</SecondaryText>
-				<CountDown
-					end={holiday.date}
-					start={now}
-					callback={end => dispatch(action.setNow(end))}
-				>
-					{dur => (
-						<SubtitleText style={{ paddingLeft: 15 }}>
-							{formatHolidayDuration(dur)}
-						</SubtitleText>
-					)}
-				</CountDown>
-			</View>
-		));
+	return filterHolidays(holidays, now).map(holiday => (
+		<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
+			<SecondaryText>
+				{holiday.title}
+			</SecondaryText>
+			<CountDown
+				end={holiday.date}
+				start={now}
+				callback={end => dispatch(action.setNow(end))}
+			>
+				{dur => (
+					<SubtitleText style={{ paddingLeft: 15 }}>
+						{formatHolidayDuration(dur)}
+					</SubtitleText>
+				)}
+			</CountDown>
+		</View>
+	));
 }
 Holidays.propTypes = {
 	now: PropTypes.instanceOf(DateTime).isRequired,
