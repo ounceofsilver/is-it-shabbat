@@ -61,7 +61,7 @@
     "jsdom": "13.1.0",
     "mocha": "5.2.0",
     "mocha-eslint": "4.1.0",
-    "nyc": "^13.1.0",
+    "nyc": "13.1.0",
     "proxyquire": "2.1.0",
     "react-dom": "16.7.0",
     "sinon": "7.1.1",
