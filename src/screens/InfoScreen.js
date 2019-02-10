@@ -5,7 +5,6 @@ import { localization } from 'is-it-shabbat-core';
 import {
 	BackgroundView,
 	TitleCenterText,
-	SubtitleCenterText,
 } from '../Styles';
 
 const { en: { translate } } = localization;
@@ -15,9 +14,6 @@ const InfoScreen = () => (
 		<TitleCenterText style={{ fontSize: 24 }}>
 			{translate.copyright}
 		</TitleCenterText>
-		<SubtitleCenterText>
-			{translate.credit}
-		</SubtitleCenterText>
 	</BackgroundView>
 );
 
