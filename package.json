@@ -11,15 +11,15 @@
     "eject": "expo eject",
     "lint": "eslint ./src/**/*.js",
     "test": "mocha ./src/**/*.spec.js",
-    "report": "nyc --reporter=lcov --reporter=text npm run test",
-    "scan": "npm run report && bash scripts/scan.sh",
-    "tdd": "npm run test -- -w",
+    "report": "nyc --reporter=lcov --reporter=text yarn test",
+    "scan": "yarn report && bash scripts/scan.sh",
+    "tdd": "yarn test -- -w",
     "dev:rebuild": "bash scripts/rebuild-core.sh"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn test"
     }
   },
   "nyc": {
