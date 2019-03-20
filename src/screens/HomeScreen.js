@@ -8,42 +8,37 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import {
 	styles,
+	localization,
 } from 'is-it-shabbat-core';
 
 import {
 	BackgroundView,
 	Footer,
 	CenteredContainer,
+	SubtitleCenterText,
 } from '../Styles';
 
 import IsItShabbat from '../components/IsItShabbat';
 import Holidays from '../components/Holidays';
 
-export default class HomeScreen extends Component {
-	constructor(props) {
-		super(props);
-		this.scrollView = React.createRef();
-	}
+const { en: { translate } } = localization;
 
+export default class HomeScreen extends Component {
 	render() {
 		const { navigation: { navigate } } = this.props;
 		return (
 			<BackgroundView>
 				<ScrollView ref={this.scrollView}>
-					<CenteredContainer style={{ height: 200, marginTop: 90 }}>
+					<CenteredContainer style={{ marginTop: 35 }}>
+						<SubtitleCenterText style={{ fontSize: 32 }}>
+							{translate.title}
+						</SubtitleCenterText>
+					</CenteredContainer>
+					<CenteredContainer style={{ marginTop: 30, marginBottom: 40 }}>
 						<IsItShabbat />
 					</CenteredContainer>
 
-					<CenteredContainer>
-						<FontAwesome
-							name="angle-down"
-							size={64}
-							color={styles.colors.textSubtle}
-							onPress={() => this.scrollView.current.scrollToEnd()}
-						/>
-					</CenteredContainer>
-
-					<View style={{ marginTop: 140, paddingHorizontal: '7%', paddingBottom: 56 }}>
+					<View style={{ marginTop: 40, paddingHorizontal: '7%', paddingBottom: 56 }}>
 						<Holidays />
 					</View>
 
