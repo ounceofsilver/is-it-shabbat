@@ -17,6 +17,8 @@ import {
 	SubtitleCenterText,
 } from '../Styles';
 
+import ToggleThroughStates from './ToggleThroughStates';
+
 import {
 	underAWeek,
 } from '../utilities/durationFormatter';
@@ -35,20 +37,44 @@ function IsItShabbat(props) {
 					<TitleCenterText>
 						{`${translate.status[period]}`}
 					</TitleCenterText>
-					<CountDown
-						end={countDownTo}
-						start={now}
-						callback={end => dispatch(action.setNow(end))}
-					>
-						{dur => (
-							<SubtitleCenterText>
-								{underAWeek(dur)}
-							</SubtitleCenterText>
-						)}
-					</CountDown>
-					<SubtitleCenterText>
-						{translate.endEventName[period]}
-					</SubtitleCenterText>
+					<ToggleThroughStates>
+						{[
+							(
+								<>
+								<CountDown
+									key={10}
+									end={countDownTo}
+									start={now}
+									callback={end => dispatch(action.setNow(end))}
+								>
+									{dur => (
+										<SubtitleCenterText>
+											{underAWeek(dur)}
+										</SubtitleCenterText>
+									)}
+								</CountDown>
+								<SubtitleCenterText key={11}>
+									{translate.endEventName[period]}
+								</SubtitleCenterText>
+								</>
+							),
+							(
+								<>
+								<SubtitleCenterText key={20}>
+									{translate.startEventName[period]}
+								</SubtitleCenterText>
+								<SubtitleCenterText key={21}>
+									{countDownTo.toLocaleString({
+										month: 'short',
+										day: '2-digit',
+										hour: '2-digit',
+										minute: '2-digit',
+									})}
+								</SubtitleCenterText>
+								</>
+							),
+						]}
+					</ToggleThroughStates>
 				</View>
 			)}
 		</ShabbatCheck>

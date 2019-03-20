@@ -11,6 +11,8 @@ import {
 	utilities,
 } from 'is-it-shabbat-core';
 
+import ToggleThroughStates from './ToggleThroughStates';
+
 import {
 	SubtitleText,
 	SecondaryText,
@@ -33,17 +35,38 @@ function Holidays(props) {
 			<SecondaryText>
 				{holiday.title}
 			</SecondaryText>
-			<CountDown
-				end={holiday.date}
-				start={now}
-				callback={end => dispatch(action.setNow(end))}
-			>
-				{dur => (
-					<SubtitleText style={{ paddingLeft: 15 }}>
-						{formatHolidayDuration(dur)}
-					</SubtitleText>
-				)}
-			</CountDown>
+			<ToggleThroughStates>
+				{[
+					(
+						<CountDown
+							key={1}
+							end={holiday.date}
+							start={now}
+							callback={end => dispatch(action.setNow(end))}
+						>
+							{dur => (
+								<SubtitleText style={{ paddingLeft: 15 }}>
+									{formatHolidayDuration(dur)}
+								</SubtitleText>
+							)}
+						</CountDown>
+					),
+					(
+						<SubtitleText
+							key={2}
+							style={{ paddingLeft: 15 }}
+						>
+							{holiday.date.toLocaleString({
+								weekday: 'long',
+								month: 'short',
+								day: '2-digit',
+								hour: '2-digit',
+								minute: '2-digit',
+							})}
+						</SubtitleText>
+					),
+				]}
+			</ToggleThroughStates>
 		</View>
 	));
 }
