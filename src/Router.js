@@ -8,7 +8,6 @@ import {
 } from 'is-it-shabbat-core';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
-import InfoScreen from './screens/InfoScreen';
 
 const { en: { translate } } = localization;
 
@@ -31,13 +30,6 @@ export default createAppContainer(createStackNavigator({
 		screen: SettingsScreen,
 		navigationOptions: {
 			title: translate.screens.settings,
-			...NavigationOptions,
-		},
-	},
-	Info: {
-		screen: InfoScreen,
-		navigationOptions: {
-			title: translate.screens.info,
 			...NavigationOptions,
 		},
 	},

@@ -42,6 +42,10 @@ export default class HomeScreen extends Component {
 						<Holidays />
 					</View>
 
+					<SubtitleCenterText style={{ paddingBottom: 56, fontSize: 18 }}>
+						{translate.copyright}
+					</SubtitleCenterText>
+
 				</ScrollView>
 
 				<Footer style={{ height: 56 }}>
@@ -50,12 +54,6 @@ export default class HomeScreen extends Component {
 						size={36}
 						color={styles.colors.textSubtle}
 						onPress={() => navigate('Settings')}
-					/>
-					<FontAwesome
-						name="info-circle"
-						size={36}
-						color={styles.colors.textSubtle}
-						onPress={() => navigate('Info')}
 					/>
 				</Footer>
 			</BackgroundView>
