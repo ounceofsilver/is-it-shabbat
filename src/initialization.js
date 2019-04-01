@@ -3,8 +3,6 @@ import {
 	Asset,
 } from 'react-native';
 import {
-	Location,
-	Permissions,
 	Font,
 	// Localization,
 } from 'expo';
@@ -17,6 +15,8 @@ import {
 	action,
 	state,
 } from 'is-it-shabbat-core';
+
+import getLocationAsync from './utilities/getLocation';
 
 const { DateTime } = utilities;
 
@@ -42,24 +42,6 @@ const { DateTime } = utilities;
 // 			escapeValue: false,
 // 		},
 // 	});
-
-//
-// Location
-//
-const getLocationAsync = async () => {
-	const { status } = await Permissions.askAsync(Permissions.LOCATION);
-	if (status !== 'granted') {
-		return {
-			// TODO(james.fulford): get location by IP
-			coords: {
-				latitude: 31.776875,
-				longitude: 35.233673,
-			},
-		};
-	}
-	const location = await Location.getCurrentPositionAsync({});
-	return location;
-};
 
 //
 // Assets loading
