@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { AdMobBanner } from 'expo';
 import {
 	View,
 	ScrollView,
@@ -28,6 +29,13 @@ export default class HomeScreen extends Component {
 		const { navigation: { navigate } } = this.props;
 		return (
 			<BackgroundView>
+				<AdMobBanner
+					bannerSize="smartBannerPortrait"
+					adUnitID="ca-app-pub-4520712444019649/7098316428"
+					testDeviceID="EMULATOR"
+					// eslint-disable-next-line no-console
+					onDidFailToReceiveAdWithError={console.error}
+				/>
 				<ScrollView ref={this.scrollView}>
 					<CenteredContainer style={{ marginTop: 35 }}>
 						<SubtitleCenterText style={{ fontSize: 32 }}>
