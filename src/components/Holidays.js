@@ -12,64 +12,61 @@ import {
 } from 'is-it-shabbat-core';
 
 import ToggleThroughStates from './ToggleThroughStates';
-
 import {
 	SubtitleText,
 	SecondaryText,
 } from '../Styles';
-
-import {
-	formatHolidayDuration,
-} from '../utilities/durationFormatter';
 import filterHolidays from '../utilities/holidayFiltering';
 
 const { CountDown } = components;
-const { DateTime } = utilities;
+const { DateTime, formatHolidayDuration } = utilities;
 
 
-function Holidays(props) {
-	const { holidays, now, dispatch } = props;
-
-	return filterHolidays(holidays, now).map(holiday => (
-		<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
-			<SecondaryText>
-				{holiday.title}
-			</SecondaryText>
-			<ToggleThroughStates>
-				{[
-					(
-						<CountDown
-							key={1}
-							end={holiday.date}
-							start={now}
-							callback={end => dispatch(action.setNow(end))}
-						>
-							{dur => (
-								<SubtitleText style={{ paddingLeft: 15 }}>
-									{formatHolidayDuration(dur)}
+const Holidays = ({ holidays, now, dispatch }) => (
+	filterHolidays(holidays, now)
+		.map(
+			holiday => (
+				<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
+					<SecondaryText>
+						{holiday.title}
+					</SecondaryText>
+					<ToggleThroughStates>
+						{[
+							(
+								<CountDown
+									key={1}
+									end={holiday.date}
+									start={now}
+									callback={end => dispatch(action.setNow(end))}
+								>
+									{dur => (
+										<SubtitleText style={{ paddingLeft: 15 }}>
+											{formatHolidayDuration(dur)}
+										</SubtitleText>
+									)}
+								</CountDown>
+							),
+							(
+								<SubtitleText
+									key={2}
+									style={{ paddingLeft: 15 }}
+								>
+									{holiday.date.toLocaleString({
+										weekday: 'long',
+										month: 'short',
+										day: '2-digit',
+										hour: '2-digit',
+										minute: '2-digit',
+									})}
 								</SubtitleText>
-							)}
-						</CountDown>
-					),
-					(
-						<SubtitleText
-							key={2}
-							style={{ paddingLeft: 15 }}
-						>
-							{holiday.date.toLocaleString({
-								weekday: 'long',
-								month: 'short',
-								day: '2-digit',
-								hour: '2-digit',
-								minute: '2-digit',
-							})}
-						</SubtitleText>
-					),
-				]}
-			</ToggleThroughStates>
-		</View>
-	));
-}
+							),
+						]}
+					</ToggleThroughStates>
+				</View>
+			),
+		)
+);
+
 Holidays.propTypes = {
 	now: PropTypes.instanceOf(DateTime).isRequired,
 	holidays: PropTypes.arrayOf(
