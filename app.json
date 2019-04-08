@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "IsItShabbat",
-    "description": "Is it the Sabbath yet? Get an up-to-date countdown to candle-lighting, sundown Friday, and Havdala on your phone!",
+    "name": "Is It Shabbat?",
+    "description": "Is it the Sabbath yet? Connect with G-d's holy days with this app.",
     "slug": "IsItShabbat",
-    "privacy": "public",
-    "sdkVersion": "31.0.0",
+    "privacy": "unlisted",
+    "sdkVersion": "32.0.0",
     "platforms": [
       "ios"
     ],
-    "version": "1.0.1",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,10 +24,10 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "buildNumber": "1.0.0",
+      "buildNumber": "2.0.0",
       "bundleIdentifier": "com.jamesfulford.isitshabbat",
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "IsItShabbat needs your location to calculate sunset times at the start and end of Shabbat."
+        "NSLocationWhenInUseUsageDescription": "Is It Shabbat? needs your location to calculate sunset times at the start and end of Shabbat and other holy days."
       }
     }
   }
