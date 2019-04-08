@@ -11,21 +11,22 @@
 
 ### Count down based on sunset at your selected location!
 <p align="center">
-    <img src="./images/Yes Count.png" alt="It Is Shabbat!" width=140 height=240 />
-    <img src="./images/No Count.png" alt="It Is Not Shabbat..." width=140 height=240 />
-    <img src="./images/Almost Count.png" alt="Shabbat is about to begin!" width=140 height=240 />
+    <img src="./images/6s Plus/Yes Count.png" alt="It Is Shabbat!" width=140 height=240 />
+    <img src="./images/6s Plus/No Count.png" alt="It Is Not Shabbat..." width=140 height=240 />
+    <img src="./images/6s Plus/Almost Count.png" alt="Shabbat is about to begin!" width=140 height=240 />
 </p>
 
 ### Tap to see the time!
 <p align="center">
-    <img src="./images/Yes Time.png" alt="It Is Shabbat!" width=140 height=240 />
-    <img src="./images/No Time.png" alt="It Is Not Shabbat..." width=140 height=240 />
-    <img src="./images/Almost Time.png" alt="Shabbat is about to begin!" width=140 height=240 />
+    <img src="./images/6s Plus/Yes Time.png" alt="It Is Shabbat!" width=140 height=240 />
+    <img src="./images/6s Plus/No Time.png" alt="It Is Not Shabbat..." width=140 height=240 />
+    <img src="./images/6s Plus/Almost Time.png" alt="Shabbat is about to begin!" width=140 height=240 />
 </p>
 
 ### See the times for your friends abroad!
 <p align="center">
-    <img src="./images/Map.png" alt="Change current location using location picker map."  width=140 height=240 />
+    <img src="./images/6s Plus/Map New York.png" alt="Change current location using location picker map."  width=140 height=240 />
+    <img src="./images/6s Plus/Map Jerusalem.png" alt="Change current location using location picker map."  width=140 height=240 />
 </p>
 
 ## Information
