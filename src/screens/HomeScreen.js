@@ -6,10 +6,10 @@ import {
 	ScrollView,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import i18n from 'i18n-js';
 
 import {
 	styles,
-	localization,
 } from 'is-it-shabbat-core';
 
 import {
@@ -21,8 +21,6 @@ import {
 
 import IsItShabbat from '../components/IsItShabbat';
 import Holidays from '../components/Holidays';
-
-const { en: { translate } } = localization;
 
 export default class HomeScreen extends Component {
 	render() {
@@ -39,7 +37,7 @@ export default class HomeScreen extends Component {
 				<ScrollView ref={this.scrollView}>
 					<CenteredContainer style={{ marginTop: 35 }}>
 						<SubtitleCenterText style={{ fontSize: 32 }}>
-							{translate.title}
+							{i18n.t('title')}
 						</SubtitleCenterText>
 					</CenteredContainer>
 					<CenteredContainer style={{ marginTop: 30, marginBottom: 40 }}>
@@ -51,7 +49,7 @@ export default class HomeScreen extends Component {
 					</View>
 
 					<SubtitleCenterText style={{ paddingBottom: 56, fontSize: 18 }}>
-						{translate.copyright}
+						{i18n.t('copyright')}
 					</SubtitleCenterText>
 
 				</ScrollView>

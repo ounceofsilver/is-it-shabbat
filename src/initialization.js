@@ -4,11 +4,10 @@ import {
 } from 'react-native';
 import {
 	Font,
-	// Localization,
+	Localization,
 } from 'expo';
 
-// import i18n from 'i18next';
-// import { reactI18nextModule } from 'react-i18next';
+import i18n from 'i18n-js';
 
 import {
 	utilities,
@@ -19,29 +18,6 @@ import {
 import getLocationAsync from './utilities/getLocation';
 
 const { DateTime } = utilities;
-
-//
-// i18n
-//
-// const languageDetector = {
-// 	type: 'languageDetector',
-// 	async: true, // flags below detection to be async
-// 	detect: callback => Localization.getLocalizationAsync()
-// 		.then(({ locale }) => callback(locale)),
-// 	init: () => {},
-// 	cacheUserLanguage: () => {},
-// };
-//
-// const initializeI18n = () => i18n
-// 	.use(languageDetector)
-// 	.use(reactI18nextModule)
-// 	.init({
-// 		fallbackLng: 'en',
-// 		resources: localization,
-// 		interpolation: {
-// 			escapeValue: false,
-// 		},
-// 	});
 
 //
 // Assets loading
@@ -71,7 +47,9 @@ const loadAssetsAsync = async () => Promise.all([
 // Initialization
 //
 export default async () => Promise.all([
-	// initializeI18n(),
+	Promise.resolve(() => {
+		i18n.locale = Localization.locale;
+	}),
 	loadAssetsAsync(),
 	getLocationAsync().then((location) => {
 		let act = action.initialize(

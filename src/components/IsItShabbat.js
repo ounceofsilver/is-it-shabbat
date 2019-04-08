@@ -4,9 +4,9 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import i18n from 'i18n-js';
 
 import {
-	localization,
 	components,
 	action,
 	utilities,
@@ -19,7 +19,6 @@ import {
 import ToggleThroughStates from './ToggleThroughStates';
 
 const { ShabbatCheck, CountDown } = components;
-const { en: { translate } } = localization;
 const { DateTime, underAWeek } = utilities;
 
 const IsItShabbat = ({ now, location, dispatch }) => (
@@ -27,12 +26,11 @@ const IsItShabbat = ({ now, location, dispatch }) => (
 		{(period, countDownTo) => (
 			<View>
 				<TitleCenterText>
-					{`${translate.status[period]}`}
+					{i18n.t(`status.${period}`)}
 				</TitleCenterText>
 				<ToggleThroughStates>
 					{[
 						(
-							<>
 							<CountDown
 								key={10}
 								end={countDownTo}
@@ -41,29 +39,28 @@ const IsItShabbat = ({ now, location, dispatch }) => (
 							>
 								{dur => (
 									<SubtitleCenterText>
-										{underAWeek(dur)}
+										{i18n.t(
+											`endEventName.${period}`,
+											{ duration: underAWeek(dur) },
+										)}
 									</SubtitleCenterText>
 								)}
 							</CountDown>
-							<SubtitleCenterText key={11}>
-								{translate.endEventName[period]}
-							</SubtitleCenterText>
-							</>
 						),
 						(
-							<>
 							<SubtitleCenterText key={20}>
-								{translate.startEventName[period]}
+								{i18n.t(
+									`startEventName.${period}`,
+									{
+										end: countDownTo.toLocaleString({
+											month: 'short',
+											day: '2-digit',
+											hour: '2-digit',
+											minute: '2-digit',
+										}),
+									},
+								)}
 							</SubtitleCenterText>
-							<SubtitleCenterText key={21}>
-								{countDownTo.toLocaleString({
-									month: 'short',
-									day: '2-digit',
-									hour: '2-digit',
-									minute: '2-digit',
-								})}
-							</SubtitleCenterText>
-							</>
 						),
 					]}
 				</ToggleThroughStates>

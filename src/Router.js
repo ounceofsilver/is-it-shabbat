@@ -2,14 +2,13 @@ import {
 	createStackNavigator,
 	createAppContainer,
 } from 'react-navigation';
+import i18n from 'i18n-js';
+
 import {
 	styles,
-	localization,
 } from 'is-it-shabbat-core';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
-
-const { en: { translate } } = localization;
 
 const NavigationOptions = {
 	headerTintColor: '#ffffff',
@@ -29,7 +28,7 @@ export default createAppContainer(createStackNavigator({
 	Settings: {
 		screen: SettingsScreen,
 		navigationOptions: {
-			title: translate.screens.settings,
+			title: i18n.t('screens.settings'),
 			...NavigationOptions,
 		},
 	},

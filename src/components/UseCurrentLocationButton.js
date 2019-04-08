@@ -4,19 +4,18 @@ import {
 	Button,
 } from 'react-native';
 import { connect } from 'react-redux';
+import i18n from 'i18n-js';
 
 import {
 	action,
-	localization,
 } from 'is-it-shabbat-core';
 
 import getLocationAsync from '../utilities/getLocation';
 
-const { en: { translate } } = localization;
 
 const UseCurrentLocationButton = ({ dispatch }) => (
 	<Button
-		title={translate.settings.location.useCurrentLocation}
+		title={i18n.t('settings.location.useCurrentLocation')}
 		onPress={async () => {
 			dispatch(action.setLocation(await getLocationAsync()));
 		}}
