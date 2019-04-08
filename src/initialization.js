@@ -52,31 +52,66 @@ export default async () => Promise.all([
 	}),
 	loadAssetsAsync(),
 	getLocationAsync().then((location) => {
-		let act = action.initialize(
+		const act = action.initialize(
 			DateTime.local(),
-			// // Done at (43, -71)
+			//
+			//
+			// Simulate different times
+			//
+			//
+
+			// Done at (43, -71)
+			//
+			// 2 weeks before Rosh Hashana
+			//
+
+			// Weekday
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 22, hour: 7, minute: 0, second: 0 }),
+
+			// Friday, pre-candlelighting
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 24, hour: 14, minute: 0, second: 0 }),
+
+			// Candlelighting Crossover
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 24, hour: 19, minute: 18, second: 10 }),
+
+			// Candlelighting
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 24, hour: 19, minute: 22, second: 30 }),
+
+			// Shabbat crossover
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 24, hour: 19, minute: 36, second: 10 }),
+
+			// Friday Shabbat
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 24, hour: 21, minute: 0, second: 0 }),
+
+			// Friday Saturday crossover
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 24, hour: 23, minute: 59, second: 55 }),
+
+			// Saturday Shabbat
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 25, hour: 14, minute: 0, second: 0 }),
+
+			// Havdala
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 25, hour: 20, minute: 16, second: 32 }),
+
+			// Saturday Not Shabbat
 			// eslint-disable-next-line
 			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 8, day: 25, hour: 21, minute: 0, second: 0 }),
+
+			//
+			// Hannukah
+			//
+
+			// Holiday crossover
 			// eslint-disable-next-line
-			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 12, day: 2, hour: 15, minute: 0, second: 0 }),
+			// DateTime.fromObject({ zone: 'America/New_York', year: 2018, month: 12, day: 2, hour: 16, minute: 11, second: 44 }),
 			location,
 		);
 		state.dispatch(act);

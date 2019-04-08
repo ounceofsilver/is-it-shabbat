@@ -16,26 +16,38 @@ const eventToLocation = e => ({
 	},
 });
 
-const LocationPicker = ({ location, dispatch }) => (
-	<MapView
-		style={{ flex: 1 }}
-		initialRegion={{
-			latitude: location.coords.latitude,
-			longitude: location.coords.longitude,
-			latitudeDelta: 2,
-			longitudeDelta: 1,
-		}}
-		onPress={e => dispatch(action.setLocation(eventToLocation(e)))}
-		showsMyLocationButton={false}
-		showsPointsOfInterest={false}
-		showsCompass={false}
-		showsTraffic={false}
-		showsIndoors={false}
-		toolbarEnabled={false}
-	>
-		<MapView.Marker coordinate={location.coords} />
-	</MapView>
-);
+const LocationPicker = ({ location, dispatch }) => {
+	const initialRegion = {
+		latitude: location.coords.latitude,
+		longitude: location.coords.longitude,
+
+		// New York
+		// latitude: 40.755,
+		// longitude: -73.983,
+
+		// Jerusalem
+		// latitude: 31.777,
+		// longitude: 35.219,
+
+		latitudeDelta: 2,
+		longitudeDelta: 1,
+	};
+	return (
+		<MapView
+			style={{ flex: 1 }}
+			initialRegion={initialRegion}
+			onPress={e => dispatch(action.setLocation(eventToLocation(e)))}
+			showsMyLocationButton={false}
+			showsPointsOfInterest={false}
+			showsCompass={false}
+			showsTraffic={false}
+			showsIndoors={false}
+			toolbarEnabled={false}
+		>
+			<MapView.Marker coordinate={initialRegion} />
+		</MapView>
+	);
+};
 
 LocationPicker.propTypes = {
 	location: PropTypes.shape({
