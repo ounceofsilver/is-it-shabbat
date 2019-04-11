@@ -31,13 +31,15 @@ const getBannerSize = ({ width }) => {
 	return 'largeBanner';
 };
 
+const footerToolbarHeight = 56;
 export default class HomeScreen extends Component {
 	render() {
 		const { navigation: { navigate } } = this.props;
 		return (
 			<BackgroundView>
 				<StatusBar hidden />
-				<CenteredContainer>
+
+				<CenteredContainer style={{ marginBottom: 120 }}>
 					<AdMobBanner
 						bannerSize={getBannerSize(Dimensions.get('window'))}
 						adUnitID="ca-app-pub-4520712444019649/7098316428"
@@ -46,27 +48,34 @@ export default class HomeScreen extends Component {
 						onDidFailToReceiveAdWithError={console.error}
 					/>
 				</CenteredContainer>
-				<ScrollView ref={this.scrollView} style={{ marginTop: 55 }}>
+
+				<ScrollView>
 					<CenteredContainer>
 						<SubtitleCenterText style={{ fontSize: 32 }}>
 							{i18n.t('title')}
 						</SubtitleCenterText>
 					</CenteredContainer>
-					<CenteredContainer style={{ marginTop: 30, marginBottom: 40 }}>
+					<CenteredContainer style={{ marginTop: 30 }}>
 						<IsItShabbat />
 					</CenteredContainer>
 
-					<View style={{ marginTop: 40, paddingHorizontal: '7%', paddingBottom: 56 }}>
+					<View style={{ marginTop: 80 }}>
 						<Holidays />
 					</View>
 
-					<SubtitleCenterText style={{ paddingBottom: 56, fontSize: 18 }}>
+					<SubtitleCenterText
+						style={{
+							marginTop: 40,
+							marginBottom: footerToolbarHeight,
+							fontSize: 18,
+						}}
+					>
 						{i18n.t('copyright')}
 					</SubtitleCenterText>
 
 				</ScrollView>
 
-				<Footer style={{ height: 56 }}>
+				<Footer style={{ height: footerToolbarHeight }}>
 					<FontAwesome
 						name="map-marker"
 						size={36}
