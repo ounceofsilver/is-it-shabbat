@@ -4,6 +4,10 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "author": "James Fulford <james.fulford@outlook.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ounceofsilver/is-it-shabbat-app"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
