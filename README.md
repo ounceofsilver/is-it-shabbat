@@ -29,5 +29,8 @@
     <img src="./images/6s Plus/Map Jerusalem.png" alt="Change current location using location picker map."  width=140 height=240 />
 </p>
 
+## Todo:
+- [] Use shoutem to help with styling + responsiveness: https://github.com/shoutem/theme
+
 ## Information
 Uses [hebcal.com](https://www.hebcal.com/home/195/jewish-calendar-rest-api) APIs for holidays and Rosh Chodeshim.
