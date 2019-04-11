@@ -4,6 +4,8 @@ import { AdMobBanner } from 'expo';
 import {
 	View,
 	ScrollView,
+	Dimensions,
+	StatusBar,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import i18n from 'i18n-js';
@@ -22,20 +24,30 @@ import {
 import IsItShabbat from '../components/IsItShabbat';
 import Holidays from '../components/Holidays';
 
+const getBannerSize = ({ width }) => {
+	if (width >= 728) {
+		return 'fullBanner';
+	}
+	return 'largeBanner';
+};
+
 export default class HomeScreen extends Component {
 	render() {
 		const { navigation: { navigate } } = this.props;
 		return (
 			<BackgroundView>
-				<AdMobBanner
-					bannerSize="smartBannerPortrait"
-					adUnitID="ca-app-pub-4520712444019649/7098316428"
-					testDeviceID="EMULATOR"
-					// eslint-disable-next-line no-console
-					onDidFailToReceiveAdWithError={console.error}
-				/>
-				<ScrollView ref={this.scrollView}>
-					<CenteredContainer style={{ marginTop: 35 }}>
+				<StatusBar hidden />
+				<CenteredContainer>
+					<AdMobBanner
+						bannerSize={getBannerSize(Dimensions.get('window'))}
+						adUnitID="ca-app-pub-4520712444019649/7098316428"
+						testDeviceID="EMULATOR"
+						// eslint-disable-next-line no-console
+						onDidFailToReceiveAdWithError={console.error}
+					/>
+				</CenteredContainer>
+				<ScrollView ref={this.scrollView} style={{ marginTop: 55 }}>
+					<CenteredContainer>
 						<SubtitleCenterText style={{ fontSize: 32 }}>
 							{i18n.t('title')}
 						</SubtitleCenterText>
