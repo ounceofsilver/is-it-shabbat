@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-	View,
-} from 'react-native';
 import { connect } from 'react-redux';
 
 import {
@@ -15,66 +12,81 @@ import ToggleThroughStates from './ToggleThroughStates';
 import {
 	SubtitleText,
 	SecondaryText,
+	CenteredContainer,
 } from '../Styles';
 import filterHolidays from '../utilities/holidayFiltering';
 
 const { CountDown } = components;
 const { DateTime, formatHolidayDuration } = utilities;
 
-
-const Holidays = ({ holidays, now, dispatch }) => (
-	filterHolidays(holidays, now)
-		.map(
-			holiday => (
-				<View key={holiday.date.toString()} style={{ marginBottom: 15 }}>
-					<SecondaryText>
-						{holiday.title}
-					</SecondaryText>
-					<ToggleThroughStates>
-						{[
-							(
-								<CountDown
-									key={1}
-									end={holiday.date}
-									start={now}
-									callback={end => dispatch(action.setNow(end))}
-								>
-									{dur => (
-										<SubtitleText style={{ paddingLeft: 15 }}>
-											{formatHolidayDuration(dur)}
-										</SubtitleText>
-									)}
-								</CountDown>
-							),
-							(
-								<SubtitleText
-									key={2}
-									style={{ paddingLeft: 15 }}
-								>
-									{holiday.date.toLocaleString({
-										weekday: 'long',
-										month: 'short',
-										day: '2-digit',
-										hour: '2-digit',
-										minute: '2-digit',
-									})}
-								</SubtitleText>
-							),
-						]}
-					</ToggleThroughStates>
-				</View>
+export const Holiday = ({
+	holiday: { title, date }, now, setNow,
+}) => (
+	<>
+	<SecondaryText>
+		{title}
+	</SecondaryText>
+	<ToggleThroughStates>
+		{[
+			(
+				<CountDown
+					key={1}
+					end={date}
+					start={now}
+					callback={setNow}
+				>
+					{dur => (
+						<SubtitleText>
+							{formatHolidayDuration(dur)}
+						</SubtitleText>
+					)}
+				</CountDown>
 			),
-		)
+			(
+				<SubtitleText key={2}>
+					{date.toLocaleString({
+						weekday: 'long',
+						month: 'short',
+						day: '2-digit',
+						hour: '2-digit',
+						minute: '2-digit',
+					})}
+				</SubtitleText>
+			),
+		]}
+	</ToggleThroughStates>
+	</>
 );
-
-Holidays.propTypes = {
+const holidayPropType = PropTypes.shape({
+	title: PropTypes.string.isRequired,
+	date: PropTypes.instanceOf(DateTime).isRequired,
+});
+Holiday.propTypes = {
+	holiday: holidayPropType,
 	now: PropTypes.instanceOf(DateTime).isRequired,
-	holidays: PropTypes.arrayOf(
-		PropTypes.shape({
-			title: PropTypes.string.isRequired,
-			date: PropTypes.instanceOf(DateTime).isRequired,
-		}),
-	).isRequired,
+	setNow: PropTypes.func,
+};
+Holiday.default = {
+	setNow: () => {},
+};
+
+export const PureHolidays = ({ holidays, now, dispatch }) => {
+	const setNow = end => dispatch(action.setNow(end));
+	return (
+		filterHolidays(holidays, now)
+			.map(
+				holiday => (
+					<CenteredContainer key={holiday.date.toString()} style={{ marginBottom: 15 }}>
+						<Holiday holiday={holiday} setNow={setNow} now={now} />
+					</CenteredContainer>
+				),
+			)
+	);
+};
+
+PureHolidays.propTypes = {
+	now: PropTypes.instanceOf(DateTime).isRequired,
+	holidays: PropTypes.arrayOf(holidayPropType).isRequired,
 	dispatch: PropTypes.func.isRequired,
 };
 
@@ -83,4 +95,4 @@ export default connect(
 		now: state.now,
 		holidays: state.holidays,
 	}),
-)(Holidays);
+)(PureHolidays);
