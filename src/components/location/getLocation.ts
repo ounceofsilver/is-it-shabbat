@@ -1,9 +1,6 @@
-import {
-	Location,
-	Permissions,
-} from 'expo';
+import { Location, Permissions } from 'expo';
 
-import { ILocation } from '../shabbat/types';
+import { ILocation } from './types';
 
 export default async (): Promise<ILocation> => {
 	const { status } = await Permissions.askAsync(Permissions.LOCATION);

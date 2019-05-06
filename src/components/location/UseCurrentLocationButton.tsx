@@ -4,7 +4,7 @@ import React from 'react';
 import { Button } from 'react-native';
 import { connect } from 'react-redux';
 
-import getLocation from '../utilities/getLocation';
+import getLocation from './getLocation';
 
 const UseCurrentLocationButton = ({ dispatch }: { dispatch: (action: any) => void }) => (
 	<Button

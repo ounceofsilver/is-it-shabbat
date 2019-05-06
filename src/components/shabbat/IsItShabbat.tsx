@@ -5,9 +5,9 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 
-import { ILocation } from '../shabbat/types';
-import { SubtitleCenterText, TitleCenterText } from '../Styles';
-import ToggleThroughStates from './ToggleThroughStates';
+import { SubtitleCenterText, TitleCenterText } from '../../Styles';
+import { ILocation } from '../location/types';
+import ToggleThroughStates from '../ToggleThroughStates';
 
 const { ShabbatCheck, CountDown } = components;
 const { underAWeek } = utilities;

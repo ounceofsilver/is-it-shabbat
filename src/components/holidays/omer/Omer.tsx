@@ -2,9 +2,9 @@ import React from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { IOmerData } from '../holidays/types';
-import { PrimaryText, SecondaryText } from '../Styles';
-import getOmer from '../utilities/holidays/omer/getOmer';
+import { PrimaryText, SecondaryText } from '../../../Styles';
+import { IOmerData } from '../types';
+import getOmer from './utilities/getOmer';
 
 /* tslint:disable:max-line-length */
 export const PureOmer = ({

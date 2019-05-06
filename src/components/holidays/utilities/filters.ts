@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon';
-import { IHoliday } from '../../holidays/types';
+
+import { IHoliday } from '../types';
 
 export function upcomingFilter(now: DateTime): (h: IHoliday) => boolean {
 	return (h: IHoliday) => h.date >= now;

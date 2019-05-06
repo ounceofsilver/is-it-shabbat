@@ -3,10 +3,10 @@ import { DateTime } from 'luxon';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { IHoliday } from '../holidays/types';
-import { CenteredContainer } from '../Styles';
-import { getMajorHolidays } from '../utilities/holidays/holidayFiltering';
+import { CenteredContainer } from '../../Styles';
 import { Holiday } from './Holiday';
+import { IHoliday } from './types';
+import { getMajorHolidays } from './utilities/holidayFiltering';
 
 export const PureHolidays = ({
 	holidays,

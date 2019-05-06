@@ -2,9 +2,9 @@ import { components, utilities } from 'is-it-shabbat-core';
 import { DateTime } from 'luxon';
 import React from 'react';
 
-import { IHoliday } from '../holidays/types';
-import { SecondaryText, SubtitleText } from '../Styles';
-import ToggleThroughStates from './ToggleThroughStates';
+import { SecondaryText, SubtitleText } from '../../Styles';
+import ToggleThroughStates from '../ToggleThroughStates';
+import { IHoliday } from './types';
 
 const { CountDown } = components;
 const { formatHolidayDuration } = utilities;
