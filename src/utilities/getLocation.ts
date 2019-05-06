@@ -3,7 +3,9 @@ import {
 	Permissions,
 } from 'expo';
 
-export default async () => {
+import { ILocation } from '../shabbat/types';
+
+export default async (): Promise<ILocation> => {
 	const { status } = await Permissions.askAsync(Permissions.LOCATION);
 	if (status !== 'granted') {
 		return {
@@ -14,6 +16,6 @@ export default async () => {
 			},
 		};
 	}
-	const location = Location.getCurrentPositionAsync({});
+	const location = Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Lowest });
 	return location;
 };

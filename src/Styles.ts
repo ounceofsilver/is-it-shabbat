@@ -9,13 +9,6 @@ import { styles } from 'is-it-shabbat-core';
 const { fonts, colors, size } = styles;
 
 //
-// Constants
-//
-export const centerStyle = `
-	textAlign: center;
-`;
-
-//
 // Text
 //
 export const StyledText = styled(Text)`
@@ -30,7 +23,9 @@ export const TitleText = styled(PrimaryText)`
 	fontSize: ${size.title};
 	margin: 5px;
 `;
-export const TitleCenterText = styled(TitleText)([centerStyle]);
+export const TitleCenterText = styled(TitleText)`
+	textAlign: center;
+`;
 
 // Subtitle
 export const SubtitleText = styled(StyledText)`
@@ -38,7 +33,9 @@ export const SubtitleText = styled(StyledText)`
 	fontSize: ${size.subtitle};
 `;
 
-export const SubtitleCenterText = styled(SubtitleText)([centerStyle]);
+export const SubtitleCenterText = styled(SubtitleText)`
+	textAlign: center;
+`;
 
 // Secondary
 export const SecondaryText = styled(StyledText)`

@@ -1,22 +1,22 @@
+import { components, utilities } from 'is-it-shabbat-core';
+import { DateTime } from 'luxon';
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import {
-	components,
-	utilities,
-} from 'is-it-shabbat-core';
-
+import { IHoliday } from '../holidays/types';
+import { SecondaryText, SubtitleText } from '../Styles';
 import ToggleThroughStates from './ToggleThroughStates';
-import {
-	SubtitleText,
-	SecondaryText,
-} from '../Styles';
 
 const { CountDown } = components;
-const { DateTime, formatHolidayDuration } = utilities;
+const { formatHolidayDuration } = utilities;
 
 export const Holiday = ({
-	holiday: { title, date }, now, setNow,
+	holiday: { title, date },
+	now,
+	setNow = () => {},
+}: {
+	holiday: IHoliday,
+	now: DateTime,
+	setNow: (time: DateTime) => void,
 }) => (
 	<>
 	<SecondaryText>
@@ -53,15 +53,3 @@ export const Holiday = ({
 	</ToggleThroughStates>
 	</>
 );
-export const holidayPropType = PropTypes.shape({
-	title: PropTypes.string.isRequired,
-	date: PropTypes.instanceOf(DateTime).isRequired,
-});
-Holiday.propTypes = {
-	holiday: holidayPropType,
-	now: PropTypes.instanceOf(DateTime).isRequired,
-	setNow: PropTypes.func,
-};
-Holiday.default = {
-	setNow: () => {},
-};

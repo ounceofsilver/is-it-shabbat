@@ -13,29 +13,47 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "lint": "eslint ./src/**/*.js",
-    "test": "mocha ./src/**/*.spec.js",
-    "report": "nyc --reporter=lcov --reporter=text yarn test",
+    "lint": "tsc --noEmit --resolveJsonModule && tslint ./src/**/*.ts",
+    "test": "jest",
+    "ci": "yarn test --ci",
+    "report": "yarn test --coverage",
     "scan": "yarn report && bash scripts/scan.sh",
-    "tdd": "yarn test -- -w",
-    "dev:rebuild": "bash scripts/rebuild-core.sh"
+    "tdd": "yarn test --watch"
   },
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint",
-      "pre-push": "yarn test"
+      "pre-push": "yarn ci"
     }
   },
-  "nyc": {
-    "include": "src",
-    "exclude": "**/*.spec.js"
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/__tests__/**/*.ts?(x)",
+      "**/?(*.)+(spec|test).ts?(x)"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "jsx": "react"
+        }
+      }
+    }
   },
   "dependencies": {
     "@expo/vector-icons": "8.0.0",
     "expo": "32.0.6",
     "i18n-js": "3.2.1",
     "is-it-shabbat-core": "1.3.2",
-    "prop-types": "15.6.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-navigation": "3.0.0",
@@ -43,33 +61,26 @@
     "styled-components": "4.1.1"
   },
   "devDependencies": {
-    "@babel/core": "7.2.2",
-    "@babel/polyfill": "7.2.5",
-    "@babel/register": "7.0.0",
-    "babel-eslint": "10.0.1",
-    "babel-preset-expo": "5.0.0",
-    "chai": "4.2.0",
-    "chai-enzyme": "1.0.0-beta.1",
-    "dirty-chai": "2.0.1",
-    "enzyme": "3.8.0",
-    "enzyme-adapter-react-16": "1.7.1",
-    "eslint": "5.9.0",
-    "eslint-config-airbnb": "17.1.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-jsx-a11y": "6.1.2",
-    "eslint-plugin-react": "7.11.1",
+    "@types/expo": "32.0.13",
+    "@types/i18n-js": "3.0.1",
+    "@types/jest": "24.0.12",
+    "@types/luxon": "1.12.0",
+    "@types/proxyquire": "1.3.28",
+    "@types/react": "16.8.16",
+    "@types/react-native": "0.57.51",
+    "@types/react-test-renderer": "16.8.1",
+    "@types/styled-components": "^4.1.14",
     "expo-cli": "2.6.14",
     "husky": "1.2.1",
-    "jsdom": "13.1.0",
+    "jest": "24.8.0",
+    "jest-expo": "29.0.0",
     "luxon": "1.12.0",
-    "mocha": "5.2.0",
-    "mocha-eslint": "4.1.0",
-    "nyc": "13.1.0",
-    "proxyquire": "2.1.0",
-    "react-dom": "16.7.0",
-    "sinon": "7.1.1",
-    "sinon-chai": "3.2.0",
-    "sonarqube-scanner": "2.1.2"
+    "react-test-renderer": "16.8.6",
+    "sonarqube-scanner": "2.1.2",
+    "ts-jest": "24.0.2",
+    "tslint": "5.16.0",
+    "tslint-config-airbnb": "5.11.1",
+    "typescript": "3.4.5"
   },
   "rnpm": {
     "assets": [
