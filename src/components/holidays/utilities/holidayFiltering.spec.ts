@@ -1,5 +1,5 @@
-import { local } from '../../../test/jest-framework';
-import { IHoliday } from '../../holidays/types';
+import { local } from '../../../../test/jest-framework';
+import { IHoliday } from '../types';
 import { getMajorHolidays, internal } from './holidayFiltering';
 
 const {

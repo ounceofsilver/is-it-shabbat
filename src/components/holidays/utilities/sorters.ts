@@ -1,4 +1,4 @@
-import { IHoliday } from '../../holidays/types';
+import { IHoliday } from '../types';
 
 export const ascending = (h1: IHoliday, h2: IHoliday): number =>
 	h1.date.diff(h2.date).shiftTo('milliseconds').milliseconds;

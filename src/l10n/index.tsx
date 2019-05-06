@@ -1,5 +1,4 @@
 import { Localization } from 'expo';
-// tslint:disable-next-line: import-name
 import i18n from 'i18n-js';
 
 import en from './en';

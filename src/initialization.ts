@@ -1,19 +1,10 @@
-import {
-	Asset,
-	Font,
-} from 'expo';
-import {
-	Image,
-} from 'react-native';
-
-import {
-	action,
-	state,
-	utilities,
-} from 'is-it-shabbat-core';
-
 import './l10n';
-import getLocation from './utilities/getLocation';
+
+import { Asset, Font } from 'expo';
+import { action, state, utilities } from 'is-it-shabbat-core';
+import { Image } from 'react-native';
+
+import getLocation from './components/location/getLocation';
 
 const { DateTime } = utilities;
 

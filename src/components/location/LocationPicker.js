@@ -1,3 +1,7 @@
+// TypeScript insists that MapView.Marker does not exist
+// and that expo.Marker does not work. So, after trying a
+// few things, my solution for now is to keep this file as
+// a .js file.
 import { MapView } from 'expo';
 import { action } from 'is-it-shabbat-core';
 import React from 'react';
