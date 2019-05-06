@@ -3,19 +3,14 @@ import { action } from 'is-it-shabbat-core';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { ILocation } from '../shabbat/types';
-
-const eventToLocation = (e): ILocation => ({
+const eventToLocation = (e) => ({
 	coords: {
 		latitude: e.nativeEvent.coordinate.latitude,
 		longitude: e.nativeEvent.coordinate.longitude,
 	},
 });
 
-const LocationPicker = ({ location, dispatch }: {
-	location: ILocation,
-	dispatch: (action: any) => void,
-}) => {
+const LocationPicker = ({ location, dispatch }) => {
 	const initialRegion = {
 		latitude: location.coords.latitude,
 		longitude: location.coords.longitude,
