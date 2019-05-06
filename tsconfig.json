@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"noEmit": true,
+		"target": "es5",
+		"lib": [
+			"es2015",
+			"esnext.asynciterable"
+		],
+		"jsx": "react-native",
+		"strict": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"types": [
+			"jest"
+		],
+		"allowSyntheticDefaultImports": true,
+	}
+}

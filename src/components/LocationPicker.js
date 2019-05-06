@@ -1,26 +1,26 @@
+import { MapView } from 'expo';
+import { action } from 'is-it-shabbat-core';
 import React from 'react';
-import {
-	MapView,
-} from 'expo';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
-import {
-	action,
-} from 'is-it-shabbat-core';
+import { ILocation } from '../shabbat/types';
 
-const eventToLocation = e => ({
+const eventToLocation = (e): ILocation => ({
 	coords: {
 		latitude: e.nativeEvent.coordinate.latitude,
 		longitude: e.nativeEvent.coordinate.longitude,
 	},
 });
 
-const LocationPicker = ({ location, dispatch }) => {
+const LocationPicker = ({ location, dispatch }: {
+	location: ILocation,
+	dispatch: (action: any) => void,
+}) => {
 	const initialRegion = {
 		latitude: location.coords.latitude,
 		longitude: location.coords.longitude,
 
+		// For testing:
 		// New York
 		// latitude: 40.755,
 		// longitude: -73.983,
@@ -47,16 +47,6 @@ const LocationPicker = ({ location, dispatch }) => {
 			<MapView.Marker coordinate={initialRegion} />
 		</MapView>
 	);
-};
-
-LocationPicker.propTypes = {
-	location: PropTypes.shape({
-		coords: PropTypes.shape({
-			latitude: PropTypes.number,
-			longitude: PropTypes.number,
-		}),
-	}).isRequired,
-	dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(

@@ -9,6 +9,7 @@ import {
 } from 'is-it-shabbat-core';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import OmerScreen from './screens/OmerScreen';
 
 const NavigationOptions = {
 	headerTintColor: '#ffffff',
@@ -29,6 +30,13 @@ export default createAppContainer(createStackNavigator({
 		screen: SettingsScreen,
 		navigationOptions: {
 			title: i18n.t('screens.settings'),
+			...NavigationOptions,
+		},
+	},
+	Omer: {
+		screen: OmerScreen,
+		navigationOptions: {
+			title: 'Omer',
 			...NavigationOptions,
 		},
 	},

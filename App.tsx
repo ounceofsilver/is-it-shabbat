@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import {
-	AppLoading,
-} from 'expo';
+import { AppLoading } from 'expo';
+import { state } from 'is-it-shabbat-core';
+import { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 
-import { state } from 'is-it-shabbat-core';
-
-import initialize from './src/initialization';
+import initialization from './src/initialization';
 import Router from './src/Router';
 
 class App extends Component {
-	state = {
+	public state = {
 		isReady: false,
 	};
 
-	render() {
+	public render() {
 		const { isReady } = this.state;
 		return isReady
 			? (
@@ -24,10 +22,11 @@ class App extends Component {
 			)
 			: (
 				<AppLoading
-					startAsync={initialize}
+					startAsync={initialization}
 					onFinish={() => this.setState({ isReady: true })}
 					onError={(...args) => {
-						console.warn(...args); // eslint-disable-line
+						// tslint:disable-next-line: no-console
+						console.warn(...args);
 					}}
 				/>
 			);

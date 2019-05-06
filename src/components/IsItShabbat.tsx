@@ -1,27 +1,22 @@
-import React from 'react';
-import {
-	View,
-} from 'react-native';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import i18n from 'i18n-js';
+import { action, components, utilities } from 'is-it-shabbat-core';
+import { DateTime } from 'luxon';
+import React from 'react';
+import { View } from 'react-native';
+import { connect } from 'react-redux';
 
-import {
-	components,
-	action,
-	utilities,
-} from 'is-it-shabbat-core';
-
-import {
-	TitleCenterText,
-	SubtitleCenterText,
-} from '../Styles';
+import { ILocation } from '../shabbat/types';
+import { SubtitleCenterText, TitleCenterText } from '../Styles';
 import ToggleThroughStates from './ToggleThroughStates';
 
 const { ShabbatCheck, CountDown } = components;
-const { DateTime, underAWeek } = utilities;
+const { underAWeek } = utilities;
 
-const IsItShabbat = ({ now, location, dispatch }) => (
+const IsItShabbat = ({ now, location, dispatch }: {
+	now: DateTime,
+	location: ILocation,
+	dispatch: (DateTime) => void,
+}) => (
 	<ShabbatCheck now={now} location={location}>
 		{(period, countDownTo) => (
 			<View>
@@ -53,10 +48,10 @@ const IsItShabbat = ({ now, location, dispatch }) => (
 									`startEventName.${period}`,
 									{
 										end: countDownTo.toLocaleString({
-											month: 'short',
 											day: '2-digit',
 											hour: '2-digit',
 											minute: '2-digit',
+											month: 'short',
 										}),
 									},
 								)}
@@ -68,20 +63,10 @@ const IsItShabbat = ({ now, location, dispatch }) => (
 		)}
 	</ShabbatCheck>
 );
-IsItShabbat.propTypes = {
-	now: PropTypes.instanceOf(DateTime).isRequired,
-	location: PropTypes.shape({
-		coords: PropTypes.shape({
-			latitude: PropTypes.number,
-			longitude: PropTypes.number,
-		}),
-	}).isRequired,
-	dispatch: PropTypes.func.isRequired,
-};
 
 export default connect(
 	state => ({
-		now: state.now,
 		location: state.location,
+		now: state.now,
 	}),
 )(IsItShabbat);
