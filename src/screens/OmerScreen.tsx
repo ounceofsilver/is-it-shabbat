@@ -4,7 +4,9 @@ import Omer from '../components/holidays/omer/Omer';
 import { BackgroundView } from '../Styles';
 
 export default () => (
-	<BackgroundView>
+	<BackgroundView style={{
+		padding: 20,
+	}}>
 		<Omer withBlessing />
 	</BackgroundView>
 );

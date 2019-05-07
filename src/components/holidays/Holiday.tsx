@@ -2,7 +2,7 @@ import { components, utilities } from 'is-it-shabbat-core';
 import { DateTime, Duration } from 'luxon';
 import React from 'react';
 
-import { CenteredContainer, SecondaryText, SubtitleText } from '../../Styles';
+import { CenteredContainer, HolidaySubtitleText, HolidayTitleText } from '../../Styles';
 import ToggleThroughStates from '../ToggleThroughStates';
 import { IHoliday } from './types';
 
@@ -19,9 +19,9 @@ export const Holiday = ({
 	setNow?: (time: DateTime) => void,
 }) => (
 	<CenteredContainer style={{ marginBottom: 15 }}>
-		<SecondaryText>
-			{title}
-		</SecondaryText>
+		<HolidayTitleText>
+			{title.replace('Rosh Chodesh ', '')}
+		</HolidayTitleText>
 		<ToggleThroughStates>
 			{[
 				(
@@ -32,14 +32,14 @@ export const Holiday = ({
 						callback={setNow}
 					>
 						{(dur: Duration) => (
-							<SubtitleText>
+							<HolidaySubtitleText>
 								{formatHolidayDuration(dur)}
-							</SubtitleText>
+							</HolidaySubtitleText>
 						)}
 					</CountDown>
 				),
 				(
-					<SubtitleText key={2}>
+					<HolidaySubtitleText key={2}>
 						{date.toLocaleString({
 							day: '2-digit',
 							hour: '2-digit',
@@ -47,7 +47,7 @@ export const Holiday = ({
 							month: 'short',
 							weekday: 'long',
 						})}
-					</SubtitleText>
+					</HolidaySubtitleText>
 				),
 			]}
 		</ToggleThroughStates>

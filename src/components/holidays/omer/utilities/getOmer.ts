@@ -49,3 +49,17 @@ export default function (holidays: IHoliday[], now: DateTime): (IOmerData | IHol
 
 	return null;
 }
+
+export function weeksAndDays(allDays: number, weekDays: number, weeks: number): string {
+	let o = `${allDays} day${allDays > 1 ? 's' : ''}`;
+	if (weeks === 0) {
+		return o;
+	}
+
+	o += `, which is ${weeks} week${weeks > 1 ? 's' : ''}`;
+	if (weekDays !== 0) {
+		o += ` and ${weekDays} day${weekDays > 1 ? 's' : ''}`;
+	}
+
+	return o;
+}

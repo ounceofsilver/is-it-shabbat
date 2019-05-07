@@ -5,14 +5,9 @@ import { styles } from 'is-it-shabbat-core';
 import React from 'react';
 import { Dimensions, ScrollView, StatusBar, StyleProp, View, ViewStyle } from 'react-native';
 
-import {
-	MajorHolidays,
-	MinorHolidays,
-	ModernHolidays,
-	RoshChodeshim,
-} from '../components/holidays/Holidays';
+import { MajorHolidays, MinorHolidays, ModernHolidays, RoshChodeshim } from '../components/holidays/Holidays';
 import IsItShabbat from '../components/shabbat/IsItShabbat';
-import { BackgroundView, CenteredContainer, Footer, SubtitleCenterText, SecondaryCenterText } from '../Styles';
+import { AppTitleText, BackgroundView, CenteredContainer, CopyrightText, Footer, HolidayTitleText } from '../Styles';
 
 const getBannerSize = ({ width }: { width: number }): 'fullBanner' | 'largeBanner' => {
 	if (width >= 728) {
@@ -41,43 +36,42 @@ export default ({ navigation: { navigate } }: {
 
 		<ScrollView>
 			<CenteredContainer>
-					<SubtitleCenterText style={{ fontSize: 32 } as StyleProp<ViewStyle>}>
+				<AppTitleText>
 					{i18n.t('title')}
-				</SubtitleCenterText>
+				</AppTitleText>
 			</CenteredContainer>
 				<CenteredContainer style={{ marginTop: 30 } as StyleProp<ViewStyle>}>
 				<IsItShabbat />
 			</CenteredContainer>
 
 			<View style={{ marginTop: 80 }}>
-				<SecondaryCenterText style={{ fontSize: 32 }}>Major Holidays</SecondaryCenterText>
+				<HolidayTitleText>Major Holidays</HolidayTitleText>
 				<MajorHolidays />
 			</View>
 
 			<View style={{ marginTop: 20 }}>
-				<SecondaryCenterText style={{ fontSize: 32 }}>Minor Holidays</SecondaryCenterText>
+				<HolidayTitleText>Minor Holidays</HolidayTitleText>
 				<MinorHolidays />
 			</View>
 
 			<View style={{ marginTop: 20 }}>
-				<SecondaryCenterText style={{ fontSize: 32 }}>Rosh Chodeshim</SecondaryCenterText>
+				<HolidayTitleText>Rosh Chodeshim</HolidayTitleText>
 				<RoshChodeshim />
 			</View>
 
-				<View style={{ marginTop: 20 }}>
-				<SecondaryCenterText style={{ fontSize: 32 }}>Modern Holidays</SecondaryCenterText>
+			<View style={{ marginTop: 20 }}>
+				<HolidayTitleText>Modern Holidays</HolidayTitleText>
 				<ModernHolidays />
 			</View>
 
-			<SubtitleCenterText
+			<CopyrightText
 				style={{
-					fontSize: 18,
 					marginBottom: footerToolbarHeight,
 					marginTop: 40,
 				} as StyleProp<ViewStyle>}
 			>
 				{i18n.t('copyright')}
-			</SubtitleCenterText>
+			</CopyrightText>
 
 		</ScrollView>
 

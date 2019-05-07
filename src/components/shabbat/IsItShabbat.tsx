@@ -5,7 +5,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 
-import { SubtitleCenterText, TitleCenterText } from '../../Styles';
+import { ShabbatSubtitleText, ShabbatText } from '../../Styles';
 import { ILocation } from '../location/types';
 import ToggleThroughStates from '../ToggleThroughStates';
 
@@ -20,9 +20,9 @@ export const PureIsItShabbat = ({ now, location, dispatch }: {
 	<ShabbatCheck now={now} location={location}>
 		{(period, countDownTo) => (
 			<View>
-				<TitleCenterText>
+				<ShabbatText>
 					{i18n.t(`status.${period}`)}
-				</TitleCenterText>
+				</ShabbatText>
 				<ToggleThroughStates>
 					{[
 						(
@@ -33,17 +33,17 @@ export const PureIsItShabbat = ({ now, location, dispatch }: {
 								callback={end => dispatch(action.setNow(end))}
 							>
 								{dur => (
-									<SubtitleCenterText>
+									<ShabbatSubtitleText>
 										{i18n.t(
 											`endEventName.${period}`,
 											{ duration: underAWeek(dur) },
 										)}
-									</SubtitleCenterText>
+									</ShabbatSubtitleText>
 								)}
 							</CountDown>
 						),
 						(
-							<SubtitleCenterText key={20}>
+							<ShabbatSubtitleText key={20}>
 								{i18n.t(
 									`startEventName.${period}`,
 									{
@@ -55,7 +55,7 @@ export const PureIsItShabbat = ({ now, location, dispatch }: {
 										}),
 									},
 								)}
-							</SubtitleCenterText>
+							</ShabbatSubtitleText>
 						),
 					]}
 				</ToggleThroughStates>
