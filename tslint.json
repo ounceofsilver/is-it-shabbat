@@ -33,6 +33,8 @@
 			"check-format",
 			"allow-pascal-case",
 			"allow-leading-underscore"
-		]
+		],
+		"import-name": [ false ],
+		"no-duplicate-imports": false
 	}
 }

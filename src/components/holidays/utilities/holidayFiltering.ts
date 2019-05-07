@@ -1,13 +1,13 @@
 import { DateTime } from 'luxon';
 
-import { IHoliday } from '../types';
+import { IHoliday, HolidayCategory, HolidaySubcat } from '../types';
 import { categoryFilter, topNFilter, upcomingFilter } from './filters';
 import { ascending } from './sorters';
 
 const top3Filter = topNFilter(3);
 
 function upcomingTop3OfCategory(
-	category: string, subcat?: string,
+	category: HolidayCategory, subcat?: HolidaySubcat,
 ): (holidays: IHoliday[], now: DateTime) => IHoliday[] {
 	return (holidays, now) => holidays
 		.filter(upcomingFilter(now))
@@ -16,12 +16,20 @@ function upcomingTop3OfCategory(
 		.filter(top3Filter);
 }
 
-export const getRoshChodeshim = upcomingTop3OfCategory('roshchodesh');
-export const getMajorHolidays = upcomingTop3OfCategory('holiday', 'major');
-export const getMinorHolidays = upcomingTop3OfCategory('holiday', 'minor');
-export const getSpecialShabbats = upcomingTop3OfCategory('holiday', 'shabbat');
-export const getModernHolidays = upcomingTop3OfCategory('holiday', 'modern');
-export const getDaysOfOmer = upcomingTop3OfCategory('omer');
+export const getRoshChodeshim = upcomingTop3OfCategory(HolidayCategory.ROSHCHODESH);
+export const getMajorHolidays = upcomingTop3OfCategory(
+	HolidayCategory.HOLIDAY, HolidaySubcat.MAJOR
+);
+export const getMinorHolidays = upcomingTop3OfCategory(
+	HolidayCategory.HOLIDAY, HolidaySubcat.MINOR
+);
+export const getSpecialShabbats = upcomingTop3OfCategory(
+	HolidayCategory.HOLIDAY, HolidaySubcat.SHABBAT
+);
+export const getModernHolidays = upcomingTop3OfCategory(
+	HolidayCategory.HOLIDAY, HolidaySubcat.MODERN
+);
+export const getDaysOfOmer = upcomingTop3OfCategory(HolidayCategory.OMER);
 
 export const internal = {
 	top3Filter,

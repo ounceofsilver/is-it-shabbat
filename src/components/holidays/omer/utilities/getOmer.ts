@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-import { IHoliday, IOmerData } from '../../types';
+import { IHoliday, IOmerData, HolidayCategory } from '../../types';
 import { categoryFilter, upcomingFilter } from '../../utilities/filters';
 
 export const blessings: string[] = [
@@ -27,7 +27,7 @@ export function getOmerBlessingInfo({ title }: { title: string }): IOmerData {
 	};
 }
 
-const omerFilter = categoryFilter('omer');
+const omerFilter = categoryFilter(HolidayCategory.OMER);
 
 export default function (holidays: IHoliday[], now: DateTime): (IOmerData | IHoliday) | null {
 	const todaysOmerList = holidays
