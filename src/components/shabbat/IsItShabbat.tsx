@@ -12,7 +12,7 @@ import ToggleThroughStates from '../ToggleThroughStates';
 const { ShabbatCheck, CountDown } = components;
 const { underAWeek } = utilities;
 
-const IsItShabbat = ({ now, location, dispatch }: {
+export const PureIsItShabbat = ({ now, location, dispatch }: {
 	now: DateTime,
 	location: ILocation,
 	dispatch: (DateTime) => void,
@@ -69,4 +69,4 @@ export default connect(
 		location: state.location,
 		now: state.now,
 	}),
-)(IsItShabbat);
+)(PureIsItShabbat);
