@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-import { IHoliday, HolidayCategory, HolidaySubcat } from '../types';
+import { HolidayCategory, HolidaySubcat, IHoliday } from '../types';
 import { categoryFilter, topNFilter, upcomingFilter } from './filters';
 import { ascending } from './sorters';
 
@@ -18,16 +18,16 @@ function upcomingTop3OfCategory(
 
 export const getRoshChodeshim = upcomingTop3OfCategory(HolidayCategory.ROSHCHODESH);
 export const getMajorHolidays = upcomingTop3OfCategory(
-	HolidayCategory.HOLIDAY, HolidaySubcat.MAJOR
+	HolidayCategory.HOLIDAY, HolidaySubcat.MAJOR,
 );
 export const getMinorHolidays = upcomingTop3OfCategory(
-	HolidayCategory.HOLIDAY, HolidaySubcat.MINOR
+	HolidayCategory.HOLIDAY, HolidaySubcat.MINOR,
 );
 export const getSpecialShabbats = upcomingTop3OfCategory(
-	HolidayCategory.HOLIDAY, HolidaySubcat.SHABBAT
+	HolidayCategory.HOLIDAY, HolidaySubcat.SHABBAT,
 );
 export const getModernHolidays = upcomingTop3OfCategory(
-	HolidayCategory.HOLIDAY, HolidaySubcat.MODERN
+	HolidayCategory.HOLIDAY, HolidaySubcat.MODERN,
 );
 export const getDaysOfOmer = upcomingTop3OfCategory(HolidayCategory.OMER);
 

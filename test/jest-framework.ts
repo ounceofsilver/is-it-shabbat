@@ -1,14 +1,7 @@
 import { DateTime } from 'luxon';
 
 //
-// React util configuration and export
-//
-// Enzyme.configure({ adapter: new Adapter() });
-
-// global.shallow = shallow;
-
-//
-// Custom util configuration and export
+// Custom util
 //
 export const local = (
 	year: number,

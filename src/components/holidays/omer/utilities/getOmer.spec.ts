@@ -37,6 +37,9 @@ describe('omer logic', () => {
 				...tonightOmer,
 				...(getOmerBlessingInfo(tonightOmer)),
 			});
+			expect(todayOmer).not.toEqual(expect.objectContaining({
+				...yesterdayOmer,
+			}));
 		});
 
 		it('should give null if no omer today', () => {
