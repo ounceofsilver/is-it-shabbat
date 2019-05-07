@@ -5,9 +5,14 @@ import { styles } from 'is-it-shabbat-core';
 import React from 'react';
 import { Dimensions, ScrollView, StatusBar, StyleProp, View, ViewStyle } from 'react-native';
 
-import Holidays from '../components/holidays/Holidays';
+import {
+	MajorHolidays,
+	MinorHolidays,
+	ModernHolidays,
+	RoshChodeshim,
+} from '../components/holidays/Holidays';
 import IsItShabbat from '../components/shabbat/IsItShabbat';
-import { BackgroundView, CenteredContainer, Footer, SubtitleCenterText } from '../Styles';
+import { BackgroundView, CenteredContainer, Footer, SubtitleCenterText, SecondaryCenterText } from '../Styles';
 
 const getBannerSize = ({ width }: { width: number }): 'fullBanner' | 'largeBanner' => {
 	if (width >= 728) {
@@ -45,7 +50,23 @@ export default ({ navigation: { navigate } }: {
 			</CenteredContainer>
 
 			<View style={{ marginTop: 80 }}>
-				<Holidays />
+				<SecondaryCenterText style={{ fontSize: 32 }}>Major Holidays</SecondaryCenterText>
+				<MajorHolidays />
+			</View>
+
+			<View style={{ marginTop: 20 }}>
+				<SecondaryCenterText style={{ fontSize: 32 }}>Minor Holidays</SecondaryCenterText>
+				<MinorHolidays />
+			</View>
+
+			<View style={{ marginTop: 20 }}>
+				<SecondaryCenterText style={{ fontSize: 32 }}>Rosh Chodeshim</SecondaryCenterText>
+				<RoshChodeshim />
+			</View>
+
+				<View style={{ marginTop: 20 }}>
+				<SecondaryCenterText style={{ fontSize: 32 }}>Modern Holidays</SecondaryCenterText>
+				<ModernHolidays />
 			</View>
 
 			<SubtitleCenterText

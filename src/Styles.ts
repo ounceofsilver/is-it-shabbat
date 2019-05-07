@@ -42,6 +42,9 @@ export const SecondaryText = styled(StyledText)`
 	color: ${colors.textMain};
 	fontSize: ${size.secondary}
 `;
+export const SecondaryCenterText = styled(SecondaryText)`
+	textAlign: center;
+`
 
 //
 // Containers
