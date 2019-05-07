@@ -1,6 +1,6 @@
 import { local } from '../../../../../test/jest-framework';
 import { IHoliday } from '../../types';
-import getOmer, { blessings, getOmerBlessingInfo } from './getOmer';
+import getOmer, { blessings, getOmerBlessingInfo, weeksAndDays } from './getOmer';
 
 describe('omer logic', () => {
 	const yesterdaySunset = local(2019, 5, 1, 18); // 6:00pm
@@ -75,6 +75,33 @@ describe('omer logic', () => {
 					});
 				}
 			}
+		});
+	});
+
+	describe('weeksAndDays', () => {
+		it('should work for 1 days', () => {
+			expect(weeksAndDays(1, 1, 0)).toBe('1 day');
+		});
+		it('should work for 2 days', () => {
+			expect(weeksAndDays(2, 2, 0)).toBe('2 days');
+		});
+		it('should work for 7 days, which is 1 week', () => {
+			expect(weeksAndDays(7, 0, 1)).toBe('7 days, which is 1 week');
+		});
+		it('should work for 8 days, which is 1 week and 1 day', () => {
+			expect(weeksAndDays(8, 1, 1)).toBe('8 days, which is 1 week and 1 day');
+		});
+		it('should work for 9 days, which is 1 week and 2 days', () => {
+			expect(weeksAndDays(9, 2, 1)).toBe('9 days, which is 1 week and 2 days');
+		});
+		it('should work for 14 days, which is 2 weeks', () => {
+			expect(weeksAndDays(14, 0, 2)).toBe('14 days, which is 2 weeks');
+		});
+		it('should work for 15 days, which is 2 weeks and 1 day', () => {
+			expect(weeksAndDays(15, 1, 2)).toBe('15 days, which is 2 weeks and 1 day');
+		});
+		it('should work for 16 days, which is 2 weeks and 2 days', () => {
+			expect(weeksAndDays(16, 2, 2)).toBe('16 days, which is 2 weeks and 2 days');
 		});
 	});
 });

@@ -15,41 +15,79 @@ export const StyledText = styled(Text)`
 	fontFamily: ${fonts.primary};
 `;
 
-// Primary
-export const PrimaryText = styled(StyledText)`
+const ParagraphText = styled(StyledText)`
 	color: ${colors.textMain};
+	marginTop: 10;
 `;
-export const TitleText = styled(PrimaryText)`
-	fontSize: ${size.title};
-	margin: 5px;
+// Primary
+export const PrimaryText = styled(ParagraphText)`
+	color: ${colors.textMain};
+	fontSize: 28;
 `;
-export const TitleCenterText = styled(TitleText)`
-	textAlign: center;
-`;
-
-// Subtitle
-export const SubtitleText = styled(StyledText)`
-	color: ${colors.textSubtle};
-	fontSize: ${size.subtitle};
-`;
-
-export const SubtitleCenterText = styled(SubtitleText)`
+export const PrimaryCenterText = styled(PrimaryText)`
 	textAlign: center;
 `;
 
 // Secondary
-export const SecondaryText = styled(StyledText)`
+export const SecondaryText = styled(ParagraphText)`
 	color: ${colors.textMain};
-	fontSize: ${size.secondary}
+	fontSize: 18;
 `;
 export const SecondaryCenterText = styled(SecondaryText)`
 	textAlign: center;
-`
+`;
+
+// Ternary
+export const MainText = styled(ParagraphText)`
+	color: ${colors.textSubtle};
+	fontSize: 15;
+`;
+export const MainCenterText = styled(MainText)`
+	textAlign: center;
+`;
+
+//
+// Special
+//
+export const ShabbatText = styled(StyledText)`
+	color: ${colors.textMain};
+	fontSize: ${size.title};
+	margin: 5px;
+	textAlign: center;
+`;
+
+export const ShabbatSubtitleText = styled(StyledText)`
+	color: ${colors.textSubtle};
+	fontSize: ${size.subtitle};
+	textAlign: center;
+`;
+
+export const AppTitleText = styled(StyledText)`
+	color: ${colors.textSubtle};
+	fontSize: 32;
+	textAlign: center;
+`;
+
+export const CopyrightText = styled(StyledText)`
+	color: ${colors.textSubtle};
+	textAlign: center;
+	fontSize: 18;
+`;
+
+export const HolidayTitleText = styled(StyledText)`
+	color: ${colors.textMain};
+	fontSize: 24;
+	textAlign: center;
+`;
+export const HolidaySubtitleText = styled(StyledText)`
+	color: ${colors.textSubtle};
+	fontSize: ${size.subtitle};
+	textAlign: center;
+`;
 
 //
 // Containers
 //
-
 export const CenteredContainer = styled(View)`
 	flex: 1;
 	justifyContent: center;
