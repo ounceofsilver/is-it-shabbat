@@ -3,8 +3,8 @@ import React from 'react';
 import { ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { CenteredContainer, MainCenterText, MainText, SecondaryCenterText } from '../../../Styles';
-import { IOmerData } from '../types';
+import { CenteredContainer, MainCenterText, MainText, SecondaryCenterText } from '../../Styles';
+import { IOmerData } from '../holidays/types';
 import getOmer, { weeksAndDays } from './utilities/getOmer';
 
 /* tslint:disable:max-line-length */

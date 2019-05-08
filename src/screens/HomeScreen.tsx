@@ -5,9 +5,10 @@ import { styles } from 'is-it-shabbat-core';
 import React from 'react';
 import { Dimensions, ScrollView, StatusBar, StyleProp, View, ViewStyle } from 'react-native';
 
-import { MajorHolidays, MinorHolidays, ModernHolidays, RoshChodeshim } from '../components/holidays/Holidays';
+import { MajorHolidays, RoshChodeshim } from '../components/holidays/Holidays';
 import IsItShabbat from '../components/shabbat/IsItShabbat';
-import { AppTitleText, BackgroundView, CenteredContainer, CopyrightText, Footer, HolidayTitleText } from '../Styles';
+import { AppTitleText, BackgroundView, CenteredContainer, CopyrightText, Footer, HolidayHeadingText } from '../Styles';
+import OmerPrompt from '../components/holidays/OmerPrompt';
 
 const getBannerSize = ({ width }: { width: number }): 'fullBanner' | 'largeBanner' => {
 	if (width >= 728) {
@@ -44,24 +45,18 @@ export default ({ navigation: { navigate } }: {
 				<IsItShabbat />
 			</CenteredContainer>
 
-			<View style={{ marginTop: 80 }}>
-				<HolidayTitleText>Major Holidays</HolidayTitleText>
+			<CenteredContainer>
+				<OmerPrompt goToOmerPage={() => navigate('Omer')} />
+			</CenteredContainer>
+
+			<View style={{ marginTop: 60 }}>
+				<HolidayHeadingText>{i18n.t('holidays.headings.major')}</HolidayHeadingText>
 				<MajorHolidays />
 			</View>
 
-			<View style={{ marginTop: 20 }}>
-				<HolidayTitleText>Minor Holidays</HolidayTitleText>
-				<MinorHolidays />
-			</View>
-
-			<View style={{ marginTop: 20 }}>
-				<HolidayTitleText>Rosh Chodeshim</HolidayTitleText>
+			<View style={{ marginTop: 40 }}>
+				<HolidayHeadingText>{i18n.t('holidays.headings.roshchodeshim')}</HolidayHeadingText>
 				<RoshChodeshim />
-			</View>
-
-			<View style={{ marginTop: 20 }}>
-				<HolidayTitleText>Modern Holidays</HolidayTitleText>
-				<ModernHolidays />
 			</View>
 
 			<CopyrightText
@@ -81,12 +76,6 @@ export default ({ navigation: { navigate } }: {
 				size={36}
 				color={styles.colors.textSubtle}
 				onPress={() => navigate('Settings')}
-			/>
-			<FontAwesome
-				name='leaf'
-				size={36}
-				color={styles.colors.textSubtle}
-				onPress={() => navigate('Omer')}
 			/>
 		</Footer>
 	</BackgroundView>

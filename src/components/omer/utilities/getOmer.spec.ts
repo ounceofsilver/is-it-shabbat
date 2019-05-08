@@ -1,5 +1,5 @@
-import { local } from '../../../../../test/jest-framework';
-import { IHoliday } from '../../types';
+import { local } from '../../../../test/jest-framework';
+import { IHoliday } from '../../holidays/types';
 import getOmer, { blessings, getOmerBlessingInfo, weeksAndDays } from './getOmer';
 
 describe('omer logic', () => {

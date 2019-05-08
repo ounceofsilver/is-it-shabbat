@@ -74,6 +74,11 @@ export const CopyrightText = styled(StyledText)`
 	fontSize: 18;
 `;
 
+export const HolidayHeadingText = styled(StyledText)`
+	color: ${colors.textSubtle};
+	fontSize: 26;
+	textAlign: center;
+`;
 export const HolidayTitleText = styled(StyledText)`
 	color: ${colors.textMain};
 	fontSize: 24;
@@ -85,6 +90,11 @@ export const HolidaySubtitleText = styled(StyledText)`
 	textAlign: center;
 `;
 
+export const OmerPromptText = styled(StyledText)`
+	color: ${colors.textMain};
+	fontSize: 24;
+	textAlign: center;
+`;
 //
 // Containers
 //
