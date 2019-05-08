@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon';
 
-import { HolidayCategory, IHoliday, IOmerData } from '../../holidays/types';
+import { HolidayCategory, IHoliday } from '../../holidays/types';
 import { categoryFilter, upcomingFilter } from '../../holidays/utilities/filters';
+import { IOmerData } from '../types';
 
 export const blessings: string[] = [
 	'Chesed',
@@ -11,6 +12,16 @@ export const blessings: string[] = [
 	'Hod',
 	'Yesod',
 	'Malchus',
+];
+
+export const blessingExplanations: string[] = [
+	'Loving-kindness',
+	'Strength/Justice',
+	'Beauty',
+	'Endurance',
+	'Glory/Splendor',
+	'Foundation',
+	'Kingship/Majesty',
 ];
 
 export function getOmerBlessingInfo({ title }: { title: string }): IOmerData {
@@ -23,7 +34,9 @@ export function getOmerBlessingInfo({ title }: { title: string }): IOmerData {
 		weekOf,
 
 		dayBlessing: blessings[dayOfWeekOf - 1],
+		dayBlessingExplanation: blessingExplanations[dayOfWeekOf - 1],
 		weekBlessing: blessings[weekOf],
+		weekBlessingExplanation: blessingExplanations[weekOf],
 	};
 }
 

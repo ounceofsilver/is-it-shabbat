@@ -1,6 +1,11 @@
 import { local } from '../../../../test/jest-framework';
 import { IHoliday } from '../../holidays/types';
-import getOmer, { blessings, getOmerBlessingInfo, weeksAndDays } from './getOmer';
+import getOmer, {
+	blessingExplanations,
+	blessings,
+	getOmerBlessingInfo,
+	weeksAndDays,
+} from './getOmer';
 
 describe('omer logic', () => {
 	const yesterdaySunset = local(2019, 5, 1, 18); // 6:00pm
@@ -52,9 +57,11 @@ describe('omer logic', () => {
 		it('should basically work', () => {
 			expect(getOmerBlessingInfo({ title: '27th day of the omer' })).toEqual({
 				dayBlessing: blessings[5], // 6th day of omer week
+				dayBlessingExplanation: blessingExplanations[5], // 6th day of omer week
 				dayOf: 27,
 				dayOfWeekOf: 6,
 				weekBlessing: blessings[3], // 4th omer week
+				weekBlessingExplanation: blessingExplanations[3], // 4th omer week
 				weekOf: 3,
 			});
 		});
@@ -62,18 +69,22 @@ describe('omer logic', () => {
 		it('should give correct blessings for each of the 49 days of the omer', () => {
 			for (let i = 0; i < 7; i += 1) {
 				const weekBlessing = blessings[i];
+				const weekBlessingExplanation = blessingExplanations[i];
 				for (let j = 0; j < 7; j += 1) {
 					const dayBlessing = blessings[j];
+					const dayBlessingExplanation = blessingExplanations[j];
 
 					const o = { title: `${(7 * i) + j + 1}th day of the omer` };
 					const info = getOmerBlessingInfo(o);
 
 					expect(info).toEqual({
 						dayBlessing,
+						dayBlessingExplanation,
+						weekBlessing,
+						weekBlessingExplanation,
+
 						dayOf: (7 * i) + j + 1,
 						dayOfWeekOf: j + 1,
-						// tslint:disable-next-line: object-shorthand-properties-first
-						weekBlessing,
 						weekOf: i,
 					});
 				}

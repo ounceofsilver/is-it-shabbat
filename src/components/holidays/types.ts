@@ -19,11 +19,3 @@ export interface IHoliday {
 	subcat: HolidaySubcat;
 	category: HolidayCategory;
 }
-
-export interface IOmerData {
-	dayBlessing: string;
-	weekBlessing: string;
-	dayOf: number;
-	weekOf: number;
-	dayOfWeekOf: number;
-}
