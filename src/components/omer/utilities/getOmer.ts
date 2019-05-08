@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-import { IHoliday, IOmerData, HolidayCategory } from '../../holidays/types';
+import { HolidayCategory, IHoliday, IOmerData } from '../../holidays/types';
 import { categoryFilter, upcomingFilter } from '../../holidays/utilities/filters';
 
 export const blessings: string[] = [
