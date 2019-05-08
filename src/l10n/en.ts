@@ -1,9 +1,15 @@
 export default {
-	copyright: '© 2018-2019\nAn Ounce of Silver Technologies',
+	copyright: '© 2018-19\nAn Ounce of Silver Technologies',
 	endEventName: {
 		CANDLELIGHTING: '%{duration}\nuntil Shabbat begins',
 		NOT_SHABBAT: '%{duration}\nuntil candle lighting',
 		SHABBAT: '%{duration}\nuntil Shabbat ends',
+	},
+	holidays: {
+		headings: {
+			major: 'Upcoming Holidays',
+			roshchodeshim: 'Rosh Chodeshim',
+		},
 	},
 	screens: {
 		settings: 'Settings',

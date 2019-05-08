@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 
-import { IHoliday, IOmerData, HolidayCategory } from '../../types';
-import { categoryFilter, upcomingFilter } from '../../utilities/filters';
+import { IHoliday, IOmerData, HolidayCategory } from '../../holidays/types';
+import { categoryFilter, upcomingFilter } from '../../holidays/utilities/filters';
 
 export const blessings: string[] = [
 	'Chesed',
@@ -36,11 +36,9 @@ export default function (holidays: IHoliday[], now: DateTime): (IOmerData | IHol
 		.filter(upcomingFilter(now.minus({ days: 1, hours: 2 })))
 		.filter(h => h.date <= now);
 
-	// console.log(todaysOmerList.map(h => h.date.toString()));
-	// console.log(holidays.map(h => h.date.toString()));
 	if (todaysOmerList.length > 0) {
-		const todayHoliday = todaysOmerList
-			.reduce((o1, o2) => (o1.date > o2.date ? o1 : o2)); // take the latest instance
+		const todayHoliday = todaysOmerList.reduce((o1, o2) => (o1.date > o2.date ? o1 : o2));
+
 		return {
 			...todayHoliday,
 			...getOmerBlessingInfo(todayHoliday),

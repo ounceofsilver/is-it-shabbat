@@ -9,17 +9,21 @@ import { IHoliday } from './types';
 const { CountDown } = components;
 const { formatHolidayDuration } = utilities;
 
+interface IHolidayProps {
+	holiday: IHoliday;
+	now: DateTime;
+	setNow?: (time: DateTime) => void;
+	key?: any;
+}
+
 export const Holiday = ({
 	holiday: { title, date },
 	now,
 	setNow,
-}: {
-	holiday: IHoliday,
-	now: DateTime,
-	setNow?: (time: DateTime) => void,
-}) => (
+}: IHolidayProps) => (
 	<CenteredContainer style={{ marginBottom: 15 }}>
 		<HolidayTitleText>
+			{/* TODO: Localize holiday titles */}
 			{title.replace('Rosh Chodesh ', '')}
 		</HolidayTitleText>
 		<ToggleThroughStates>
@@ -33,6 +37,7 @@ export const Holiday = ({
 					>
 						{(dur: Duration) => (
 							<HolidaySubtitleText>
+								{/* TODO: localize durations */}
 								{formatHolidayDuration(dur)}
 							</HolidaySubtitleText>
 						)}
