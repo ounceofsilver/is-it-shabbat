@@ -14,7 +14,9 @@ interface IOmerPromptProps {
 	omerHoliday: IHoliday;
 }
 
-export const PureOmerPrompt = ({ omerHoliday, goToOmerPage }: IOmerPromptProps & IExternalOmerPromptProps) => (
+export const PureOmerPrompt = ({
+	omerHoliday, goToOmerPage,
+}: IOmerPromptProps & IExternalOmerPromptProps) => (
 	omerHoliday && <>
 		<TouchableWithoutFeedback onPress={goToOmerPage}>
 			<View style={{ marginTop: 40 }}>

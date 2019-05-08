@@ -10,7 +10,7 @@ export const local = (
 	hour: number = 0,
 	minute: number = 0,
 	second: number = 0,
-	millisecond: number = 0
+	millisecond: number = 0,
 ) => DateTime.fromObject({
 	day,
 	hour,

@@ -13,7 +13,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "lint": "tsc --noEmit --resolveJsonModule && tslint ./src/**/*.ts",
+    "lint": "tslint -p tsconfig.json",
     "test": "jest",
     "ci": "yarn test --ci",
     "report": "yarn test --coverage",

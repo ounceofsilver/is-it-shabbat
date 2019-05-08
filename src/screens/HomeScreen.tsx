@@ -6,9 +6,16 @@ import React from 'react';
 import { Dimensions, ScrollView, StatusBar, StyleProp, View, ViewStyle } from 'react-native';
 
 import { MajorHolidays, RoshChodeshim } from '../components/holidays/Holidays';
-import IsItShabbat from '../components/shabbat/IsItShabbat';
-import { AppTitleText, BackgroundView, CenteredContainer, CopyrightText, Footer, HolidayHeadingText } from '../Styles';
 import OmerPrompt from '../components/holidays/OmerPrompt';
+import IsItShabbat from '../components/shabbat/IsItShabbat';
+import {
+	AppTitleText,
+	BackgroundView,
+	CenteredContainer,
+	CopyrightText,
+	Footer,
+	HolidayHeadingText,
+} from '../Styles';
 
 const getBannerSize = ({ width }: { width: number }): 'fullBanner' | 'largeBanner' => {
 	if (width >= 728) {
