@@ -26,17 +26,19 @@ export const blessingExplanations: string[] = [
 
 export function getOmerBlessingInfo({ title }: { title: string }): IOmerData {
 	const dayOf = parseInt(title, 10);
-	const weekOf = Math.floor((dayOf - 1) / 7);
-	const dayOfWeekOf = ((dayOf - 1) % 7) + 1;
+	const weekOf = Math.floor((dayOf) / 7);
+	const dayOfWeekOf = ((dayOf) % 7);
+	const dayBlessingIndex = ((dayOf - 1) % 7);
+	const weekBlessingIndex = Math.floor((dayOf - 1) / 7);
 	return {
 		dayOf,
 		dayOfWeekOf,
 		weekOf,
 
-		dayBlessing: blessings[dayOfWeekOf - 1],
-		dayBlessingExplanation: blessingExplanations[dayOfWeekOf - 1],
-		weekBlessing: blessings[weekOf],
-		weekBlessingExplanation: blessingExplanations[weekOf],
+		dayBlessing: blessings[dayBlessingIndex],
+		dayBlessingExplanation: blessingExplanations[dayBlessingIndex],
+		weekBlessing: blessings[weekBlessingIndex],
+		weekBlessingExplanation: blessingExplanations[weekBlessingIndex],
 	};
 }
 

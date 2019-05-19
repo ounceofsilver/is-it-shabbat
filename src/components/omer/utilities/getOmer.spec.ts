@@ -53,46 +53,73 @@ describe('omer logic', () => {
 		});
 	});
 
+	// Test day data inference functionality
 	describe('getOmerBlessingInfo', () => {
-		it('should basically work', () => {
-			expect(getOmerBlessingInfo({ title: '27th day of the omer' })).toEqual({
-				dayBlessing: blessings[5], // 6th day of omer week
-				dayBlessingExplanation: blessingExplanations[5], // 6th day of omer week
-				dayOf: 27,
+		it('should infer number, weeks, and days', () => {
+			expect(getOmerBlessingInfo({ title: '1st day of the omer' })).toEqual(expect.objectContaining({
+				dayOf: 1,
+				dayOfWeekOf: 1,
+				weekOf: 0,
+			}));
+			expect(getOmerBlessingInfo({ title: '2nd day of the omer' })).toEqual(expect.objectContaining({
+				dayOf: 2,
+				dayOfWeekOf: 2,
+				weekOf: 0,
+			}));
+			expect(getOmerBlessingInfo({ title: '6th day of the omer' })).toEqual(expect.objectContaining({
+				dayOf: 6,
 				dayOfWeekOf: 6,
-				weekBlessing: blessings[3], // 4th omer week
-				weekBlessingExplanation: blessingExplanations[3], // 4th omer week
-				weekOf: 3,
-			});
+				weekOf: 0,
+			}));
+			expect(getOmerBlessingInfo({ title: '7th day of the omer' })).toEqual(expect.objectContaining({
+				dayOf: 7,
+				dayOfWeekOf: 0,
+				weekOf: 1,
+			}));
+			expect(getOmerBlessingInfo({ title: '8th day of the omer' })).toEqual(expect.objectContaining({
+				dayOf: 8,
+				dayOfWeekOf: 1,
+				weekOf: 1,
+			}));
 		});
 
-		it('should give correct blessings for each of the 49 days of the omer', () => {
-			for (let i = 0; i < 7; i += 1) {
-				const weekBlessing = blessings[i];
-				const weekBlessingExplanation = blessingExplanations[i];
-				for (let j = 0; j < 7; j += 1) {
-					const dayBlessing = blessings[j];
-					const dayBlessingExplanation = blessingExplanations[j];
-
-					const o = { title: `${(7 * i) + j + 1}th day of the omer` };
-					const info = getOmerBlessingInfo(o);
-
-					expect(info).toEqual({
-						dayBlessing,
-						dayBlessingExplanation,
-						weekBlessing,
-						weekBlessingExplanation,
-
-						dayOf: (7 * i) + j + 1,
-						dayOfWeekOf: j + 1,
-						weekOf: i,
-					});
-				}
-			}
+		it('should give correct blessings and explanations', () => {
+			expect(getOmerBlessingInfo({ title: '1st day of the omer' })).toEqual(expect.objectContaining({
+				dayBlessing: blessings[0],
+				dayBlessingExplanation: blessingExplanations[0],
+				weekBlessing: blessings[0],
+				weekBlessingExplanation: blessingExplanations[0],
+			}));
+			expect(getOmerBlessingInfo({ title: '2nd day of the omer' })).toEqual(expect.objectContaining({
+				dayBlessing: blessings[1],
+				dayBlessingExplanation: blessingExplanations[1],
+				weekBlessing: blessings[0],
+				weekBlessingExplanation: blessingExplanations[0],
+			}));
+			expect(getOmerBlessingInfo({ title: '7th day of the omer' })).toEqual(expect.objectContaining({
+				dayBlessing: blessings[6],
+				dayBlessingExplanation: blessingExplanations[6],
+				weekBlessing: blessings[0],
+				weekBlessingExplanation: blessingExplanations[0],
+			}));
+			expect(getOmerBlessingInfo({ title: '8th day of the omer' })).toEqual(expect.objectContaining({
+				dayBlessing: blessings[0],
+				dayBlessingExplanation: blessingExplanations[0],
+				weekBlessing: blessings[1],
+				weekBlessingExplanation: blessingExplanations[1],
+			}));
+			expect(getOmerBlessingInfo({ title: '9th day of the omer' })).toEqual(expect.objectContaining({
+				dayBlessing: blessings[1],
+				dayBlessingExplanation: blessingExplanations[1],
+				weekBlessing: blessings[1],
+				weekBlessingExplanation: blessingExplanations[1],
+			}));
 		});
 	});
 
+	// Test view functionality
 	describe('weeksAndDays', () => {
+		// Assuming the inputs are correct, it should display output properly
 		it('should work for 1 days', () => {
 			expect(weeksAndDays(1, 1, 0)).toBe('1 day');
 		});
@@ -117,5 +144,18 @@ describe('omer logic', () => {
 		it('should work for 16 days, which is 2 weeks and 2 days', () => {
 			expect(weeksAndDays(16, 2, 2)).toBe('16 days, which is 2 weeks and 2 days');
 		});
+	});
+
+	// end-to-end functionality checking
+	it('should work together on day 27', () => {
+		const o = getOmerBlessingInfo({ title: '27th day of the omer' });
+		expect(weeksAndDays(
+			o.dayOf, o.dayOfWeekOf, o.weekOf,
+		)).toBe('27 days, which is 3 weeks and 6 days');
+	});
+
+	it('should work together on day 28', () => {
+		const o = getOmerBlessingInfo({ title: '28th day of the omer' });
+		expect(weeksAndDays(o.dayOf, o.dayOfWeekOf, o.weekOf)).toBe('28 days, which is 4 weeks');
 	});
 });
