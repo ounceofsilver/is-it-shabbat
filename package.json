@@ -15,8 +15,7 @@
     "eject": "expo eject",
     "lint": "tslint -p tsconfig.json",
     "test": "jest",
-    "ci": "yarn test --ci",
-    "report": "yarn test --coverage",
+    "ci": "yarn && yarn lint && yarn test --ci --coverage",
     "scan": "yarn report && bash scripts/scan.sh",
     "tdd": "yarn test --watch"
   },
