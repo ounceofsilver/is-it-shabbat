@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Is It Shabbat?",
-    "description": "Connect with G-d's holy days. isitshabbat.org",
+    "description": "Connect with G-d's holy days. isitshabbat.net",
     "slug": "IsItShabbat",
     "privacy": "unlisted",
     "sdkVersion": "32.0.0",
