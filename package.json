@@ -1,6 +1,6 @@
 {
   "name": "is-it-shabbat-app",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "author": "James Fulford <james.fulford@outlook.com>",
