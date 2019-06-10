@@ -4,7 +4,7 @@
     "description": "Connect with G-d's holy days. isitshabbat.net",
     "slug": "IsItShabbat",
     "privacy": "unlisted",
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "33.0.0",
     "platforms": [
       "ios"
     ],
