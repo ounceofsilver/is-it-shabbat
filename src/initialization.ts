@@ -1,6 +1,7 @@
 import './l10n';
 
-import { Asset, Font } from 'expo';
+import { Asset } from 'expo-asset';
+import * as Font from 'expo-font';
 import { action, state, utilities } from 'is-it-shabbat-core';
 import { Image } from 'react-native';
 
