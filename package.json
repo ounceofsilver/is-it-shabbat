@@ -51,6 +51,7 @@
     "expo": "33.0.5",
     "expo-asset": "5.0.1",
     "expo-font": "5.0.1",
+    "expo-keep-awake": "5.0.1",
     "i18n-js": "3.2.2",
     "is-it-shabbat-core": "1.4.2",
     "react": "16.8.3",
