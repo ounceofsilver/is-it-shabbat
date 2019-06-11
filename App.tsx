@@ -11,10 +11,17 @@ import { getTime } from './src/time';
 
 export default () => {
 	const [isReady, setReady] = useState(false);
+
 	useKeepAwake();
+
 	useEffect(() => {
-		state.dispatch(action.setNow(getTime()));
+		const intervalId = setInterval(
+			() => state.dispatch(action.setNow(getTime())),
+			20 * 1000,
+		);
+		return () => clearInterval(intervalId);
 	});
+
 	return isReady
 		? (
 			<Provider store={state}>
