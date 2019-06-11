@@ -14,3 +14,4 @@ yarn.lock
 .nyc_output
 coverage
 .vscode
+web-build
