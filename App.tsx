@@ -1,36 +1,34 @@
 import { AppLoading } from 'expo';
-import { state } from 'is-it-shabbat-core';
-import { Component } from 'react';
+import { useKeepAwake } from 'expo-keep-awake';
+import { action, state } from 'is-it-shabbat-core';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { Provider } from 'react-redux';
 
 import initialization from './src/initialization';
 import Router from './src/Router';
+import { getTime } from './src/time';
 
-class App extends Component {
-	public state = {
-		isReady: false,
-	};
-
-	public render() {
-		const { isReady } = this.state;
-		return isReady
-			? (
-				<Provider store={state}>
-					<Router />
-				</Provider>
-			)
-			: (
-				<AppLoading
-					startAsync={initialization}
-					onFinish={() => this.setState({ isReady: true })}
-					onError={(...args) => {
-						// tslint:disable-next-line: no-console
-						console.warn(...args);
-					}}
-				/>
-			);
-	}
-}
-
-export default App;
+export default () => {
+	const [isReady, setReady] = useState(false);
+	useKeepAwake();
+	useEffect(() => {
+		state.dispatch(action.setNow(getTime()));
+	});
+	return isReady
+		? (
+			<Provider store={state}>
+				<Router />
+			</Provider>
+		)
+		: (
+			<AppLoading
+				startAsync={initialization}
+				onFinish={() => setReady(true)}
+				onError={(...args) => {
+					// tslint:disable-next-line: no-console
+					console.warn(...args);
+				}}
+			/>
+		);
+};
