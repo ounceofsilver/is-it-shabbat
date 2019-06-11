@@ -1,5 +1,6 @@
 import './l10n';
 
+import { FontAwesome } from '@expo/vector-icons';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import { action, state, utilities } from 'is-it-shabbat-core';
@@ -27,9 +28,9 @@ const loadAssetsAsync = async () => Promise.all([
 	]),
 	...cacheFonts([
 		{
-			FredokaOne: require('../assets/fonts/FredokaOne.ttf'), // eslint-disable-line
-			fa: require('@expo/vector-icons/fonts/FontAwesome.ttf'), // eslint-disable-line
+			FredokaOne: require('../assets/fonts/FredokaOne.ttf'),
 		},
+		FontAwesome.font,
 	]),
 ]);
 
