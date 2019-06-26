@@ -76,15 +76,32 @@ export default ({
 				<OmerPrompt goToOmerPage={() => navigate('Omer')} />
 			</CenteredContainer>
 
-			<View style={{ marginTop: 60 }}>
-				<HolidayHeadingText>{i18n.t('holidays.headings.major')}</HolidayHeadingText>
-				<MajorHolidays />
-			</View>
+			<ScrollView
+				horizontal
+				centerContent
+				style={{
+					borderBottomColor: 'black',
+					borderBottomWidth: 1,
+					borderTopColor: 'black',
+					borderTopWidth: 1,
+					marginTop: 40,
+					padding: 20,
+				}}
+			>
+				<View style={{ marginHorizontal: 20, minWidth: 250 }}>
+					<HolidayHeadingText>
+						{i18n.t('holidays.headings.major')}
+					</HolidayHeadingText>
+					<MajorHolidays />
+				</View>
 
-			<View style={{ marginTop: 40 }}>
-				<HolidayHeadingText>{i18n.t('holidays.headings.roshchodeshim')}</HolidayHeadingText>
-				<RoshChodeshim />
-			</View>
+				<View style={{ marginHorizontal: 20, minWidth: 250 }}>
+					<HolidayHeadingText>
+						{i18n.t('holidays.headings.roshchodeshim')}
+					</HolidayHeadingText>
+					<RoshChodeshim />
+				</View>
+			</ScrollView>
 
 			<CopyrightText
 				style={{
