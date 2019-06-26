@@ -30,7 +30,8 @@
 </p>
 
 ## Todo:
-- [] Use shoutem to help with styling + responsiveness: https://github.com/shoutem/theme
+- [] Use React Native Elements: toolkit has React Native Web support and is actively supported: https://github.com/react-native-training/react-native-elements
+- [] Use Storybook with React Native Web
 
 ## Information
 Uses [hebcal.com](https://www.hebcal.com/home/195/jewish-calendar-rest-api) APIs for holidays and Rosh Chodeshim.
