@@ -36,5 +36,5 @@ export default createAppContainer(createStackNavigator({
 		screen: SettingsScreen,
 	},
 },                                                     {
-	initialRouterName: 'Home',
+	initialRouteName: 'Home',
 }));
