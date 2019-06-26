@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "expo start",
+    "start:web": "expo start --web-only",
 	"build:web": "expo build:web",
     "lint": "tslint -p tsconfig.json",
     "test": "jest",
