@@ -12,38 +12,38 @@ const { fonts, colors, size } = styles;
 // Text
 //
 export const StyledText = styled(Text)`
-	fontFamily: ${fonts.primary};
+	fontFamily: ${fonts.primary}; font-family: ${fonts.primary};
 `;
 
 const ParagraphText = styled(StyledText)`
 	color: ${colors.textMain};
-	marginTop: 10;
+	marginTop: 10; margin-top: 10px;
 `;
 // Primary
 export const PrimaryText = styled(ParagraphText)`
 	color: ${colors.textMain};
-	fontSize: 28;
+	fontSize: 28; font-size: 28px;
 `;
 export const PrimaryCenterText = styled(PrimaryText)`
-	textAlign: center;
+	textAlign: center; text-align: center;
 `;
 
 // Secondary
 export const SecondaryText = styled(ParagraphText)`
 	color: ${colors.textMain};
-	fontSize: 18;
+	fontSize: 18; font-size: 18px;
 `;
 export const SecondaryCenterText = styled(SecondaryText)`
-	textAlign: center;
+	textAlign: center; text-align: center;
 `;
 
 // Ternary
 export const MainText = styled(ParagraphText)`
 	color: ${colors.textSubtle};
-	fontSize: 15;
+	fontSize: 15; font-size: 15px;
 `;
 export const MainCenterText = styled(MainText)`
-	textAlign: center;
+	textAlign: center; text-align: center;
 `;
 
 //
@@ -51,75 +51,76 @@ export const MainCenterText = styled(MainText)`
 //
 export const ShabbatText = styled(StyledText)`
 	color: ${colors.textMain};
-	fontSize: ${size.title};
+	fontSize: ${size.title}; font-size: ${size.title}px;
 	margin: 5px;
-	textAlign: center;
+	textAlign: center; text-align: center;
 `;
 
 export const ShabbatSubtitleText = styled(StyledText)`
 	color: ${colors.textSubtle};
-	fontSize: ${size.subtitle};
-	textAlign: center;
+	fontSize: ${size.subtitle}; font-size: ${size.subtitle}px;
+	textAlign: center; text-align: center;
 `;
 
 export const AppTitleText = styled(StyledText)`
 	color: ${colors.textSubtle};
-	fontSize: 32;
-	textAlign: center;
+	fontSize: 32; font-size: 32px;
+	textAlign: center; text-align: center;
 `;
 
 export const CopyrightText = styled(StyledText)`
 	color: ${colors.textSubtle};
-	textAlign: center;
-	fontSize: 18;
+	textAlign: center; text-align: center;
+	fontSize: 18; font-size: 18px;
 `;
 
 export const HolidayHeadingText = styled(StyledText)`
 	color: ${colors.textSubtle};
-	fontSize: 26;
-	textAlign: center;
+	fontSize: 26; font-size: 26px;
+	textAlign: center; text-align: center;
 `;
 export const HolidayTitleText = styled(StyledText)`
 	color: ${colors.textMain};
-	fontSize: 24;
-	textAlign: center;
+	fontSize: 24; font-size: 24px;
+	textAlign: center; text-align: center;
 `;
 export const HolidaySubtitleText = styled(StyledText)`
 	color: ${colors.textSubtle};
-	fontSize: ${size.subtitle};
-	textAlign: center;
+	fontSize: ${size.subtitle}; font-size: ${size.subtitle}px;
+	textAlign: center; text-align: center;
 `;
 
 export const OmerPromptText = styled(StyledText)`
 	color: ${colors.textMain};
-	fontSize: 24;
-	textAlign: center;
+	fontSize: 24; font-size: 24px;
+	textAlign: center; text-align: center;
 `;
 //
 // Containers
 //
 export const CenteredContainer = styled(View)`
-	flex: 1;
-	justifyContent: center;
-	alignItems: center;
+	flex: 1; display: flex;
+	justifyContent: center; justify-content: center;
+	alignItems: center; align-items: center;
 `;
 export const BackgroundView = styled(View)`
 	height: 100%;
-	backgroundColor: ${colors.background};
+
+	backgroundColor: ${colors.background}; background-color: ${colors.background};
 `;
 
 export const Footer = styled(View)`
-	backgroundColor: ${colors.background};
+	backgroundColor: ${colors.background}; background-color: ${colors.background};
 
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	paddingVertical: 10;
-	paddingHorizontal: 20;
+	paddingVertical: 10; padding-vertical: 10px;
+	paddingHorizontal: 20; padding-horizontal: 20px;
 
-	flex: 1;
-	flexDirection: row;
-	justifyContent: space-between;
+	flex: 1; display: flex;
+	flexDirection: row; flex-direction: row;
+	justifyContent: space-between; justify-content: space-between;
 `;
 
 export default {};

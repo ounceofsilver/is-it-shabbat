@@ -3,7 +3,15 @@ import { AdMobBanner } from 'expo';
 import i18n from 'i18n-js';
 import { styles } from 'is-it-shabbat-core';
 import React from 'react';
-import { Dimensions, ScrollView, StatusBar, StyleProp, View, ViewStyle } from 'react-native';
+import {
+	Dimensions,
+	Platform,
+	ScrollView,
+	StatusBar,
+	StyleProp,
+	View,
+	ViewStyle,
+} from 'react-native';
 
 import { MajorHolidays, RoshChodeshim } from '../components/holidays/Holidays';
 import OmerPrompt from '../components/holidays/OmerPrompt';
@@ -17,7 +25,11 @@ import {
 	HolidayHeadingText,
 } from '../Styles';
 
-const getBannerSize = ({ width }: { width: number }): 'fullBanner' | 'largeBanner' => {
+const getBannerSize = ({
+	width,
+}: {
+	width: number;
+}): 'fullBanner' | 'largeBanner' => {
 	if (width >= 728) {
 		return 'fullBanner';
 	}
@@ -26,29 +38,37 @@ const getBannerSize = ({ width }: { width: number }): 'fullBanner' | 'largeBanne
 
 const footerToolbarHeight: number = 56;
 
-export default ({ navigation: { navigate } }: {
-	navigation: { navigate: (state: string) => void },
+export default ({
+	navigation: { navigate },
+}: {
+	navigation: { navigate: (state: string) => void };
 }) => (
 	<BackgroundView>
 		<StatusBar hidden />
 
-		<CenteredContainer style={{ marginBottom: 120 } as StyleProp<ViewStyle>}>
-			<AdMobBanner
-				bannerSize={getBannerSize(Dimensions.get('window'))}
-				adUnitID='ca-app-pub-4520712444019649/7098316428'
-				testDeviceID='EMULATOR'
-				// eslint-disable-next-line no-console
-				// onDidFailToReceiveAdWithError={console.error}
-			/>
-		</CenteredContainer>
-
-		<ScrollView>
-			<CenteredContainer>
-				<AppTitleText>
-					{i18n.t('title')}
-				</AppTitleText>
+		{Platform.OS !== 'web' && (
+			<CenteredContainer
+				style={{ marginBottom: 120 } as StyleProp<ViewStyle>}
+			>
+				<AdMobBanner
+					bannerSize={getBannerSize(Dimensions.get('window'))}
+					adUnitID='ca-app-pub-4520712444019649/7098316428'
+					testDeviceID='EMULATOR'
+					// eslint-disable-next-line no-console
+					// onDidFailToReceiveAdWithError={console.error}
+				/>
 			</CenteredContainer>
-				<CenteredContainer style={{ marginTop: 30 } as StyleProp<ViewStyle>}>
+		)}
+		<ScrollView>
+			{Platform.OS === 'web' && (
+				<View style={{ marginBottom: 40 } as StyleProp<ViewStyle>} />
+			)}
+			<CenteredContainer>
+				<AppTitleText>{i18n.t('title')}</AppTitleText>
+			</CenteredContainer>
+			<CenteredContainer
+				style={{ marginTop: 30 } as StyleProp<ViewStyle>}
+			>
 				<IsItShabbat />
 			</CenteredContainer>
 
@@ -74,16 +94,19 @@ export default ({ navigation: { navigate } }: {
 			>
 				{i18n.t('copyright')}
 			</CopyrightText>
-
 		</ScrollView>
 
-		<Footer style={{ height: footerToolbarHeight } as StyleProp<ViewStyle>}>
-			<FontAwesome
-				name='map-marker'
-				size={36}
-				color={styles.colors.textSubtle}
-				onPress={() => navigate('Settings')}
-			/>
-		</Footer>
+		{Platform.OS !== 'web' && (
+			<Footer
+				style={{ height: footerToolbarHeight } as StyleProp<ViewStyle>}
+			>
+				<FontAwesome
+					name='map-marker'
+					size={36}
+					color={styles.colors.textSubtle}
+					onPress={() => navigate('Settings')}
+				/>
+			</Footer>
+		)}
 	</BackgroundView>
 );
