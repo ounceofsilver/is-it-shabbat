@@ -6,8 +6,8 @@
     "privacy": "unlisted",
     "sdkVersion": "33.0.0",
     "platforms": [
-	  "ios",
-	  "web"
+      "ios",
+      "web"
     ],
     "version": "2.0.2",
     "orientation": "portrait",
