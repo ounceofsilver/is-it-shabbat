@@ -1,4 +1,8 @@
 # Is It Shabbat?
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ounceofsilver_is-it-shabbat-app&metric=ncloc)](https://sonarcloud.io/dashboard?id=ounceofsilver_is-it-shabbat-app)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ounceofsilver_is-it-shabbat-app&metric=bugs)](https://sonarcloud.io/dashboard?id=ounceofsilver_is-it-shabbat-app)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ounceofsilver_is-it-shabbat-app&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=ounceofsilver_is-it-shabbat-app)
+
 "Is It Shabbat?" is a mobile app to connect you with God's holy days.
 
 [Download the iOS App!](https://itunes.apple.com/us/app/is-it-shabbat/id1435157805)
