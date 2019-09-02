@@ -1,0 +1,36 @@
+{
+  "background_color": "#3D2F40",
+  "description": "Connect with G-d's holy days. isitshabbat.net",
+  "dir": "auto",
+  "display": "standalone",
+  "lang": "en",
+  "name": "Is It Shabbat?",
+  "orientation": "portrait",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "id": "com.jamesfulford.isitshabbat"
+    }
+  ],
+  "short_name": "Is It Shabbat?",
+  "start_url": ".",
+  "theme_color": "#4630EB",
+  "icons": [
+    {
+      "src": "/apple/icons/icon_180x180.db3274ffd71f234b88b7a11ecbe9e0fd.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple/icons/icon_192x192.769d34034ac373745f8905d030501f39.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple/icons/icon_512x512.c2e18dbee92dd31860162bf65de87ec2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
