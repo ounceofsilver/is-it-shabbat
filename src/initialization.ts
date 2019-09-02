@@ -3,10 +3,12 @@ import './l10n';
 import { FontAwesome } from '@expo/vector-icons';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-import { action, state, utilities } from 'is-it-shabbat-core';
+import { setLocation } from 'is-it-shabbat-core/dist/store/use/config';
+import { getHolidays } from 'is-it-shabbat-core/dist/store/use/holiday/actions';
 import { Image } from 'react-native';
 
 import getLocation from './components/location/getLocation';
+import store from './store';
 import { getTime } from './time';
 
 //
@@ -40,10 +42,10 @@ export default async () => {
 	await Promise.all([
 		loadAssetsAsync(),
 		getLocation().then((location) => {
-			state.dispatch(action.initialize(
-				getTime(),
-				location,
-			));
+			store.dispatch(setLocation(location));
+
+			const now = getTime();
+			getHolidays(now, 2, store.getState().holiday.options)(store.dispatch);
 		}),
 	]);
 };

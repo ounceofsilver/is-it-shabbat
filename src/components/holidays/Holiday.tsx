@@ -1,60 +1,55 @@
-import { components, utilities } from 'is-it-shabbat-core';
-import { DateTime, Duration } from 'luxon';
+import { formatHolidayDuration } from 'is-it-shabbat-core/dist/utilities/durationFormatter';
 import React from 'react';
 
 import { CenteredContainer, HolidaySubtitleText, HolidayTitleText } from '../../Styles';
+import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';
 import { IHoliday } from './types';
 
-const { CountDown } = components;
-const { formatHolidayDuration } = utilities;
-
 interface IHolidayProps {
 	holiday: IHoliday;
-	now: DateTime;
-	setNow?: (time: DateTime) => void;
 	key?: any;
 }
 
 export const Holiday = ({
 	holiday: { title, date },
-	now,
-	setNow,
-}: IHolidayProps) => (
-	<CenteredContainer style={{ marginBottom: 15 }}>
-		<HolidayTitleText>
-			{/* TODO: Localize holiday titles */}
-			{title.replace('Rosh Chodesh ', '')}
-		</HolidayTitleText>
-		<ToggleThroughStates>
-			{[
-				(
-					<CountDown
-						key={1}
-						end={date}
-						start={now}
-						callback={setNow}
-					>
-						{(dur: Duration) => (
-							<HolidaySubtitleText>
-								{/* TODO: localize durations */}
-								{formatHolidayDuration(dur)}
-							</HolidaySubtitleText>
-						)}
-					</CountDown>
-				),
-				(
-					<HolidaySubtitleText key={2}>
-						{date.toLocaleString({
-							day: '2-digit',
-							hour: '2-digit',
-							minute: '2-digit',
-							month: 'short',
-							weekday: 'long',
-						})}
-					</HolidaySubtitleText>
-				),
-			]}
-		</ToggleThroughStates>
-	</CenteredContainer>
-);
+}: IHolidayProps) => {
+	const now = useTime(100);
+
+	// If date is in the past, don't show it anymore
+	const diff = date.diff(now);
+	if (diff.shiftTo('milliseconds').milliseconds <= 0) {
+		return null;
+	}
+
+	return (
+		<CenteredContainer style={{ marginBottom: 15 }}>
+			<HolidayTitleText>
+				{/* TODO: Localize holiday titles */}
+				{title.replace('Rosh Chodesh ', '')}
+			</HolidayTitleText>
+			<ToggleThroughStates>
+				{[
+					(
+						<HolidaySubtitleText>
+							{/* TODO: localize durations */}
+							{formatHolidayDuration(diff)}
+						</HolidaySubtitleText>
+					),
+					(
+						<HolidaySubtitleText key={2}>
+							{date.toLocaleString({
+								day: '2-digit',
+								hour: '2-digit',
+								minute: '2-digit',
+								month: 'short',
+								weekday: 'long',
+							})}
+						</HolidaySubtitleText>
+					),
+				]}
+			</ToggleThroughStates>
+		</CenteredContainer>
+	);
+
+};

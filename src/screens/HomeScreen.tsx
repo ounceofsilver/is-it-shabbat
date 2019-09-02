@@ -1,7 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { AdMobBanner } from 'expo';
 import i18n from 'i18n-js';
-import { styles } from 'is-it-shabbat-core';
 import React from 'react';
 import {
 	Dimensions,
@@ -20,6 +19,7 @@ import {
 	AppTitleText,
 	BackgroundView,
 	CenteredContainer,
+	colors,
 	CopyrightText,
 	Footer,
 	HolidayHeadingText,
@@ -103,7 +103,7 @@ export default ({
 				<FontAwesome
 					name='map-marker'
 					size={36}
-					color={styles.colors.textSubtle}
+					color={colors.textSubtle}
 					onPress={() => navigate('Settings')}
 				/>
 			</Footer>

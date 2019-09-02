@@ -1,9 +1,10 @@
-import { action } from 'is-it-shabbat-core';
+import { getHolidays } from 'is-it-shabbat-core/dist/store/get';
+import { AppState } from 'is-it-shabbat-core/dist/store/use';
 import { DateTime } from 'luxon';
-// tslint:disable-next-line: import-name
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { useTime } from '../../time';
 import { Holiday } from './Holiday';
 import { IHoliday } from './types';
 import {
@@ -15,30 +16,35 @@ import {
 	getSpecialShabbats,
 } from './utilities/holidayFiltering';
 
-interface IHolidaysProps {
-	holidays: IHoliday[];
-	now: DateTime;
-	dispatch: (action: any) => void;
-}
-
 const HolidaysComponentFactory = (
 	filter: (holidays: IHoliday[], now: DateTime) => IHoliday[],
-): () => any => connect(
-	({ holidays, now }) => ({ holidays, now }),
-)(({ holidays, now, dispatch }: IHolidaysProps) => {
-	const setNow = end => dispatch(action.setNow(end));
-	return (
-		filter(holidays, now)
-			.map(
-				(holiday: IHoliday) => (<Holiday
-					key={holiday.date.toString()}
-					holiday={holiday}
-					setNow={setNow}
-					now={now}
-				/>),
-			)
-	);
-});
+): () => any => {
+
+	return connect(
+		(state: AppState) => ({ holidays: getHolidays(state) }),
+	)(({ holidays }) => {
+
+		// How frequently to re-filter holidays?
+		const now = useTime(60 * 1000);
+
+		if (!holidays) {
+			return null;
+		}
+
+		const filteredHolidays = filter(holidays, now);
+
+		return (
+			filteredHolidays
+				.map(
+					(holiday: IHoliday) => (<Holiday
+						key={holiday.date.toString()}
+						holiday={holiday}
+					/>),
+				)
+		);
+
+	});
+};
 
 export const RoshChodeshim = HolidaysComponentFactory(getRoshChodeshim);
 export const MajorHolidays = HolidaysComponentFactory(getMajorHolidays);

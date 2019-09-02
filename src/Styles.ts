@@ -4,9 +4,19 @@ import {
 } from 'react-native';
 import styled from 'styled-components';
 
-import { styles } from 'is-it-shabbat-core';
-
-const { fonts, colors, size } = styles;
+export const colors = {
+	background: '#3D2F40',
+	textMain: '#F4BDFF',
+	textSubtle: '#7A5F7F',
+};
+export const fonts = {
+	primary: 'FredokaOne',
+};
+export const size = {
+	secondary: 22,
+	subtitle: 18,
+	title: 72,
+};
 
 //
 // Text
@@ -122,5 +132,3 @@ export const Footer = styled(View)`
 	flexDirection: row; flex-direction: row;
 	justifyContent: space-between; justify-content: space-between;
 `;
-
-export default {};

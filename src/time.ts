@@ -1,6 +1,17 @@
-import { utilities } from 'is-it-shabbat-core';
+import { DateTime } from 'luxon';
+import { useEffect, useState } from 'react';
 
-const { DateTime } = utilities;
+export const useTime = (refreshCycle: number = 100) => {
+	const [now, setNow] = useState(getTime());
+	useEffect(() => {
+		const intervalId = setInterval(
+			() => setNow(getTime()),
+			refreshCycle,
+		);
+		return () => clearInterval(intervalId);
+	},        [refreshCycle, setInterval, clearInterval, setNow, getTime]);
+	return now;
+};
 
 export const getTime = () => {
 	return DateTime.local();

@@ -1,72 +1,63 @@
 import i18n from 'i18n-js';
-import { action, components, utilities } from 'is-it-shabbat-core';
+import { getShabbatState } from 'is-it-shabbat-core/dist/store/get';
+import { underAWeek } from 'is-it-shabbat-core/dist/utilities/durationFormatter';
 import { DateTime } from 'luxon';
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { ShabbatSubtitleText, ShabbatText } from '../../Styles';
-import { ILocation } from '../location/types';
+import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';
 
-const { ShabbatCheck, CountDown } = components;
-const { underAWeek } = utilities;
+export const PureIsItShabbat = ({
+	shabbat: { period, countDownTo },
+}: {
+	shabbat: { period: string, countDownTo: DateTime },
+}) => {
+	const now = useTime(100);
+	const diff = countDownTo.diff(now);
 
-export const PureIsItShabbat = ({ now, location, dispatch }: {
-	now: DateTime,
-	location: ILocation,
-	dispatch: (DateTime) => void,
-}) => (
-	<ShabbatCheck now={now} location={location}>
-		{(period, countDownTo) => (
-			<View>
-				<ShabbatText>
-					{i18n.t(`status.${period}`)}
-				</ShabbatText>
-				<ToggleThroughStates>
-					{[
-						(
-							<CountDown
-								key={10}
-								end={countDownTo}
-								start={now}
-								callback={end => dispatch(action.setNow(end))}
-							>
-								{dur => (
-									<ShabbatSubtitleText>
-										{i18n.t(
-											`endEventName.${period}`,
-											{ duration: underAWeek(dur) },
-										)}
-									</ShabbatSubtitleText>
-								)}
-							</CountDown>
-						),
-						(
-							<ShabbatSubtitleText key={20}>
-								{i18n.t(
-									`startEventName.${period}`,
-									{
-										end: countDownTo.toLocaleString({
-											day: '2-digit',
-											hour: '2-digit',
-											minute: '2-digit',
-											month: 'short',
-										}),
-									},
-								)}
-							</ShabbatSubtitleText>
-						),
-					]}
-				</ToggleThroughStates>
-			</View>
-		)}
-	</ShabbatCheck>
-);
+	return (
+		<View>
+			<ShabbatText>
+				{i18n.t(`status.${period}`)}
+			</ShabbatText>
+			<ToggleThroughStates>
+				{[
+					(
+						<ShabbatSubtitleText key={1}>
+							{i18n.t(
+								`endEventName.${period}`,
+								// TODO: localize durations
+								{ duration: underAWeek(diff) },
+							)}
+						</ShabbatSubtitleText>
+					),
+					(
+						<ShabbatSubtitleText key={2}>
+							{i18n.t(
+								`startEventName.${period}`,
+								{
+									end: countDownTo.toLocaleString({
+										day: '2-digit',
+										hour: '2-digit',
+										minute: '2-digit',
+										month: 'short',
+									}),
+								},
+							)}
+						</ShabbatSubtitleText>
+					),
+				]}
+			</ToggleThroughStates>
+		</View>
+	);
+
+};
 
 export default connect(
 	state => ({
-		location: state.location,
-		now: state.now,
+		shabbat: getShabbatState(state),
 	}),
 )(PureIsItShabbat);

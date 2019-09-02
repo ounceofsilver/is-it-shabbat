@@ -3,7 +3,8 @@
 // few things, my solution for now is to keep this file as
 // a .js file.
 import { MapView } from 'expo';
-import { action } from 'is-it-shabbat-core';
+import { setLocation as _setLocation } from 'is-it-shabbat-core/dist/store/use/config';
+import { getLocation } from 'is-it-shabbat-core/dist/store/get';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -14,7 +15,7 @@ const eventToLocation = (e) => ({
 	},
 });
 
-const LocationPicker = ({ location, dispatch }) => {
+const LocationPicker = ({ location, setLocation }) => {
 	const initialRegion = {
 		latitude: location.coords.latitude,
 		longitude: location.coords.longitude,
@@ -35,7 +36,7 @@ const LocationPicker = ({ location, dispatch }) => {
 		<MapView
 			style={{ flex: 1 }}
 			initialRegion={initialRegion}
-			onPress={e => dispatch(action.setLocation(eventToLocation(e)))}
+			onPress={e => setLocation(eventToLocation(e))}
 			showsMyLocationButton={false}
 			showsPointsOfInterest={false}
 			showsCompass={false}
@@ -50,6 +51,9 @@ const LocationPicker = ({ location, dispatch }) => {
 
 export default connect(
 	state => ({
-		location: state.location,
+		location: getLocation(state),
 	}),
+	{
+		setLocation: _setLocation,
+	}
 )(LocationPicker);

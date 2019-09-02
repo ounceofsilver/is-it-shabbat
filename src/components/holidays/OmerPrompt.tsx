@@ -1,3 +1,4 @@
+import { getHolidays, getNow } from 'is-it-shabbat-core/dist/store/get';
 import React from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
@@ -28,7 +29,7 @@ export const PureOmerPrompt = ({
 );
 
 export default connect(
-	({ now, holidays }) => ({
-		omerHoliday: getOmer(holidays, now),
+	state => ({
+		omerHoliday: getOmer(getHolidays(state), getNow(state)),
 	}),
 )(PureOmerPrompt);

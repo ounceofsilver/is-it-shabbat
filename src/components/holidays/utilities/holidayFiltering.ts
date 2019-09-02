@@ -7,27 +7,28 @@ import { ascending } from './sorters';
 const top3Filter = topNFilter(3);
 
 function upcomingTop3OfCategory(
-	category: HolidayCategory, subcat?: HolidaySubcat,
+	category: HolidayCategory,
 ): (holidays: IHoliday[], now: DateTime) => IHoliday[] {
 	return (holidays, now) => holidays
 		.filter(upcomingFilter(now))
-		.filter(categoryFilter(category, subcat))
+		.filter(categoryFilter(category))
+		.slice()
 		.sort(ascending)
 		.filter(top3Filter);
 }
 
 export const getRoshChodeshim = upcomingTop3OfCategory(HolidayCategory.ROSHCHODESH);
 export const getMajorHolidays = upcomingTop3OfCategory(
-	HolidayCategory.HOLIDAY, HolidaySubcat.MAJOR,
+	HolidayCategory.HOLIDAY, // HolidaySubcat.MAJOR,
 );
 export const getMinorHolidays = upcomingTop3OfCategory(
-	HolidayCategory.HOLIDAY, HolidaySubcat.MINOR,
+	HolidayCategory.HOLIDAY, // HolidaySubcat.MINOR,
 );
 export const getSpecialShabbats = upcomingTop3OfCategory(
-	HolidayCategory.HOLIDAY, HolidaySubcat.SHABBAT,
+	HolidayCategory.HOLIDAY, // HolidaySubcat.SHABBAT,
 );
 export const getModernHolidays = upcomingTop3OfCategory(
-	HolidayCategory.HOLIDAY, HolidaySubcat.MODERN,
+	HolidayCategory.HOLIDAY, // HolidaySubcat.MODERN,
 );
 export const getDaysOfOmer = upcomingTop3OfCategory(HolidayCategory.OMER);
 

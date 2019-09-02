@@ -1,6 +1,6 @@
 import i18n from 'i18n-js';
-import { styles } from 'is-it-shabbat-core';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { colors } from './Styles';
 
 import HomeScreen from './screens/HomeScreen';
 import OmerScreen from './screens/OmerScreen';
@@ -8,7 +8,7 @@ import SettingsScreen from './screens/SettingsScreen';
 
 const NavigationOptions = {
 	headerStyle: {
-		backgroundColor: styles.colors.background,
+		backgroundColor: colors.background,
 	},
 	headerTintColor: '#ffffff',
 };
