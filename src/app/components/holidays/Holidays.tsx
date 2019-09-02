@@ -1,9 +1,9 @@
-import { getHolidays } from 'is-it-shabbat-core/dist/store/get';
-import { AppState } from 'is-it-shabbat-core/dist/store/use';
 import { DateTime } from 'luxon';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { getHolidays } from '../../../core/store/get';
+import { AppState } from '../../../core/store/use';
 import { useTime } from '../../time';
 import { Holiday } from './Holiday';
 import { IHoliday } from './types';

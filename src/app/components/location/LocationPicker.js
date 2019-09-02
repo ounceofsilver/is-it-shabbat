@@ -3,10 +3,11 @@
 // few things, my solution for now is to keep this file as
 // a .js file.
 import { MapView } from 'expo';
-import { setLocation as _setLocation } from 'is-it-shabbat-core/dist/store/use/config';
-import { getLocation } from 'is-it-shabbat-core/dist/store/get';
 import React from 'react';
 import { connect } from 'react-redux';
+
+import { getLocation } from '../../../core/store/get';
+import { setLocation as _setLocation } from '../../../core/store/use/config';
 
 const eventToLocation = (e) => ({
 	coords: {

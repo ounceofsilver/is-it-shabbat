@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { getHolidays, getNow } from 'is-it-shabbat-core/dist/store/get';
+import { getHolidays, getNow } from '../../../core/store/get';
 import {
 	CenteredContainer,
 	colors,

@@ -1,4 +1,4 @@
-import { local } from '../../../../test/jest-framework';
+import { local } from '../../../../../test/jest-framework';
 import { IHoliday } from '../../holidays/types';
 import getOmer, {
 	blessingExplanations,

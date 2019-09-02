@@ -35,6 +35,7 @@
 			"allow-leading-underscore"
 		],
 		"import-name": [ false ],
-		"no-duplicate-imports": false
+		"no-duplicate-imports": false,
+		"object-literal-sort-keys": false
 	}
 }

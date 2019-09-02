@@ -1,10 +1,10 @@
 import i18n from 'i18n-js';
-import { getShabbatState } from 'is-it-shabbat-core/dist/store/get';
-import { underAWeek } from 'is-it-shabbat-core/dist/utilities/durationFormatter';
 import { DateTime } from 'luxon';
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { getShabbatState } from '../../../core/store/get';
+import { underAWeek } from '../../../core/utilities/durationFormatter';
 
 import { ShabbatSubtitleText, ShabbatText } from '../../Styles';
 import { useTime } from '../../time';

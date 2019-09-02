@@ -1,11 +1,11 @@
-import { getHolidays, getNow } from 'is-it-shabbat-core/dist/store/get';
 import React from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 
+import { getHolidays, getNow } from '../../../core/store/get';
 import { OmerPromptText } from '../../Styles';
-import { IHoliday } from '../holidays/types';
 import getOmer from '../omer/utilities/getOmer';
+import { IHoliday } from './types';
 
 interface IExternalOmerPromptProps {
 	goToOmerPage: () => void;

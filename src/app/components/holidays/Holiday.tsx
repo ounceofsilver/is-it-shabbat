@@ -1,6 +1,6 @@
-import { formatHolidayDuration } from 'is-it-shabbat-core/dist/utilities/durationFormatter';
 import React from 'react';
 
+import { formatHolidayDuration } from '../../../core/utilities/durationFormatter';
 import { CenteredContainer, HolidaySubtitleText, HolidayTitleText } from '../../Styles';
 import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';
@@ -31,7 +31,7 @@ export const Holiday = ({
 			<ToggleThroughStates>
 				{[
 					(
-						<HolidaySubtitleText>
+						<HolidaySubtitleText key={1}>
 							{/* TODO: localize durations */}
 							{formatHolidayDuration(diff)}
 						</HolidaySubtitleText>

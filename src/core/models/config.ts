@@ -1,3 +1,4 @@
+
 export interface ILocation {
 	coords: {
 		latitude: number;

@@ -1,4 +1,4 @@
-import { local } from '../../../../test/jest-framework';
+import { local } from '../../../../../test/jest-framework';
 import { HolidayCategory, HolidaySubcat, IHoliday } from '../types';
 import { categoryFilter, topNFilter, upcomingFilter } from './filters';
 
