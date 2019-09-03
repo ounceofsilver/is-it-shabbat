@@ -25,7 +25,9 @@ export function getNow(state: AppState): DateTime | undefined {
 export function getShabbatState(state: AppState): { period: is, countDownTo: DateTime } {
 	const currentLocation = getLocation(state);
 	const rightNow = getNow(state);
+
 	if (!currentLocation || !rightNow) { return; }
+	if (!rightNow.isValid) { return; }
 	return _isItShabbat(rightNow, currentLocation.coords.latitude, currentLocation.coords.longitude);
 }
 

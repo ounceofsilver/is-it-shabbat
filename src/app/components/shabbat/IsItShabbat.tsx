@@ -11,10 +11,12 @@ import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';
 
 export const PureIsItShabbat = ({
-	shabbat: { period, countDownTo },
+	shabbat,
 }: {
 	shabbat: { period: string, countDownTo: DateTime },
 }) => {
+	if (!shabbat) { return null; }
+	const { period, countDownTo } = shabbat;
 	const now = useTime(100);
 	const diff = countDownTo.diff(now);
 

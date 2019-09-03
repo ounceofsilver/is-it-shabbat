@@ -44,7 +44,8 @@ export function getOmerBlessingInfo({ title }: { title: string }): IOmerData {
 
 const omerFilter = categoryFilter(HolidayCategory.OMER);
 
-export default function (holidays: IHoliday[] = [], now: DateTime): (IOmerData | IHoliday) | null {
+export default function (holidays: IHoliday[], now: DateTime): (IOmerData | IHoliday) | null {
+	if (!holidays || !now) { return null; }
 	const todaysOmerList = holidays
 		.filter(omerFilter)
 		// catch yesterday's omer and current omer, if that has arrived yet
