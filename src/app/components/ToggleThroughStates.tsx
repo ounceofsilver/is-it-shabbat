@@ -1,28 +1,30 @@
-import React from 'react';
-import { Component, ReactNode } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 
-class ToggleThroughStates extends Component {
-	public state: { toggleState: number } = {
-		toggleState: 0,
-	};
+function toggleThroughStates({
+	children, cycleRate = 10000,
+}: { children: ReactNode[], cycleRate?: number }) {
+	const [state, setState] = useState(0);
+	useEffect(() => {
+		const timerId = setTimeout(
+			() => {
+				setState((state + 1) % children.length);
+			},
+			cycleRate,
+		);
+		return () => clearInterval(timerId);
+	}, 		     [children.length, cycleRate, state]);
 
-	public props: {
-		children: ReactNode[],
-	};
-
-	public render(): ReactNode {
-		const { toggleState } = this.state;
-		return (
-			<TouchableWithoutFeedback
-				onPress={() => this.setState({ toggleState: (toggleState + 1) % this.props.children.length })}
-			>
-				<View>
-					{this.props.children[toggleState]}
-				</View>
-			</TouchableWithoutFeedback>
-		); // show countdown
-	}
+	return (
+		<TouchableWithoutFeedback
+			onPress={() => setState((state + 1) % children.length)}
+		>
+			<View>
+				{children[state]}
+			</View>
+		</TouchableWithoutFeedback>
+	);
 }
 
-export default ToggleThroughStates;
+export default toggleThroughStates;
