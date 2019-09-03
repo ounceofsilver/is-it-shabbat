@@ -1,5 +1,5 @@
 import { local } from '../../../../../test/jest-framework';
-import { HolidayCategory, HolidaySubcat, IHoliday } from '../types';
+import { HolidayCategory, HolidaySubcat, IHoliday } from '../../../../core/models/holidays';
 import { categoryFilter, topNFilter, upcomingFilter } from './filters';
 
 describe('filters', () => {

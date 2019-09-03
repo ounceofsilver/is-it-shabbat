@@ -2,11 +2,11 @@ import { DateTime } from 'luxon';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { IHoliday } from '../../../core/models/holidays';
 import { getHolidays } from '../../../core/store/get';
 import { AppState } from '../../../core/store/use';
 import { useTime } from '../../time';
 import { Holiday } from './Holiday';
-import { IHoliday } from './types';
 import {
 	getDaysOfOmer,
 	getMajorHolidays,

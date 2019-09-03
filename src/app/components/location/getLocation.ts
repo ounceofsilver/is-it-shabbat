@@ -1,6 +1,6 @@
 import { Location, Permissions } from 'expo';
 
-import { ILocation } from './types';
+import { ILocation } from '../../../core/models/config';
 
 const defaultLocation = {
 	// TODO(james.fulford): get location by IP

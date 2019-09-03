@@ -1,5 +1,5 @@
 import { local } from '../../../../../test/jest-framework';
-import { IHoliday } from '../../holidays/types';
+import { IHoliday } from '../../../../core/models/holidays';
 import getOmer, {
 	blessingExplanations,
 	blessings,

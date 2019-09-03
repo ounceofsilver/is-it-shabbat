@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { IHoliday } from '../../../core/models/holidays';
 import { formatHolidayDuration } from '../../../core/utilities/durationFormatter';
 import { CenteredContainer, HolidaySubtitleText, HolidayTitleText } from '../../Styles';
 import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';
-import { IHoliday } from './types';
 
 interface IHolidayProps {
 	holiday: IHoliday;
