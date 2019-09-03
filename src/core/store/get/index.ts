@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { is, isItShabbat as _isItShabbat } from 'shabbat-logic';
+import { is, isItShabbat as _isItShabbat, sunset } from 'shabbat-logic';
 import lookup from 'tz-lookup';
 
 import { ILocation } from '../../models/config';
@@ -29,6 +29,17 @@ export function getShabbatState(state: AppState): { period: is, countDownTo: Dat
 	return _isItShabbat(rightNow, currentLocation.coords.latitude, currentLocation.coords.longitude);
 }
 
-export function getHolidays(state: AppState): IHoliday[] | undefined {
+function accessHolidays(state: AppState): IHoliday[] | undefined {
 	return state.holiday.holidays;
+}
+
+export function getHolidays(state: AppState): IHoliday[] | undefined {
+	const currentLocation = getLocation(state);
+	const holidays = accessHolidays(state);
+	if (!currentLocation || !holidays) { return; }
+	return holidays
+		.map(h => ({
+			...h,
+			date: sunset(h.date, currentLocation.coords.latitude, currentLocation.coords.longitude),
+		}));
 }
