@@ -14,6 +14,7 @@
     "start:web": "expo start --web-only",
 	"build:web": "expo build:web",
 	"deploy:web": "yarn ci && yarn build:web && gh-pages -d web-build",
+	"deploy:app": "yarn ci && expo publish",
     "lint": "tslint -p tsconfig.json",
     "test": "jest",
     "ci": "yarn && yarn lint && yarn test --ci --coverage",
