@@ -45,3 +45,7 @@ export function getHolidays(state: AppState): IHoliday[] | undefined {
 			date: sunset(h.date, currentLocation.coords.latitude, currentLocation.coords.longitude),
 		}));
 }
+
+export function getError(state: AppState): string | undefined {
+	return state.error.message;
+}

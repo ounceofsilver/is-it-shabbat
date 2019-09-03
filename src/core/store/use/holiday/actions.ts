@@ -2,6 +2,7 @@ import { DateTime } from 'luxon';
 
 import { getHolidaysAsync } from '../../../api/hebcal';
 import { IHoliday, IHolidayOptions } from '../../../models/holidays';
+import { setError } from '../error';
 import { getTime, mapOptions } from './utilities';
 
 export enum HolidayType {
@@ -27,12 +28,13 @@ function setHolidays(holidays: IHoliday[], _time: () => number = getTime): ISetH
 export function getHolidays(now: DateTime, months: number, options: IHolidayOptions) {
 	return (dispatch: any) => {
 
-		getHolidaysAsync(
-			now, months, mapOptions(options),
-		)
-			.then((holidays: IHoliday[]) => dispatch(
-				setHolidays(holidays),
-			));
+		getHolidaysAsync(now, months, mapOptions(options))
+			.then((holidays: IHoliday[]) => {
+				dispatch(setHolidays(holidays));
+			})
+			.catch((err) => {
+				dispatch(setError(err.toString()));
+			});
 
 	};
 }
