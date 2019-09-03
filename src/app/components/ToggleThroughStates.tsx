@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ReactNode } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
+import { setGlobal, useGlobal } from 'reactn';
+
+interface IGlobalCycle {
+	cycle: number;
+}
+setGlobal<IGlobalCycle>({
+	cycle: 0,
+});
 
 function toggleThroughStates({
 	children, cycleRate = 10000,
 }: { children: ReactNode[], cycleRate?: number }) {
-	const [state, setState] = useState(0);
+	const [state, setState] = useGlobal<IGlobalCycle>('cycle');
 	useEffect(() => {
 		const timerId = setTimeout(
 			() => {
-				setState((state + 1) % children.length);
+				setState(state + 1);
 			},
 			cycleRate,
 		);
@@ -18,10 +26,10 @@ function toggleThroughStates({
 
 	return (
 		<TouchableWithoutFeedback
-			onPress={() => setState((state + 1) % children.length)}
+			onPress={() => setState(state + 1)}
 		>
 			<View>
-				{children[state]}
+				{children[state % children.length]}
 			</View>
 		</TouchableWithoutFeedback>
 	);
