@@ -1,7 +1,7 @@
 {
-  "app.js": "/static/js/app.59d4857e.chunk.js",
+  "app.js": "/static/js/app.3f578331.chunk.js",
   "runtime~app.js": "/static/js/runtime~app.ad82a82f.js",
-  "static/js/2.2ffe4f78.chunk.js": "/static/js/2.2ffe4f78.chunk.js",
+  "static/js/2.2d80d72f.chunk.js": "/static/js/2.2d80d72f.chunk.js",
   "fonts/AntDesign.ttf": "/./fonts/AntDesign.ttf",
   "fonts/Entypo.ttf": "/./fonts/Entypo.ttf",
   "fonts/Feather.ttf": "/./fonts/Feather.ttf",
@@ -39,12 +39,12 @@
   "favicon.ico": "/favicon.ico",
   "index.html": "/index.html",
   "manifest.json": "/manifest.json",
-  "precache-manifest.16bc4ec7e2b7c97d12537489729712d7.js": "/precache-manifest.16bc4ec7e2b7c97d12537489729712d7.js",
-  "precache-manifest.16bc4ec7e2b7c97d12537489729712d7.js.gz": "/precache-manifest.16bc4ec7e2b7c97d12537489729712d7.js.gz",
+  "precache-manifest.f929824b426c20f5fd83cbe377088d77.js": "/precache-manifest.f929824b426c20f5fd83cbe377088d77.js",
+  "precache-manifest.f929824b426c20f5fd83cbe377088d77.js.gz": "/precache-manifest.f929824b426c20f5fd83cbe377088d77.js.gz",
   "serve.json": "/serve.json",
   "service-worker.js": "/service-worker.js",
-  "static/js/2.2ffe4f78.chunk.js.gz": "/static/js/2.2ffe4f78.chunk.js.gz",
-  "static/js/app.59d4857e.chunk.js.gz": "/static/js/app.59d4857e.chunk.js.gz",
+  "static/js/2.2d80d72f.chunk.js.gz": "/static/js/2.2d80d72f.chunk.js.gz",
+  "static/js/app.3f578331.chunk.js.gz": "/static/js/app.3f578331.chunk.js.gz",
   "static/js/runtime~app.ad82a82f.js.gz": "/static/js/runtime~app.ad82a82f.js.gz",
   "static/media/back-icon-mask.png": "/static/media/back-icon-mask.6165c9d7.png"
 }
