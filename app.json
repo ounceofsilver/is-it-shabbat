@@ -31,6 +31,6 @@
         "NSLocationWhenInUseUsageDescription": "Is It Shabbat? needs your location to calculate sunset times at the start and end of Shabbat and other holy days."
       }
     },
-    "githubUrl": "https://github.com/ounceofsilver/is-it-shabbat-app"
+    "githubUrl": "https://github.com/ounceofsilver/is-it-shabbat"
   }
 }
