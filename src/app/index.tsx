@@ -4,9 +4,9 @@ import { useState } from 'react';
 import React from 'react';
 import { Provider } from 'react-redux';
 
+import ErrorMessage from './components/error/ErrorMessage';
 import initialization from './initialization';
 import Router from './Router';
-
 import store from './store';
 
 export const App = () => {
@@ -17,6 +17,7 @@ export const App = () => {
 	return isReady
 		? (
 			<Provider store={store}>
+				<ErrorMessage />
 				<Router />
 			</Provider>
 		)
