@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-import { HolidayCategory, HolidaySubcat, IHoliday } from '../types';
+import { HolidayCategory, HolidaySubcat, IHoliday } from '../../../../core/models/holidays';
 
 export function upcomingFilter(now: DateTime): (h: IHoliday) => boolean {
 	return (h: IHoliday) => h.date >= now;

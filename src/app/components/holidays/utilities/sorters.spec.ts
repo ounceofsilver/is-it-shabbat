@@ -1,5 +1,5 @@
 import { local } from '../../../../../test/jest-framework';
-import { IHoliday } from '../types';
+import { IHoliday } from '../../../../core/models/holidays';
 import { ascending, descending } from './sorters';
 
 describe('sorters', () => {
