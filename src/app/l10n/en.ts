@@ -31,7 +31,8 @@ export default {
 	},
 	title: 'Is It Shabbat?',
 	location: {
-		unavailable: 'Unable to access your location at this time.',
-		denied: 'Please enable location services for Is It Shabbat? in your settings.',
+		unavailable: 'Unable to access your location at this time. Using default location.',
+		// tslint:disable-next-line: max-line-length
+		denied: 'Please enable location services for Is It Shabbat? in your settings. Using default location.',
 	},
 };
