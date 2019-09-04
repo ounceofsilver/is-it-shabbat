@@ -6,11 +6,13 @@ export enum ErrorType {
 interface ISetErrorAction {
 	type: typeof ErrorType.SET;
 	message: string;
+	localize?: boolean;
 }
 
-export function setError(message: string): ISetErrorAction {
+export function setError(message: string, localize: boolean = true): ISetErrorAction {
 	return {
 		message,
+		localize,
 		type: ErrorType.SET,
 	};
 }

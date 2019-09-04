@@ -30,4 +30,8 @@ export default {
 		SHABBAT: 'Yes!',
 	},
 	title: 'Is It Shabbat?',
+	location: {
+		unavailable: 'Unable to access your location at this time.',
+		denied: 'Please enable location services for Is It Shabbat? in your settings.',
+	},
 };

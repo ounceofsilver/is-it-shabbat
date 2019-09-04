@@ -4,7 +4,8 @@
 		"target": "es5",
 		"lib": [
 			"es2015",
-			"esnext.asynciterable"
+			"esnext.asynciterable",
+			"dom"
 		],
 		"jsx": "react-native",
 		"strict": false,
