@@ -33,7 +33,7 @@ export function getHolidays(now: DateTime, months: number, options: IHolidayOpti
 				dispatch(setHolidays(holidays));
 			})
 			.catch((err) => {
-				dispatch(setError(err.toString()));
+				dispatch(setError(err.toString(), false));
 			});
 
 	};

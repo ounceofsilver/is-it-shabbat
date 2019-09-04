@@ -3,6 +3,7 @@ import { ErrorAction, ErrorType } from './actions';
 // State
 export interface IErrorState {
 	message?: string;
+	localize?: boolean;
 }
 const initialState: IErrorState = {};
 
@@ -16,6 +17,7 @@ export default (
 		return {
 			...state,
 			message: action.message,
+			localize: action.localize,
 		};
 	default:
 		return state;
