@@ -101,7 +101,7 @@ export default ({
 				style={{ height: footerToolbarHeight } as StyleProp<ViewStyle>}
 			>
 				<FontAwesome
-					name='map-marker'
+					name='cog'
 					size={36}
 					color={colors.textSubtle}
 					onPress={() => navigate('Settings')}
