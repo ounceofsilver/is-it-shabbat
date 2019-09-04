@@ -17,7 +17,6 @@ export const App = () => {
 	return isReady
 		? (
 			<Provider store={store}>
-				<ErrorMessage />
 				<Router />
 			</Provider>
 		)
