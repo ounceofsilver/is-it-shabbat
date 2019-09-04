@@ -35,4 +35,7 @@ export default {
 		// tslint:disable-next-line: max-line-length
 		denied: 'Please enable location services for Is It Shabbat? in your settings. Using default location.',
 	},
+	share: {
+		message: 'Shalom! Try out the "Is It Shabbat?" app:',
+	},
 };

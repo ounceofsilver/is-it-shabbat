@@ -6,6 +6,7 @@ import {
 	Dimensions,
 	Platform,
 	ScrollView,
+	Share,
 	StatusBar,
 	StyleProp,
 	View,
@@ -105,6 +106,15 @@ export default ({
 					size={36}
 					color={colors.textSubtle}
 					onPress={() => navigate('Settings')}
+				/>
+				<FontAwesome
+					name='share'
+					size={36}
+					color={colors.textSubtle}
+					onPress={() => Share.share({
+						message: i18n.t('share.message'),
+						url: 'https://isitshabbat.net',
+					})}
 				/>
 			</Footer>
 		)}
