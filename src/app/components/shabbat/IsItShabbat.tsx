@@ -3,17 +3,17 @@ import { DateTime } from 'luxon';
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { getShabbatState } from '../../../core/store/get';
-import { underAWeek } from './utilities';
 
+import { getShabbatState } from '../../../core/store/get';
 import { ShabbatSubtitleText, ShabbatText } from '../../Styles';
 import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';
+import { underAWeek } from './utilities';
 
 export const PureIsItShabbat = ({
 	shabbat,
 }: {
-	shabbat: { period: string, countDownTo: DateTime },
+	shabbat?: { period: string, countDownTo: DateTime },
 }) => {
 	if (!shabbat) { return null; }
 	const { period, countDownTo } = shabbat;

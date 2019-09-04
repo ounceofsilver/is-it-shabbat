@@ -1,10 +1,14 @@
 import './l10n';
 
 import { FontAwesome } from '@expo/vector-icons';
+import { Notifications, Permissions } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
+import i18n from 'i18n-js';
+import { DateTime } from 'luxon';
 import { Image } from 'react-native';
 
+import { getShabbatState } from '../core/store/get';
 import { setLocation } from '../core/store/use/config';
 import { getHolidays } from '../core/store/use/holiday/actions';
 import getLocation from './components/location/getLocation';
@@ -35,17 +39,49 @@ const loadAssetsAsync = async () => Promise.all([
 	]),
 ]);
 
+async function getNotificationPermissions() {
+	const { status } = await Permissions.getAsync(
+		Permissions.NOTIFICATIONS,
+	);
+	if (status !== 'granted') {
+		await Permissions.askAsync(
+			Permissions.NOTIFICATIONS,
+		);
+	}
+}
+
 //
 // Initialization
 //
 export default async () => {
-	await Promise.all([
-		loadAssetsAsync(),
-		getLocation().then((location) => {
-			store.dispatch(setLocation(location));
+	const loadAssetsPromise = loadAssetsAsync();
+	const getLocationPromise = getLocation();
+	const getNotificationPermissionsPromise = getNotificationPermissions();
+	// const cancelAllScheduledNotificationsPromise =
+	// Notifications.cancelAllScheduledNotificationsAsync();
 
-			const now = getTime();
-			getHolidays(now, 2, store.getState().holiday.options)(store.dispatch);
-		}),
+	// location initialization logic
+	const location = await getLocationPromise;
+	store.dispatch(setLocation(location));
+	const now = getTime();
+	getHolidays(now, 2, store.getState().holiday.options)(store.dispatch);
+
+	// notification logic
+	await Promise.all([
+		getNotificationPermissionsPromise,
+		// cancelAllScheduledNotificationsPromise,
+	]);
+	const shabbat = getShabbatState(store.getState());
+	await Notifications.scheduleLocalNotificationAsync({
+		title: i18n.t(`notification.${shabbat.period}.title`),
+		body: i18n.t(`notification.${shabbat.period}.body`),
+	},                                                 {
+		// time: shabbat.countDownTo.toMillis(),
+		// TODO(james): NOMERGE
+		time: DateTime.local().plus({ seconds: 15 }).toMillis(),
+	});
+
+	await Promise.all([
+		loadAssetsPromise,
 	]);
 };

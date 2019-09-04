@@ -24,6 +24,22 @@ export default {
 		NOT_SHABBAT: 'Candle Lighting at\n%{end}',
 		SHABBAT: 'Shabbat ends at\n%{end}',
 	},
+	notification: {
+		CANDLELIGHTING: {
+			title: 'It\'s Shabbat!',
+			// TODO(james): fill
+			body: '',
+		},
+		SHABBAT: {
+			title: 'Havdala!',
+			// TODO(james): fill
+			body: '',
+		},
+		NOT_SHABBAT: {
+			title: 'Candle Lighting!',
+			body: 'It\'s almost time for Shabbat!',
+		},
+	},
 	status: {
 		CANDLELIGHTING: 'Almost...',
 		NOT_SHABBAT: 'No...',
