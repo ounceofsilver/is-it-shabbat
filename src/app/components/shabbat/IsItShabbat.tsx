@@ -4,7 +4,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { getShabbatState } from '../../../core/store/get';
-import { underAWeek } from '../../../core/utilities/durationFormatter';
+import { underAWeek } from './utilities';
 
 import { ShabbatSubtitleText, ShabbatText } from '../../Styles';
 import { useTime } from '../../time';
