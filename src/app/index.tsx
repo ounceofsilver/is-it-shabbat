@@ -1,12 +1,11 @@
 import { AppLoading } from 'expo';
 import { useKeepAwake } from 'expo-keep-awake';
+import i18n from 'i18n-js';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import i18n from 'i18n-js';
-import { setError } from '../core/store/use/error';
-import ErrorMessage from './components/error/ErrorMessage';
+import { clearError } from '../core/store/use/error';
 import initialization from './initialization';
 import Router from './Router';
 import store from './store';
@@ -20,7 +19,7 @@ export const App = () => {
 		const state = store.getState();
 		if (state.error.message) {
 			alert(state.error.localize ? i18n.t(state.error.message) : state.error.message);
-			store.dispatch(setError('', true));
+			store.dispatch(clearError());
 		}
 	}), 	     []);
 
