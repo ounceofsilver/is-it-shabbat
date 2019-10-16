@@ -78,7 +78,7 @@
     "@types/react-native": "0.57.51",
     "@types/react-test-renderer": "16.8.1",
     "@types/styled-components": "4.1.15",
-    "expo-cli": "2.19.4",
+    "expo-cli": "3.4.0",
     "gh-pages": "2.1.1",
     "husky": "2.3.0",
     "jest": "24.8.0",
