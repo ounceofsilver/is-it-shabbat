@@ -13,9 +13,9 @@ import {
 	ViewStyle,
 } from 'react-native';
 
-import { MajorHolidays, RoshChodeshim } from '../components/holidays/Holidays';
-import OmerPrompt from '../components/holidays/OmerPrompt';
-import IsItShabbat from '../components/shabbat/IsItShabbat';
+import { MajorHolidays, RoshChodeshim } from '../features/holidays/Holidays';
+import OmerPrompt from '../features/holidays/OmerPrompt';
+import IsItShabbat from '../features/shabbat/IsItShabbat';
 import {
 	AppTitleText,
 	BackgroundView,

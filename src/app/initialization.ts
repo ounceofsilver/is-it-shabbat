@@ -7,7 +7,7 @@ import { Image } from 'react-native';
 
 import { setLocation } from '../core/store/use/config';
 import { getHolidays } from '../core/store/use/holiday/actions';
-import getLocation from './components/location/getLocation';
+import getLocation from './features/location/getLocation';
 import store from './store';
 import { getTime } from './time';
 

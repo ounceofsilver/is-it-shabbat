@@ -32,8 +32,7 @@ export const App = () => {
 			<Provider store={store}>
 				<Router />
 			</Provider>
-		)
-		: (
+		) : (
 			<AppLoading
 				startAsync={initialization}
 				onFinish={() => setReady(true)}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Omer from '../components/omer/Omer';
+import Omer from '../features/omer/Omer';
 import { BackgroundView } from '../Styles';
 
 export default () => (
