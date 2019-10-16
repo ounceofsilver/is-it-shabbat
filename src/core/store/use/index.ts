@@ -5,6 +5,7 @@ import error from './error';
 import holiday from './holiday';
 
 const rootReducer = combineReducers({
+	// selectors expect these keys; rename carefully
 	config,
 	holiday,
 	error,

@@ -1,38 +1,35 @@
 import { DateTime } from 'luxon';
-import { is, isItShabbat as _isItShabbat, sunset } from 'shabbat-logic';
-import lookup from 'tz-lookup';
+import { is, isItShabbat, sunset } from 'shabbat-logic';
 
-import { ILocation } from '../../models/config';
+import { getTime as _getTime } from '../../../app/time';
 import { IHoliday } from '../../models/holidays';
 import { AppState } from '../use';
+import { getLocation, getTimezone } from '../use/config/selectors';
+import { accessHolidays } from '../use/holiday/selectors';
 
-export function getLocation(state: AppState): ILocation | undefined {
-	return state.config.location;
-}
-
-export function getTimezone(state: AppState): string | undefined {
-	const currentLocation = getLocation(state);
-	if (!currentLocation) { return; }
-	return lookup(currentLocation.coords.latitude, currentLocation.coords.longitude);
-}
-
-export function getNow(state: AppState): DateTime | undefined {
+//
+// Complex/composite selectors go here.
+//
+export function getNow(state: AppState, getTime = _getTime): DateTime | undefined {
 	const currentTimezone = getTimezone(state);
 	if (!currentTimezone) { return; }
-	return DateTime.local().setZone(currentTimezone);
+	return getTime().setZone(currentTimezone);
 }
 
-export function getShabbatState(state: AppState): { period: is, countDownTo: DateTime } {
+export function getShabbatState(
+	state: AppState,
+	getTime = _getTime,
+): { period: is, countDownTo: DateTime } | undefined {
 	const currentLocation = getLocation(state);
-	const rightNow = getNow(state);
+	const rightNow = getNow(state, getTime);
 
 	if (!currentLocation || !rightNow) { return; }
 	if (!rightNow.isValid) { return; }
-	return _isItShabbat(rightNow, currentLocation.coords.latitude, currentLocation.coords.longitude);
-}
-
-function accessHolidays(state: AppState): IHoliday[] | undefined {
-	return state.holiday.holidays;
+	return isItShabbat(
+		rightNow,
+		currentLocation.coords.latitude,
+		currentLocation.coords.longitude,
+	);
 }
 
 export function getHolidays(state: AppState): IHoliday[] | undefined {
@@ -44,8 +41,4 @@ export function getHolidays(state: AppState): IHoliday[] | undefined {
 			...h,
 			date: sunset(h.date, currentLocation.coords.latitude, currentLocation.coords.longitude),
 		}));
-}
-
-export function getError(state: AppState): string | undefined {
-	return state.error.message;
 }
