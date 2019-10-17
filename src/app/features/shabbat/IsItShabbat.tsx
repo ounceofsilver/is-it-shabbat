@@ -4,8 +4,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 
-import { getShabbatState } from '../../../core/store/get';
 import { AppState } from '../../../core/store/use';
+import { getShabbatState } from '../../selectors';
 import { ShabbatSubtitleText, ShabbatText } from '../../Styles';
 import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';

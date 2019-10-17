@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { getHolidays, getNow } from '../../../core/store/get';
+import { getHolidays, getNow } from '../../selectors';
 import {
 	CenteredContainer,
 	colors,
