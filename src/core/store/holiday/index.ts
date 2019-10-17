@@ -1,5 +1,3 @@
-import reducer, { IHolidayState } from './reducer';
-
-export type IHolidayState = IHolidayState;
-export default reducer;
 export * from './actions';
+export * from './selectors';
+export * from './types';

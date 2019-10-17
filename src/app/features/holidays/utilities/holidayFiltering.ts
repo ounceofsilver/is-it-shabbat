@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-import { HolidayCategory, IHoliday } from '../../../../core/models/holidays';
+import { HolidayCategory, IHoliday } from '../../../../core/store/holiday';
 import { categoryFilter, topNFilter, upcomingFilter } from './filters';
 import { ascending } from './sorters';
 

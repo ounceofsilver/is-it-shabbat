@@ -1,5 +1,5 @@
-import { ILocation } from '../../models/config';
 import { ConfigAction, ConfigType } from './actions';
+import { ILocation } from './types';
 
 // State
 export interface IConfigState {

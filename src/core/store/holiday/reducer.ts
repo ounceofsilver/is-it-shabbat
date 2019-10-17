@@ -1,5 +1,5 @@
-import { IHoliday, IHolidayOptions } from '../../../models/holidays';
 import { HolidayAction, HolidayType } from './actions';
+import { IHoliday, IHolidayOptions } from './types';
 
 // State
 export interface IHolidayState {

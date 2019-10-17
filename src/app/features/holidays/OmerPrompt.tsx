@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 
-import { IHoliday } from '../../../core/models/holidays';
+import { IHoliday } from '../../../core/store/holiday';
 import { getHolidays, getNow } from '../../selectors';
 import { OmerPromptText } from '../../Styles';
 import getOmer from '../omer/utilities/getOmer';

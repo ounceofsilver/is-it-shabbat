@@ -1,4 +1,3 @@
-
 export interface IOmerData {
 	dayBlessing: string;
 	dayBlessingExplanation: string;

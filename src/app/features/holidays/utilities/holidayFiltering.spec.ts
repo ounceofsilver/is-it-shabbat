@@ -1,5 +1,5 @@
 import { local } from '../../../../../test/jest-framework';
-import { HolidayCategory, HolidaySubcat, IHoliday } from '../../../../core/models/holidays';
+import { HolidayCategory, HolidaySubcat, IHoliday } from '../../../../core/store/holiday';
 import {
 	getDaysOfOmer,
 	getMajorHolidays,

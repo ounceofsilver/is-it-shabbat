@@ -1,15 +1,15 @@
-import { combineReducers } from 'redux';
+import { combineReducers, createStore } from 'redux';
 
-import config from './config';
-import error from './error';
-import holiday from './holiday';
+import config from './config/reducer';
+import error from './error/reducer';
+import holiday from './holiday/reducer';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
 	// selectors expect these keys; rename carefully
 	config,
 	holiday,
 	error,
 });
 
-export default rootReducer;
+export default () => createStore(rootReducer);
 export type AppState = ReturnType<typeof rootReducer>;

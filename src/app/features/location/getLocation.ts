@@ -1,6 +1,6 @@
 import { Location, Permissions } from 'expo';
 
-import { ILocation } from '../../../core/models/config';
+import { ILocation } from '../../../core/store/config';
 import { setError } from '../../../core/store/error';
 import store from '../../store';
 

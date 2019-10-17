@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon';
 
-import { getHolidaysAsync } from '../../../api/hebcal';
-import { IHoliday, IHolidayOptions } from '../../../models/holidays';
-import { setError } from '../../error';
+import { setError } from '../error';
+import { getHolidaysAsync } from './api';
+import { IHoliday, IHolidayOptions } from './types';
 import { getTime, mapOptions } from './utilities';
 
 export enum HolidayType {
@@ -10,7 +10,6 @@ export enum HolidayType {
 	SET_OPTIONS = 'Holiday.SET_OPTIONS',
 }
 
-// TODO(james): No export
 interface ISetHolidayAction {
 	type: typeof HolidayType.SET;
 	holidays: IHoliday[];

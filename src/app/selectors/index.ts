@@ -1,10 +1,9 @@
 import { DateTime } from 'luxon';
 import { is, isItShabbat, sunset } from 'shabbat-logic';
 
-import { IHoliday } from '../../core/models/holidays';
 import { AppState } from '../../core/store';
-import { getLocation, getTimezone } from '../../core/store/config/selectors';
-import { accessHolidays } from '../../core/store/holiday/selectors';
+import { getLocation, getTimezone } from '../../core/store/config';
+import { accessHolidays, IHoliday } from '../../core/store/holiday';
 import { getTime as _getTime } from '../time';
 
 //

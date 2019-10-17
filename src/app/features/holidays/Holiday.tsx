@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IHoliday } from '../../../core/models/holidays';
+import { IHoliday } from '../../../core/store/holiday';
 import { CenteredContainer, HolidaySubtitleText, HolidayTitleText } from '../../Styles';
 import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';

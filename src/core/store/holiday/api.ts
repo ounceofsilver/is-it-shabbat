@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { DateTime } from 'luxon';
-import { IHoliday } from '../models/holidays';
+import { IHoliday } from './types';
 
 const baseParams = {
 	v: 1,

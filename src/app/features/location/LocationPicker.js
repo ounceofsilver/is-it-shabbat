@@ -6,8 +6,7 @@ import { MapView } from 'expo';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getLocation } from '../../../core/store/use/config/selectors';
-import { setLocation as _setLocation } from '../../../core/store/use/config';
+import { getLocation, setLocation as _setLocation } from '../../../core/store/config';
 
 const eventToLocation = (e) => ({
 	coords: {

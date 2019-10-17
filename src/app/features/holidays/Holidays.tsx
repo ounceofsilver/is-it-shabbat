@@ -2,8 +2,8 @@ import { DateTime } from 'luxon';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { IHoliday } from '../../../core/models/holidays';
 import { AppState } from '../../../core/store';
+import { IHoliday } from '../../../core/store/holiday';
 import { getHolidays } from '../../selectors';
 import { useTime } from '../../time';
 import { Holiday } from './Holiday';

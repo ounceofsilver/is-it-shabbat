@@ -1,4 +1,4 @@
-import { ILocation } from '../../models/config';
+import { ILocation } from './types';
 
 export enum ConfigType {
 	SET_LOCATION = 'Config.SET_LOCATION',
