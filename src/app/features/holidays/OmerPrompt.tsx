@@ -3,8 +3,8 @@ import { TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { IHoliday } from '../../../core/store/holiday';
+import { getHolidays, getNow } from '../../custom-selectors';
 import { OmerPromptText } from '../../elements/styles';
-import { getHolidays, getNow } from '../../selectors';
 import getOmer from '../omer/utilities/getOmer';
 
 interface IExternalOmerPromptProps {

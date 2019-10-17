@@ -7,8 +7,8 @@ import { is } from 'shabbat-logic';
 
 import { AppState } from '../../core/store';
 import { clearError } from '../../core/store/error';
-import { getShabbatState } from '../selectors';
-import { getLocalizedError } from '../selectors/error';
+import { getShabbatState } from '../custom-selectors';
+import { getLocalizedError } from '../custom-selectors/error';
 import {
 	candlelightingTheme,
 	defaultTheme,

@@ -5,8 +5,8 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { AppState } from '../../../core/store';
+import { getShabbatState } from '../../custom-selectors';
 import { ShabbatSubtitleText, ShabbatText } from '../../elements/styles';
-import { getShabbatState } from '../../selectors';
 import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';
 import { underAWeek } from './utilities';

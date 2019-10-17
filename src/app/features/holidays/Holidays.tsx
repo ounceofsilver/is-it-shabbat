@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { AppState } from '../../../core/store';
 import { IHoliday } from '../../../core/store/holiday';
-import { getHolidays } from '../../selectors';
+import { getHolidays } from '../../custom-selectors';
 import { useTime } from '../../time';
 import { Holiday } from './Holiday';
 import {
