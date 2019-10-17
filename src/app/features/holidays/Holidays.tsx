@@ -2,6 +2,7 @@ import { DateTime } from 'luxon';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { View } from 'react-native';
 import { AppState } from '../../../core/store';
 import { IHoliday } from '../../../core/store/holiday';
 import { getHolidays } from '../../custom-selectors';
@@ -36,10 +37,15 @@ const HolidaysComponentFactory = (
 		return (
 			filteredHolidays
 				.map(
-					(holiday: IHoliday) => (<Holiday
-						key={holiday.date.toString()}
-						holiday={holiday}
-					/>),
+					(holiday: IHoliday) => (
+						<>
+							<Holiday
+								key={holiday.date.toString()}
+								holiday={holiday}
+							/>
+							<View style={{ marginBottom: 15 }} />
+						</>
+					),
 				)
 		);
 

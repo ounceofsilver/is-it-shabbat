@@ -23,7 +23,7 @@ export const Holiday = ({
 	}
 
 	return (
-		<CenteredContainer style={{ marginBottom: 15 }}>
+		<CenteredContainer>
 			<HolidayTitleText>
 				{/* TODO: Localize holiday titles */}
 				{title.replace('Rosh Chodesh ', '')}

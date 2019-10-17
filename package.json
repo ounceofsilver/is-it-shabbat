@@ -27,7 +27,11 @@
     }
   },
   "jest": {
-    "preset": "jest-expo",
+	"preset": "jest-expo",
+	"collectCoverageFrom": [
+		"./src/**/*.{js,jsx,ts,tsx}",
+		"!**/node_modules/**"
+	],
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
       "^.+\\.tsx?$": "ts-jest"
