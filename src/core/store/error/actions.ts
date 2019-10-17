@@ -19,7 +19,7 @@ export function setError(message: string, localize: boolean = true): ISetErrorAc
 export function clearError(): ISetErrorAction {
 	return {
 		message: undefined,
-		localize: true,
+		localize: undefined,
 		type: ErrorType.SET,
 	};
 }

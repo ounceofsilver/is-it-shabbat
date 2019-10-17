@@ -1,4 +1,4 @@
-import lookup from 'tz-lookup';
+import * as lookup from 'tz-lookup';
 
 import { AppState } from '..';
 import { ILocation } from './types';

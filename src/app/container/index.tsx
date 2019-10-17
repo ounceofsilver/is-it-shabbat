@@ -5,10 +5,10 @@ import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { is } from 'shabbat-logic';
 
+import i18n from 'i18n-js';
 import { AppState } from '../../core/store';
-import { clearError } from '../../core/store/error';
+import { clearError, getError } from '../../core/store/error';
 import { getShabbatState } from '../custom-selectors';
-import { getLocalizedError } from '../custom-selectors/error';
 import {
 	candlelightingTheme,
 	defaultTheme,
@@ -53,7 +53,7 @@ export const App = () => {
 	// Handle errors
 	useEffect(() => store.subscribe(() => {
 		const state: AppState = store.getState();
-		const localizedError = getLocalizedError(state);
+		const localizedError = getError(state, i18n.t.bind(i18n));
 		if (localizedError) {
 			alert(localizedError);
 			store.dispatch(clearError());
