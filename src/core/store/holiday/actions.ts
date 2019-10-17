@@ -38,7 +38,6 @@ export function getHolidays(now: DateTime, months: number, options: IHolidayOpti
 	};
 }
 
-// TODO(james): No export
 interface ISetHolidayOptionsAction {
 	type: typeof HolidayType.SET_OPTIONS;
 	options: IHolidayOptions;

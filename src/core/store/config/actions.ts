@@ -4,8 +4,7 @@ export enum ConfigType {
 	SET_LOCATION = 'Config.SET_LOCATION',
 }
 
-// TODO(james): No export
-export interface ISetLocationAction {
+interface ISetLocationAction {
 	type: typeof ConfigType.SET_LOCATION;
 	location: ILocation;
 }
