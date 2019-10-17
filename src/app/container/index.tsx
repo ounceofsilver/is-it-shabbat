@@ -29,9 +29,9 @@ export const App = () => {
 		const intervalId = setInterval(
 			() => {
 				const state: AppState = store.getState();
-				const { period } = getShabbatState(state);
-				if (!period) { return; }
-				switch(period) {
+				const shabbatState = getShabbatState(state);
+				if (!shabbatState) { return; }
+				switch (shabbatState.period) {
 				case is.SHABBAT:
 					setTheme(shabbatTheme);
 					break;
