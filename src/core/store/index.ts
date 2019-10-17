@@ -1,14 +1,15 @@
-import { applyMiddleware, compose, createStore } from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers } from 'redux';
 
-import rootReducer from './use';
+import config from './config';
+import error from './error';
+import holiday from './holiday';
 
-export default (...middlewares) => {
-	return createStore(
-		rootReducer,
-		compose(
-			applyMiddleware(thunk),
-			...middlewares,
-		),
-	);
-};
+const rootReducer = combineReducers({
+	// selectors expect these keys; rename carefully
+	config,
+	holiday,
+	error,
+});
+
+export default rootReducer;
+export type AppState = ReturnType<typeof rootReducer>;

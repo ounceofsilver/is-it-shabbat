@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 
 import { getHolidaysAsync } from '../../../api/hebcal';
 import { IHoliday, IHolidayOptions } from '../../../models/holidays';
-import { setError } from '../error';
+import { setError } from '../../error';
 import { getTime, mapOptions } from './utilities';
 
 export enum HolidayType {

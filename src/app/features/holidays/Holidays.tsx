@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { IHoliday } from '../../../core/models/holidays';
-import { AppState } from '../../../core/store/use';
+import { AppState } from '../../../core/store';
 import { getHolidays } from '../../selectors';
 import { useTime } from '../../time';
 import { Holiday } from './Holiday';

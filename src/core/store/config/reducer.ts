@@ -1,4 +1,4 @@
-import { ILocation } from '../../../models/config';
+import { ILocation } from '../../models/config';
 import { ConfigAction, ConfigType } from './actions';
 
 // State

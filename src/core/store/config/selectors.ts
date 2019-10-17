@@ -1,7 +1,7 @@
 import lookup from 'tz-lookup';
 
 import { AppState } from '..';
-import { ILocation } from '../../../models/config';
+import { ILocation } from '../../models/config';
 
 export function getLocation(state: AppState): ILocation | undefined {
 	return state.config.location;

@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import { AppState } from '../core/store/use';
-import { clearError } from '../core/store/use/error';
+import { AppState } from '../core/store';
+import { clearError } from '../core/store/error';
 import initialization from './initialization';
 import Router from './Router';
 import { getLocalizedError } from './selectors/error';

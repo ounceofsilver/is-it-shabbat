@@ -1,4 +1,4 @@
-import { AppState } from '..';
+import { AppState } from '../..';
 import { IHoliday } from '../../../models/holidays';
 
 export function accessHolidays(state: AppState): IHoliday[] | undefined {

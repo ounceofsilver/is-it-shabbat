@@ -4,7 +4,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 
-import { AppState } from '../../../core/store/use';
+import { AppState } from '../../../core/store';
 import { getShabbatState } from '../../selectors';
 import { ShabbatSubtitleText, ShabbatText } from '../../Styles';
 import { useTime } from '../../time';

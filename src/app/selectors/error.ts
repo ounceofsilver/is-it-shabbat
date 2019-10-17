@@ -1,7 +1,7 @@
 import i18n from 'i18n-js';
 
-import { AppState } from '../../core/store/use';
-import { getError } from '../../core/store/use/error/selectors';
+import { AppState } from '../../core/store';
+import { getError } from '../../core/store/error/selectors';
 
 export function getLocalizedError(state: AppState): string | undefined {
 	const error = getError(state);

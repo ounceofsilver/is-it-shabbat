@@ -1,7 +1,7 @@
 import { Location, Permissions } from 'expo';
 
 import { ILocation } from '../../../core/models/config';
-import { setError } from '../../../core/store/use/error';
+import { setError } from '../../../core/store/error';
 import store from '../../store';
 
 const defaultLocation: ILocation = {

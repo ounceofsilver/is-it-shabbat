@@ -1,5 +1,5 @@
-import { IHebcalOptions } from '../../../api/hebcal';
-import { IHolidayOptions } from '../../../models/holidays';
+import { IHebcalOptions } from '../../api/hebcal';
+import { IHolidayOptions } from '../../models/holidays';
 
 export function getTime(): number {
 	return new Date().getTime();

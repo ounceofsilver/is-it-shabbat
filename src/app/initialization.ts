@@ -5,8 +5,8 @@ import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import { Image } from 'react-native';
 
-import { setLocation } from '../core/store/use/config';
-import { getHolidays } from '../core/store/use/holiday/actions';
+import { setLocation } from '../core/store/config';
+import { getHolidays } from '../core/store/holiday/actions';
 import getLocation from './features/location/getLocation';
 import store from './store';
 import { getTime } from './time';
