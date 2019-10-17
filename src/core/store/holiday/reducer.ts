@@ -1,11 +1,11 @@
 import { HolidayAction, HolidayType } from './actions';
-import { IHoliday, IHolidayOptions } from './types';
+import { IHoliday, IHolidayOptions, RequestState } from './types';
 
 // State
 export interface IHolidayState {
 	holidays?: IHoliday[];
 	options: IHolidayOptions;
-	lastRequest?: number;
+	requestState: RequestState;
 }
 const initialState: IHolidayState = {
 	options: {
@@ -17,6 +17,7 @@ const initialState: IHolidayState = {
 		fasts: false,
 		hillel: true,
 	},
+	requestState: RequestState.NOSTART,
 };
 
 // Reducer
@@ -29,12 +30,17 @@ export default (
 		return {
 			...state,
 			holidays: action.holidays,
-			lastRequest: action.lastRequest,
+			requestState: RequestState.SUCCESS,
 		};
 	case HolidayType.SET_OPTIONS:
 		return {
 			...state,
 			options: action.options,
+		};
+	case HolidayType.SET_REQUEST_STATE:
+		return {
+			...state,
+			requestState: action.requestState,
 		};
 	default:
 		return state;

@@ -1,6 +1,14 @@
 import { AppState } from '..';
-import { IHoliday } from './types';
+import { IHoliday, IHolidayOptions, RequestState } from './types';
 
-export function accessHolidays(state: AppState): IHoliday[] | undefined {
-	return state.holiday.holidays;
+export function accessHolidays(state: AppState): IHoliday[] {
+	return state.holiday.holidays || [];
+}
+
+export function getHolidayRequestState(state: AppState): RequestState {
+	return state.holiday.requestState;
+}
+
+export function getHolidayOptions(state: AppState): IHolidayOptions {
+	return state.holiday.options;
 }

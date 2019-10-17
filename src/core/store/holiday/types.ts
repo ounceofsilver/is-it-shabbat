@@ -30,3 +30,10 @@ export interface IHolidayOptions {
 	fasts: boolean;
 	hillel: boolean;
 }
+
+export enum RequestState {
+	NOSTART = 'NOSTART',
+	WAITING = 'WAITING',
+	SUCCESS = 'SUCCESS',
+	FAILURE = 'FAILURE',
+}

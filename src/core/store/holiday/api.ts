@@ -34,7 +34,7 @@ export interface IHebcalOptions {
 	i: OnOff; // in israel (double-holidays)
 }
 
-export const sendHolidayRequestAsync = (t, overrides = {}) => axios({
+const sendHolidayRequestAsync = (t, overrides = {}) => axios({
 	method: 'get',
 	url: 'https://www.hebcal.com/hebcal/',
 	params: {
@@ -98,4 +98,8 @@ export const getHolidaysAsync = async (
 			// this code wants the BEGINNING of the hebrew day.
 		});
 	});
+};
+
+export const internal = {
+	sendHolidayRequestAsync,
 };

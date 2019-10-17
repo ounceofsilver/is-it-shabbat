@@ -1,10 +1,6 @@
 import { IHebcalOptions } from './api';
 import { IHolidayOptions } from './types';
 
-export function getTime(): number {
-	return new Date().getTime();
-}
-
 const onOff = (b: boolean): 'on' | 'off' => b ? 'on' : 'off';
 
 export function mapOptions(options: IHolidayOptions): IHebcalOptions {

@@ -2,36 +2,48 @@ import { DateTime } from 'luxon';
 
 import { setError } from '../error';
 import { getHolidaysAsync } from './api';
-import { IHoliday, IHolidayOptions } from './types';
-import { getTime, mapOptions } from './utilities';
+import { IHoliday, IHolidayOptions, RequestState } from './types';
+import { mapOptions } from './utilities';
 
 export enum HolidayType {
 	SET = 'Holiday.SET',
 	SET_OPTIONS = 'Holiday.SET_OPTIONS',
+	SET_REQUEST_STATE = 'Holiday.SET_REQUEST_STATE',
 }
 
 interface ISetHolidayAction {
 	type: typeof HolidayType.SET;
 	holidays: IHoliday[];
-	lastRequest: number;
 }
 
-function setHolidays(holidays: IHoliday[], _time: () => number = getTime): ISetHolidayAction {
+function setHolidays(holidays: IHoliday[]): ISetHolidayAction {
 	return {
 		holidays,
-		lastRequest: _time(),
 		type: HolidayType.SET,
+	};
+}
+
+interface ISetHolidayRequestState {
+	type: typeof HolidayType.SET_REQUEST_STATE;
+	requestState: RequestState;
+}
+function setHolidayState(requestState: RequestState): ISetHolidayRequestState {
+	return {
+		requestState,
+		type: HolidayType.SET_REQUEST_STATE,
 	};
 }
 
 export function getHolidays(now: DateTime, months: number, options: IHolidayOptions) {
 	return (dispatch: any) => {
 
+		dispatch(setHolidayState(RequestState.WAITING));
 		getHolidaysAsync(now, months, mapOptions(options))
 			.then((holidays: IHoliday[]) => {
 				dispatch(setHolidays(holidays));
 			})
 			.catch((err) => {
+				dispatch(setHolidayState(RequestState.FAILURE));
 				dispatch(setError(err.toString(), false));
 			});
 
@@ -53,4 +65,6 @@ export function setHolidayOptions(
 }
 
 // Aggregate
-export type HolidayAction = ISetHolidayAction | ISetHolidayOptionsAction;
+export type HolidayAction = ISetHolidayAction
+	| ISetHolidayOptionsAction
+	| ISetHolidayRequestState;

@@ -24,8 +24,10 @@ jest.mock('axios');
 
 import {
 	getHolidaysAsync,
-	sendHolidayRequestAsync,
+	internal,
 } from './api';
+
+const { sendHolidayRequestAsync } = internal;
 
 const mockResponse = {
 	data: {
