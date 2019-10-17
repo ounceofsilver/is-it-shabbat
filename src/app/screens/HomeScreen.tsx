@@ -13,18 +13,18 @@ import {
 	ViewStyle,
 } from 'react-native';
 
-import { MajorHolidays, RoshChodeshim } from '../features/holidays/Holidays';
-import OmerPrompt from '../features/holidays/OmerPrompt';
-import IsItShabbat from '../features/shabbat/IsItShabbat';
 import {
 	AppTitleText,
 	BackgroundView,
 	CenteredContainer,
-	colors,
 	CopyrightText,
 	Footer,
 	HolidayHeadingText,
-} from '../Styles';
+} from '../elements/styles';
+import { MajorHolidays, RoshChodeshim } from '../features/holidays/Holidays';
+import OmerPrompt from '../features/holidays/OmerPrompt';
+import IsItShabbat from '../features/shabbat/IsItShabbat';
+import { colors } from '../theme';
 
 const getBannerSize = ({
 	width,

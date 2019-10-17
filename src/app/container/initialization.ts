@@ -1,15 +1,15 @@
-import './l10n';
+import '../l10n';
 
 import { FontAwesome } from '@expo/vector-icons';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import { Image } from 'react-native';
 
-import { setLocation } from '../core/store/config';
-import { getHolidays } from '../core/store/holiday';
-import getLocation from './features/location/getLocation';
+import { setLocation } from '../../core/store/config';
+import { getHolidays } from '../../core/store/holiday';
+import getLocation from '../features/location/getLocation';
+import { getTime } from '../time';
 import store from './store';
-import { getTime } from './time';
 
 //
 // Assets loading
@@ -29,7 +29,7 @@ const loadAssetsAsync = async () => Promise.all([
 	]),
 	...cacheFonts([
 		{
-			FredokaOne: require('../../assets/fonts/FredokaOne.ttf'),
+			FredokaOne: require('../../../assets/fonts/FredokaOne.ttf'),
 		},
 		FontAwesome.font,
 	]),

@@ -2,14 +2,14 @@ import React from 'react';
 import { ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { getHolidays, getNow } from '../../selectors';
 import {
 	CenteredContainer,
-	colors,
 	MainCenterText,
 	MainText,
 	SecondaryCenterText,
-} from '../../Styles';
+} from '../../elements/styles';
+import { getHolidays, getNow } from '../../selectors';
+import { colors } from '../../theme';
 import { IOmerData } from './types';
 import getOmer, { weeksAndDays } from './utilities/getOmer';
 

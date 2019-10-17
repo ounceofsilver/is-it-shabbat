@@ -1,10 +1,10 @@
 import i18n from 'i18n-js';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
-import { colors } from './Styles';
+import { colors } from '../theme';
 
-import HomeScreen from './screens/HomeScreen';
-import OmerScreen from './screens/OmerScreen';
-import SettingsScreen from './screens/SettingsScreen';
+import HomeScreen from '../screens/HomeScreen';
+import OmerScreen from '../screens/OmerScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 const NavigationOptions = {
 	headerStyle: {

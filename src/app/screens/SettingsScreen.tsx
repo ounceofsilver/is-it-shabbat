@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { BackgroundView } from '../elements/styles';
 import LocationPicker from '../features/location/LocationPicker';
 import UseCurrentLocationButton from '../features/location/UseCurrentLocationButton';
-import { BackgroundView } from '../Styles';
 
 export default () => (
 	<BackgroundView>

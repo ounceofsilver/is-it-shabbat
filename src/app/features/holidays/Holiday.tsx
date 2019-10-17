@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { IHoliday } from '../../../core/store/holiday';
-import { CenteredContainer, HolidaySubtitleText, HolidayTitleText } from '../../Styles';
+import { CenteredContainer, HolidaySubtitleText, HolidayTitleText } from '../../elements/styles';
 import { useTime } from '../../time';
 import ToggleThroughStates from '../ToggleThroughStates';
 import { formatHolidayDuration } from './utilities/durationFormatter';

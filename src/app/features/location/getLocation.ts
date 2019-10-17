@@ -2,7 +2,7 @@ import { Location, Permissions } from 'expo';
 
 import { ILocation } from '../../../core/store/config';
 import { setError } from '../../../core/store/error';
-import store from '../../store';
+import store from '../../container/store';
 
 const defaultLocation: ILocation = {
 	// TODO(james.fulford): get location by IP

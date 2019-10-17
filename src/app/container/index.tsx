@@ -1,14 +1,14 @@
 import { AppLoading } from 'expo';
 import { useKeepAwake } from 'expo-keep-awake';
-import { useEffect, useState } from 'react';
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 
-import { AppState } from '../core/store';
-import { clearError } from '../core/store/error';
+import { AppState } from '../../core/store';
+import { clearError } from '../../core/store/error';
+import { getLocalizedError } from '../selectors/error';
 import initialization from './initialization';
 import Router from './Router';
-import { getLocalizedError } from './selectors/error';
 import store from './store';
 
 export const App = () => {
