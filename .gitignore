@@ -15,3 +15,5 @@ yarn.lock
 coverage
 .vscode
 web-build
+cypress/videos
+cypress/screenshots
