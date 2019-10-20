@@ -9,7 +9,7 @@
       "ios",
       "web"
     ],
-    "version": "2.0.2",
+    "version": "33.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -25,7 +25,7 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "buildNumber": "2.0.2",
+      "buildNumber": "33.0.1",
       "bundleIdentifier": "com.jamesfulford.isitshabbat",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Is It Shabbat? needs your location to calculate sunset times at the start and end of Shabbat and other holy days."
