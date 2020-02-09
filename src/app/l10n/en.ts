@@ -1,5 +1,5 @@
 export default {
-	copyright: '© 2018-19\nAn Ounce of Silver Technologies',
+	copyright: '© 2018-2020\nAn Ounce of Silver Technologies',
 	endEventName: {
 		CANDLELIGHTING: '%{duration}\nuntil Shabbat begins',
 		NOT_SHABBAT: '%{duration}\nuntil candle lighting',
