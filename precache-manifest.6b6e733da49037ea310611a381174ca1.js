@@ -8,8 +8,8 @@ self.__precacheManifest = [
     "url": "/static/js/runtime~app.43360584.js"
   },
   {
-    "revision": "93883a73c14ce6e0a3dc",
-    "url": "/static/js/2.81c417d7.chunk.js"
+    "revision": "49bfe0b7e1fea93ba532",
+    "url": "/static/js/2.92fba016.chunk.js"
   },
   {
     "revision": "6165c9d7a2e729ba57b23dd93add5366",
@@ -64,12 +64,12 @@ self.__precacheManifest = [
     "url": "/expo-service-worker.js"
   },
   {
-    "revision": "7a7bc7ead25db795e58b336f04d2624c",
-    "url": "/favicon.ico"
-  },
-  {
     "revision": "d0c694b562b2208635f250762cd7fc79",
     "url": "/serve.json"
+  },
+  {
+    "revision": "7a7bc7ead25db795e58b336f04d2624c",
+    "url": "/favicon.ico"
   },
   {
     "revision": "7f48c8de35f3581fdc5bbad1d30a6ce1",
@@ -136,7 +136,7 @@ self.__precacheManifest = [
     "url": "/apple/splash/icon_828x1792.png"
   },
   {
-    "revision": "07f69072a728919acd0b284bc686cf54",
+    "revision": "2e2f7b06606f9e45424b21967368a3df",
     "url": "/index.html"
   },
   {
@@ -152,7 +152,7 @@ self.__precacheManifest = [
     "url": "/static/js/app.0dd804f0.chunk.js.gz"
   },
   {
-    "revision": "2e43754b43ae1c5ecb64c68e1caf6a25",
-    "url": "/static/js/2.81c417d7.chunk.js.gz"
+    "revision": "9d99e2795f029bc27d2f1f3791f9409e",
+    "url": "/static/js/2.92fba016.chunk.js.gz"
   }
 ];
