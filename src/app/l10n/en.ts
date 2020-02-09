@@ -1,5 +1,9 @@
 export default {
 	copyright: '© 2018-2020\nAn Ounce of Silver Technologies',
+	loading: {
+		message: 'Loading location and assets...',
+		error: 'Is It Shabbat? failed to load the current location. Please try again.',
+	},
 	endEventName: {
 		CANDLELIGHTING: '%{duration}\nuntil Shabbat begins',
 		NOT_SHABBAT: '%{duration}\nuntil candle lighting',

@@ -1,4 +1,3 @@
-import { AppLoading } from 'expo';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useEffect, useState } from 'react';
 import React from 'react';
@@ -7,8 +6,13 @@ import { is } from 'shabbat-logic';
 
 import i18n from 'i18n-js';
 import { AppState } from '../../core/store';
-import { clearError, getError } from '../../core/store/error';
+import { clearError, getError, setError } from '../../core/store/error';
 import { getShabbatState } from '../custom-selectors';
+import {
+	AppTitleText,
+	BackgroundView,
+	CenteredContainer,
+} from '../elements/styles';
 import {
 	candlelightingTheme,
 	defaultTheme,
@@ -62,8 +66,22 @@ export const App = () => {
 
 	// Initialization sequence
 	const [isReady, setReady] = useState(false);
+	const [errorMessage, setErrorMessage] = useState(undefined);
 
-	return isReady
+	useEffect(() => {
+		initialization()
+			.then(() => {
+				setReady(true);
+			})
+			.catch((err) => {
+				// tslint:disable-next-line: no-console
+				console.error('Failed to load app:', err);
+				store.dispatch(setError('loading.error'));
+				setErrorMessage('loading.error');
+			});
+	}, 		     []);
+
+	return (isReady && !(errorMessage))
 		? (
 			<ReduxProvider store={store}>
 				<ThemeProvider theme={theme}>
@@ -71,13 +89,10 @@ export const App = () => {
 				</ThemeProvider>
 			</ReduxProvider>
 		) : (
-			<AppLoading
-				startAsync={initialization}
-				onFinish={() => setReady(true)}
-				onError={(...args) => {
-					// tslint:disable-next-line: no-console
-					console.warn(...args);
-				}}
-			/>
+			<BackgroundView>
+				<CenteredContainer>
+					<AppTitleText>{i18n.t(errorMessage || 'loading.message')}</AppTitleText>
+				</CenteredContainer>
+			</BackgroundView>
 		);
 };
