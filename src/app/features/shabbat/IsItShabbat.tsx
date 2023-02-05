@@ -29,7 +29,6 @@ export const PureIsItShabbat = ({ state }: { state: AppState }) => {
 						<ShabbatSubtitleText key={1}>
 							{i18n.t(
 								`endEventName.${period}`,
-								// TODO: localize durations
 								{ duration: underAWeek(diff) },
 							)}
 						</ShabbatSubtitleText>

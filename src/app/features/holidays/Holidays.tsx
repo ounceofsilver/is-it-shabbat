@@ -38,18 +38,19 @@ const HolidaysComponentFactory = (
 			filteredHolidays
 				.map(
 					(holiday: IHoliday) => (
-						<>
-							<Holiday
-								key={holiday.date.toString()}
-								holiday={holiday}
-							/>
-							<View style={{ marginBottom: 15 }} />
-						</>
+						<HolidayItem holiday={holiday} key={holiday.date + holiday.title} />
 					),
 				)
 		);
 
 	});
+};
+
+const HolidayItem = ({ holiday }: { holiday: IHoliday }) => {
+	return (<>
+		<Holiday holiday={holiday} />
+		<View style={{ marginBottom: 15 }} />
+	</>);
 };
 
 export const RoshChodeshim = HolidaysComponentFactory(getRoshChodeshim);

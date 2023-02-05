@@ -3,8 +3,9 @@ import { TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { IHoliday } from '../../../core/store/holiday';
-import { getHolidays, getNow } from '../../custom-selectors';
+import { getHolidays } from '../../custom-selectors';
 import { OmerPromptText } from '../../elements/styles';
+import { getTime } from '../../time';
 import getOmer from '../omer/utilities/getOmer';
 
 interface IExternalOmerPromptProps {
@@ -30,6 +31,6 @@ export const PureOmerPrompt = ({
 
 export default connect(
 	state => ({
-		omerHoliday: getOmer(getHolidays(state), getNow(state)),
+		omerHoliday: getOmer(getHolidays(state), getTime()),
 	}),
 )(PureOmerPrompt);

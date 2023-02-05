@@ -1,21 +1,19 @@
-// TypeScript insists that MapView.Marker does not exist
-// and that expo.Marker does not work. So, after trying a
-// few things, my solution for now is to keep this file as
-// a .js file.
-import { MapView } from 'expo';
+import MapView, { Marker } from 'react-native-maps';
+
 import React from 'react';
 import { connect } from 'react-redux';
 
 import { getLocation, setLocation as _setLocation } from '../../../core/store/config';
+import { AppState } from '../../../core/store';
 
-const eventToLocation = (e) => ({
+const eventToLocation = e => ({
 	coords: {
 		latitude: e.nativeEvent.coordinate.latitude,
 		longitude: e.nativeEvent.coordinate.longitude,
 	},
 });
 
-const LocationPicker = ({ location, setLocation }) => {
+const LocationPicker = ({ location, setLocation }) => {	
 	const initialRegion = {
 		latitude: location.coords.latitude,
 		longitude: location.coords.longitude,
@@ -35,25 +33,25 @@ const LocationPicker = ({ location, setLocation }) => {
 	return (
 		<MapView
 			style={{ flex: 1 }}
-			initialRegion={initialRegion}
+			region={initialRegion}
 			onPress={e => setLocation(eventToLocation(e))}
-			showsMyLocationButton={false}
+			showsMyLocationButton={true}
 			showsPointsOfInterest={false}
 			showsCompass={false}
 			showsTraffic={false}
 			showsIndoors={false}
-			toolbarEnabled={false}
+			toolbarEnabled={true}
 		>
-			<MapView.Marker coordinate={initialRegion} />
+			<Marker coordinate={initialRegion} />
 		</MapView>
 	);
 };
 
 export default connect(
-	state => ({
+	(state: AppState) => ({
 		location: getLocation(state),
 	}),
 	{
 		setLocation: _setLocation,
-	}
+	},
 )(LocationPicker);

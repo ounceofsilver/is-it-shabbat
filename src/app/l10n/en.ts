@@ -1,5 +1,5 @@
 export default {
-	copyright: '© 2018-2020\nAn Ounce of Silver Technologies',
+	copyright: `© 2018-${new Date().getFullYear()}\nAn Ounce of Silver Technologies`,
 	loading: {
 		message: 'Loading location and assets...',
 		error: 'Is It Shabbat? failed to load the current location. Please try again.',

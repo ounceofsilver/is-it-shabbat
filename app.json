@@ -1,17 +1,12 @@
 {
   "expo": {
     "name": "Is It Shabbat?",
-    "description": "Connect with G-d's holy days. isitshabbat.net",
-    "slug": "IsItShabbat",
+    "slug": "is-it-shabbat",
     "privacy": "unlisted",
-    "sdkVersion": "33.0.0",
-    "platforms": [
-      "ios",
-      "web"
-    ],
-    "version": "33.0.1",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -24,13 +19,22 @@
       "./assets/**/*"
     ],
     "ios": {
-      "supportsTablet": false,
-      "buildNumber": "33.0.1",
-      "bundleIdentifier": "com.jamesfulford.isitshabbat",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ounceofsilver.isitshabbat",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Is It Shabbat? needs your location to calculate sunset times at the start and end of Shabbat and other holy days."
       }
     },
-    "githubUrl": "https://github.com/ounceofsilver/is-it-shabbat"
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8773eaf6-e290-437d-964f-c914c00dbe47"
+      }
+    },
+    "owner": "ounceofsilver"
   }
 }

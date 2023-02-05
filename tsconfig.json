@@ -1,19 +1,20 @@
 {
-	"compilerOptions": {
-		"noEmit": true,
-		"target": "es5",
-		"lib": [
-			"es2015",
-			"esnext.asynciterable",
-			"dom"
-		],
-		"jsx": "react-native",
-		"strict": false,
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
-		"types": [
-			"jest"
-		],
-		"allowSyntheticDefaultImports": true
-	}
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "es5",
+    "lib": [
+      "es2015",
+      "esnext.asynciterable",
+      "dom"
+    ],
+    "jsx": "react-native",
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "types": [
+      "jest"
+    ],
+    "allowSyntheticDefaultImports": true
+  },
+  "extends": "expo/tsconfig.base"
 }
