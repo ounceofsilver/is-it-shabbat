@@ -91,7 +91,6 @@ export const getHolidaysAsync = async (
 				hour: 0,
 				minute: 0,
 				second: 0,
-				zone: now.zoneName,
 			}).minus({ days: 1 }),
 			// hebcal gregorian dates correspond
 			// to the END of the hebrew day.

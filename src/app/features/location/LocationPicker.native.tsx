@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { getLocation, setLocation as _setLocation } from '../../../core/store/config';
 import { AppState } from '../../../core/store';
+import { View } from 'react-native';
 
 const eventToLocation = e => ({
 	coords: {
@@ -31,19 +32,21 @@ const LocationPicker = ({ location, setLocation }) => {
 		longitudeDelta: 1,
 	};
 	return (
-		<MapView
-			style={{ flex: 1 }}
-			region={initialRegion}
-			onPress={e => setLocation(eventToLocation(e))}
-			showsMyLocationButton={true}
-			showsPointsOfInterest={false}
-			showsCompass={false}
-			showsTraffic={false}
-			showsIndoors={false}
-			toolbarEnabled={true}
-		>
-			<Marker coordinate={initialRegion} />
-		</MapView>
+		<View style={{width: '100%', height: 400}}>
+			<MapView
+				style={{ flex: 1 }}
+				region={initialRegion}
+				onPress={e => setLocation(eventToLocation(e))}
+				showsMyLocationButton={true}
+				showsPointsOfInterest={false}
+				showsCompass={false}
+				showsTraffic={false}
+				showsIndoors={false}
+				toolbarEnabled={true}
+				>
+				<Marker coordinate={initialRegion} />
+			</MapView>
+		</View>
 	);
 };
 

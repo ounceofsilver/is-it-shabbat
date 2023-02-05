@@ -9,17 +9,13 @@ import {
 	View,
 	ViewStyle,
 } from 'react-native';
-import { useSelector } from 'react-redux';
-import { getTimezone } from '../../core/store/config/selectors';
 
 import {
 	AppTitleText,
 	BackgroundView,
 	CenteredContainer,
-	CopyrightText,
 	Footer,
 	HolidayHeadingText,
-	ShabbatSubtitleText,
 } from '../elements/styles';
 import { MajorHolidays, RoshChodeshim } from '../features/holidays/Holidays';
 import IsItShabbat from '../features/shabbat/IsItShabbat';
@@ -32,7 +28,6 @@ export default ({
 }: {
 	navigation: { navigate: (state: string) => void };
 }) => {
-	const timezone = useSelector(getTimezone);
 	return (
 		<BackgroundView>
 			<StatusBar hidden />
@@ -43,7 +38,7 @@ export default ({
 					<AppTitleText>{i18n.t('title')}</AppTitleText>
 				</CenteredContainer>
 
-				<View style={{ marginBottom: 30 } as StyleProp<ViewStyle>} />
+				<View style={{ marginBottom: 50 } as StyleProp<ViewStyle>} />
 				<CenteredContainer>
 					<IsItShabbat />
 				</CenteredContainer>
@@ -77,7 +72,6 @@ export default ({
 							color={colors.textMain}
 							onPress={() => navigate('Settings')}
 						/>
-						<ShabbatSubtitleText>(in {timezone})</ShabbatSubtitleText>
 						<FontAwesome
 							name='share'
 							size={36}
