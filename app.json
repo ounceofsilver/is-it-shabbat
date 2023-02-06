@@ -28,7 +28,8 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ounceofsilver.isitshabbat"
     },
     "extra": {
       "eas": {
