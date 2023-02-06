@@ -54,14 +54,14 @@ export const CopyrightText = withStyle(StyledText, {
 });
 
 export const HolidayHeadingText = withStyle(StyledText, {
-	color: colors.textSubtle,
-	fontSize: 26,
+	color: colors.textMain,
+	fontSize: 32,
 	textAlign: 'center',
 });
 
 export const HolidayTitleText = withStyle(StyledText, {
-	color: colors.textMain,
-	fontSize: 24,
+	color: colors.textSubtle,
+	fontSize: 28,
 	textAlign: 'center',
 });
 
