@@ -3,7 +3,7 @@
     "name": "Is It Shabbat?",
     "slug": "is-it-shabbat",
     "privacy": "unlisted",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,7 +20,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ounceofsilver.isitshabbat",
+      "bundleIdentifier": "com.jamesfulford.isitshabbat",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Is It Shabbat? needs your location to calculate sunset times at the start and end of Shabbat and other holy days."
       }
