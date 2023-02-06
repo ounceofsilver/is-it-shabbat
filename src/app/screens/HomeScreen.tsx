@@ -32,6 +32,8 @@ export default ({
 		<BackgroundView>
 			<StatusBar hidden />
 
+			{/* TODO: add admob ads for android and apple */}
+
 			<ScrollView>
 				<View style={{ marginBottom: 100 } as StyleProp<ViewStyle>} />
 				<CenteredContainer>
@@ -47,6 +49,9 @@ export default ({
 					{/* <OmerPrompt goToOmerPage={() => navigate('Omer')} /> */}
 				</CenteredContainer>
 
+				{/* TODO: add holidays page which shows more than 3 */}
+				{/* TODO: make pages for more types of holidays */}
+				{/* TODO: make settings for what holiday types to show */}
 				<View style={{ marginTop: 60 }}>
 					<HolidayHeadingText>{i18n.t('holidays.headings.major')}</HolidayHeadingText>
 					<MajorHolidays />

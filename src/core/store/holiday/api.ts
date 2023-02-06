@@ -34,6 +34,8 @@ export interface IHebcalOptions {
 	i: OnOff; // in israel (double-holidays)
 }
 
+// TODO: compare with paper calendar, compare exact date/times and do adjustments
+
 const sendHolidayRequestAsync = (t, overrides = {}) => axios({
 	method: 'get',
 	url: 'https://www.hebcal.com/hebcal/',

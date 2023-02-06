@@ -32,7 +32,6 @@ export const Holiday = ({
 				{[
 					(
 						<HolidaySubtitleText key={1}>
-							{/* TODO: localize durations */}
 							{formatHolidayDuration(diff)}
 						</HolidaySubtitleText>
 					),
