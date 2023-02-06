@@ -45,7 +45,7 @@ export default async () => {
 			store.dispatch(setLocation(location));
 
 			const now = getTime();
-			getHolidays(now, 2, store.getState().holiday.options)(store.dispatch);
+			getHolidays(now, 6, store.getState().holiday.options)(store.dispatch);
 		}),
 	]);
 };
