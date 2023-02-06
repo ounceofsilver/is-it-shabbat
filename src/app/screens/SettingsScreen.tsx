@@ -14,20 +14,23 @@ export default ({
 }) => (
 	<BackgroundView>
 		<ScrollView>
-			<PrimaryCenterText>Set Location</PrimaryCenterText>
+			<PrimaryCenterText>{i18n.t('settings.location.set')}</PrimaryCenterText>
 			<LocationPicker />
 			<UseCurrentLocationButton />
 			<View style={{ height: 40 }}/>
 
 			<View style={{ padding: 10 }}>
 				<MainText>
-					All times are shown in local device time, even if another location is selected.
+					{i18n.t('notes.localtime')}
 				</MainText>
 				<MainText>
-					All times are based on approximate sunset times.
+					{i18n.t('notes.approximate')}
 				</MainText>
 				<MainText>
-					Shabbat is assumed to begin at sunset. Candlelighting begins 18 minutes before Shabbat. Shabbat is assumed to end 42 minutes after sunset.
+					{i18n.t('notes.calculations')}
+				</MainText>
+				<MainText>
+					{i18n.t('notes.holidayssource')}
 				</MainText>
 			</View>
 

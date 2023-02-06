@@ -20,6 +20,7 @@ export default {
 	},
 	settings: {
 		location: {
+			set: 'Set Location',
 			useCurrentLocation: 'Use Current Location',
 		},
 	},
@@ -41,5 +42,11 @@ export default {
 	},
 	share: {
 		message: 'Shalom! Try out the "Is It Shabbat?" app:',
+	},
+	notes: {
+		localtime: 'All times are shown in local device time, even if another location is selected.',
+		approximate: 'All times are based on approximate sunset times.',
+		calculations: 'Shabbat is assumed to begin at sunset. Candlelighting begins 18 minutes before Shabbat. Shabbat is assumed to end 42 minutes after sunset.',
+		holidayssource: 'Holiday dates are courtesy of hebcal.com'
 	},
 };
