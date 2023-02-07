@@ -88,7 +88,20 @@
     "reactn": "2.2.7",
     "redux": "4.2.1",
     "redux-thunk": "2.4.2",
-    "shabbat-logic": "1.1.1"
+    "shabbat-logic": "1.1.1",
+    "workbox-background-sync": "^6.1.5",
+    "workbox-broadcast-update": "^6.1.5",
+    "workbox-cacheable-response": "^6.1.5",
+    "workbox-core": "^6.1.5",
+    "workbox-expiration": "^6.1.5",
+    "workbox-google-analytics": "^6.1.5",
+    "workbox-navigation-preload": "^6.1.5",
+    "workbox-precaching": "^6.1.5",
+    "workbox-range-requests": "^6.1.5",
+    "workbox-routing": "^6.1.5",
+    "workbox-strategies": "^6.1.5",
+    "workbox-streams": "^6.1.5",
+    "workbox-webpack-plugin": "^6.1.5"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
