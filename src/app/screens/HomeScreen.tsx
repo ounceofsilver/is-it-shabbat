@@ -1,7 +1,10 @@
-import { FontAwesome } from '@expo/vector-icons';
+import { A } from '@expo/html-elements';
 import i18n from 'i18n-js';
 import React from 'react';
 import {
+	Image,
+	Platform,
+	Pressable,
 	ScrollView,
 	Share,
 	StatusBar,
@@ -71,21 +74,15 @@ export default ({
 
 					<View style={{ height: footerToolbarHeight } as StyleProp<ViewStyle>} />
 					<Footer>
-						<FontAwesome
-							name='cog'
-							size={36}
-							color={colors.textMain}
-							onPress={() => navigate('Settings')}
-						/>
-						<FontAwesome
-							name='share'
-							size={36}
-							color={colors.textMain}
-							onPress={() => Share.share({
+						<Pressable onPress={() => navigate('Settings')}>
+							<Image source={require('./Gear Icon.png')} style={{ width: 36, height: 36 }} />
+						</Pressable>
+						<Pressable onPress={() => Share.share({
 								message: i18n.t('share.message'),
 								url: 'https://isitshabbat.net',
-							})}
-						/>
+						})}>
+							<Image source={require('./Share Icon.png')} style={{ width: 36, height: 36 }} />
+						</Pressable>
 					</Footer>
 		</BackgroundView>
 	);

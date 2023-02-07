@@ -1,6 +1,5 @@
 import '../l10n';
 
-import { FontAwesome } from '@expo/vector-icons';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import { Image } from 'react-native';
@@ -31,7 +30,6 @@ const loadAssetsAsync = async () => Promise.all([
 		{
 			FredokaOne: require('../../../assets/fonts/FredokaOne.ttf'),
 		},
-		FontAwesome.font,
 	]),
 ]);
 
