@@ -5,7 +5,9 @@ import i18n from 'i18n-js';
 import { BackgroundView, CopyrightText, MainText, PrimaryCenterText, SecondaryText, ShabbatSubtitleText, ShabbatText } from '../elements/styles';
 import LocationPicker from '../features/location/LocationPicker';
 import UseCurrentLocationButton from '../features/location/UseCurrentLocationButton';
-import { Button, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
+import { A } from '@expo/html-elements';
+
 
 export default ({
 	navigation: { navigate },
@@ -37,6 +39,9 @@ export default ({
 			<View style={{ height: 40 }}/>
 			<CopyrightText>
 				{i18n.t('copyright')}
+			</CopyrightText>
+			<CopyrightText>
+				<A href="https://anounceofsilver.com/is-it-shabbat-privacy-policy.html">{i18n.t('privacy')}</A>
 			</CopyrightText>
 		</ScrollView>
 	</BackgroundView>
