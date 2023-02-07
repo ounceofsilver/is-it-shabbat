@@ -17,7 +17,7 @@ export const local = (
 		month: m,
 		second: s,
 		year: y,
-		zone: 'America/New_York',
+		zone: 'local',
 	});
 
 jest.mock('axios');
