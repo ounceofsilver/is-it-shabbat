@@ -12,6 +12,9 @@ import {
 	View,
 	ViewStyle,
 } from 'react-native';
+import { useSelector } from 'react-redux';
+import { getHolidayRequestState, RequestState } from '../../core/store/holiday';
+import { loadHolidays } from '../../app/container/initialization';
 
 import {
 	AppTitleText,
@@ -19,6 +22,8 @@ import {
 	CenteredContainer,
 	Footer,
 	HolidayHeadingText,
+	ShabbatSubtitleText,
+	ShabbatText,
 } from '../elements/styles';
 import { MajorHolidays, RoshChodeshim } from '../features/holidays/Holidays';
 import IsItShabbat from '../features/shabbat/IsItShabbat';
@@ -31,6 +36,8 @@ export default ({
 }: {
 	navigation: { navigate: (state: string) => void };
 }) => {
+	const holidayState = useSelector(getHolidayRequestState);
+
 	return (
 		<BackgroundView>
 			<StatusBar hidden />
@@ -55,13 +62,27 @@ export default ({
 				{/* TODO: add holidays page which shows more than 3 */}
 				{/* TODO: make pages for more types of holidays */}
 				{/* TODO: make settings for what holiday types to show */}
+
+				{(holidayState === RequestState.FAILURE)
+						&& <>
+							<Pressable onPress={() => {
+								loadHolidays();
+							}}>
+								<ShabbatSubtitleText>Error occurred while fetching holidays, tap to retry.</ShabbatSubtitleText>
+							</Pressable>
+						</>}
+
 				<View style={{ marginTop: 60 }}>
 					<HolidayHeadingText>{i18n.t('holidays.headings.major')}</HolidayHeadingText>
+					{(holidayState === RequestState.WAITING || holidayState === RequestState.NOSTART)
+						&& <ShabbatSubtitleText>Loading...</ShabbatSubtitleText>}
 					<MajorHolidays />
 				</View>
 
 				<View style={{ marginTop: 40 }}>
 					<HolidayHeadingText>{i18n.t('holidays.headings.roshchodeshim')}</HolidayHeadingText>
+					{(holidayState === RequestState.WAITING || holidayState === RequestState.NOSTART)
+						&& <ShabbatSubtitleText>Loading...</ShabbatSubtitleText>}
 					<RoshChodeshim />
 				</View>
 

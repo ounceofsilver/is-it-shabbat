@@ -52,6 +52,10 @@ async function updateLocationAndHolidays() {
 
 	store.dispatch(setLocation(location));
 
+	loadHolidays();
+}
+
+export async function loadHolidays() {
 	const now = getTime();
 	getHolidays(now, 6, store.getState().holiday.options)(store.dispatch);
 }
