@@ -21,7 +21,8 @@
     "web:e2e:open": "cypress open",
     "web:e2e:ci": "cypress run",
     "web:e2e": "start-server-and-test web:start 19006 web:e2e:ci",
-    "web:deploy": "yarn ci && yarn web:e2e && yarn web:build && gh-pages -d web-build",
+    "web:deploy": "yarn ci && yarn web:e2e && yarn web:build && yarn gh-pages-deploy",
+    "gh-pages-deploy": "gh-pages -d web-build",
     "app:deploy": "yarn ci && expo publish"
   },
   "husky": {
