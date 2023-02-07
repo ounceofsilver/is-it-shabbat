@@ -3,6 +3,8 @@ import '../l10n';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import { Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 import { setLocation } from '../../core/store/config';
 import { getHolidays } from '../../core/store/holiday';
@@ -36,14 +38,32 @@ const loadAssetsAsync = async () => Promise.all([
 //
 // Initialization
 //
-export default async () => {
-	await Promise.all([
-		loadAssetsAsync(),
-		getLocation().then((location) => {
-			store.dispatch(setLocation(location));
 
-			const now = getTime();
-			getHolidays(now, 6, store.getState().holiday.options)(store.dispatch);
-		}),
-	]);
+store.subscribe(() => {
+	const location = store.getState().config.location;
+	if (location) {
+		console.info("Saving location to localStorage...", location);
+		AsyncStorage.setItem("location", JSON.stringify(location)).catch(console.error);
+	}
+});
+
+async function updateLocationAndHolidays() {
+	const location = await getLocation();
+
+	store.dispatch(setLocation(location));
+
+	const now = getTime();
+	getHolidays(now, 6, store.getState().holiday.options)(store.dispatch);
+}
+
+export default async () => {
+	loadAssetsAsync();
+	const locationString = await AsyncStorage.getItem("location");
+	if (locationString) {
+		const location = JSON.parse(locationString);
+		store.dispatch(setLocation(location));
+		updateLocationAndHolidays();
+		return;
+	}
+	await updateLocationAndHolidays();
 };
