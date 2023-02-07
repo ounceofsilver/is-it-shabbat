@@ -38,7 +38,6 @@ export const App = () => {
 				setReady(true);
 			})
 			.catch((err) => {
-				// tslint:disable-next-line: no-console
 				console.error('Failed to load app:', err);
 				store.dispatch(setError('loading.error'));
 				setErrorMessage('loading.error');

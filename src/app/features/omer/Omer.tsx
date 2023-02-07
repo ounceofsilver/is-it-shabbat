@@ -14,7 +14,6 @@ import { getTime } from '../../time';
 import { IOmerData } from './types';
 import getOmer, { weeksAndDays } from './utilities/getOmer';
 
-/* tslint:disable:max-line-length */
 // TODO: localize Omer
 // TODO: make a new Omer reading/prayer, not copied
 export const PureOmer = ({

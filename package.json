@@ -11,9 +11,8 @@
   "homepage": "https://isitshabbat.net",
   "scripts": {
     "start": "expo start",
-    "lint": "tslint -p tsconfig.json",
     "test": "jest",
-    "ci": "yarn && yarn lint && yarn test --ci --coverage",
+    "ci": "yarn && yarn test --ci --coverage",
     "tdd": "yarn test --watch",
     "web:start": "expo start --web",
     "web:build": "./build.sh",
@@ -109,8 +108,6 @@
     "sonarqube-scanner": "2.4.1",
     "start-server-and-test": "1.10.6",
     "ts-jest": "29.0.5",
-    "tslint": "6.1.3",
-    "tslint-config-airbnb": "5.11.2",
     "typescript": "4.9.4"
   },
   "rnpm": {
