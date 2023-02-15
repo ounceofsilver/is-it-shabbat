@@ -52,7 +52,8 @@ export async function loadHolidays() {
 }
 
 export default async () => {
-	loadAssetsAsync();
+	await loadAssetsAsync();
+
 	const locationString = await AsyncStorage.getItem("location");
 	if (locationString) {
 		const location = JSON.parse(locationString);

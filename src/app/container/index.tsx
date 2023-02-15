@@ -2,12 +2,13 @@ import { useKeepAwake } from 'expo-keep-awake';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
+import { Text } from 'react-native';
 
 import i18n from 'i18n-js';
+
 import { AppState } from '../../core/store';
 import { clearError, getError, setError } from '../../core/store/error';
 import {
-	AppTitleText,
 	BackgroundView,
 	CenteredContainer,
 } from '../elements/styles';
@@ -52,7 +53,7 @@ export const App = () => {
 		) : (
 			<BackgroundView>
 				<CenteredContainer>
-					<AppTitleText>{i18n.t(errorMessage || 'loading.message')}</AppTitleText>
+					<Text>{i18n.t(errorMessage || 'loading.message')}</Text>
 				</CenteredContainer>
 			</BackgroundView>
 		);
