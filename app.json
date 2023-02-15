@@ -31,7 +31,8 @@
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.ounceofsilver.isitshabbat"
+      "package": "com.ounceofsilver.isitshabbat",
+      "versionCode": 1
     },
     "extra": {
       "eas": {
