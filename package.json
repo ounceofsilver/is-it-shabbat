@@ -10,6 +10,7 @@
   },
   "homepage": "https://isitshabbat.net",
   "scripts": {
+    "expo": "expo",
     "start": "expo start",
     "test": "jest",
     "ci": "yarn && yarn test --ci --coverage",
@@ -90,6 +91,7 @@
     "redux": "4.2.1",
     "redux-thunk": "2.4.2",
     "shabbat-logic": "1.1.1",
+    "smartbanner.js": "1.19.1",
     "workbox-background-sync": "^6.1.5",
     "workbox-broadcast-update": "^6.1.5",
     "workbox-cacheable-response": "^6.1.5",

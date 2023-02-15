@@ -1,9 +1,7 @@
-import { A } from '@expo/html-elements';
 import i18n from 'i18n-js';
 import React from 'react';
 import {
 	Image,
-	Platform,
 	Pressable,
 	ScrollView,
 	Share,
@@ -23,11 +21,10 @@ import {
 	Footer,
 	HolidayHeadingText,
 	ShabbatSubtitleText,
-	ShabbatText,
 } from '../elements/styles';
 import { MajorHolidays, RoshChodeshim } from '../features/holidays/Holidays';
 import IsItShabbat from '../features/shabbat/IsItShabbat';
-import { colors } from '../theme';
+import { DownloadBanner } from './DownloadBanner';
 
 const footerToolbarHeight: number = 56;
 
@@ -45,6 +42,8 @@ export default ({
 			{/* TODO: add admob ads for android and apple */}
 
 			<ScrollView>
+				<DownloadBanner />
+				
 				<View style={{ marginBottom: 100 } as StyleProp<ViewStyle>} />
 				<CenteredContainer>
 					<AppTitleText>{i18n.t('title')}</AppTitleText>

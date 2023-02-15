@@ -1,6 +1,7 @@
 const createExpoWebpackConfigAsync = require("@expo/webpack-config");
 const path = require("path");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = async function (env, argv) {
   // Set by expo-cli during `expo build:web`
@@ -8,6 +9,17 @@ module.exports = async function (env, argv) {
 
   // Create the default config
   const config = await createExpoWebpackConfigAsync(env, argv);
+
+  config.plugins.push(
+    new CopyWebpackPlugin({
+      patterns: [
+        // Smart banner
+        { from: 'node_modules/smartbanner.js/dist/smartbanner.min.js', to: 'static/js' },
+        { from: 'node_modules/smartbanner.js/dist/smartbanner.min.css', to: 'static' },
+        { from: 'assets/icon.png', to: 'static/media' },
+      ],
+    })
+  )
 
   if (isEnvProduction) {
     config.plugins.push(
