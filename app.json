@@ -13,7 +13,8 @@
       "backgroundColor": "#3D2F40"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/8773eaf6-e290-437d-964f-c914c00dbe47"
     },
     "assetBundlePatterns": [
       "./assets/**/*"
@@ -37,6 +38,9 @@
         "projectId": "8773eaf6-e290-437d-964f-c914c00dbe47"
       }
     },
-    "owner": "ounceofsilver"
+    "owner": "ounceofsilver",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }
