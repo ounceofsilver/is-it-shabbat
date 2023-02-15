@@ -1,11 +1,12 @@
 {
   "files": {
-    "app.js": "/static/js/app.cc92f89f.chunk.js",
-    "app.js.map": "/static/js/app.cc92f89f.chunk.js.map",
+    "app.js": "/static/js/app.e08d9b9f.chunk.js",
+    "app.js.map": "/static/js/app.e08d9b9f.chunk.js.map",
     "runtime~app.js": "/static/js/runtime~app.27401809.js",
     "runtime~app.js.map": "/static/js/runtime~app.27401809.js.map",
-    "static/js/2.11699ad3.chunk.js": "/static/js/2.11699ad3.chunk.js",
-    "static/js/2.11699ad3.chunk.js.map": "/static/js/2.11699ad3.chunk.js.map",
+    "static/js/2.e96f2234.chunk.js": "/static/js/2.e96f2234.chunk.js",
+    "static/js/2.e96f2234.chunk.js.map": "/static/js/2.e96f2234.chunk.js.map",
+    "CNAME": "/CNAME",
     "favicon-16.png": "/favicon-16.png",
     "favicon-32.png": "/favicon-32.png",
     "favicon.ico": "/favicon.ico",
@@ -13,13 +14,20 @@
     "manifest.json": "/manifest.json",
     "serve.json": "/serve.json",
     "service-worker.js.map": "/service-worker.js.map",
-    "static/js/2.11699ad3.chunk.js.LICENSE.txt": "/static/js/2.11699ad3.chunk.js.LICENSE.txt",
-    "static/media/Gear Icon.png": "/static/media/Gear Icon.612d3e96.png",
-    "static/media/Share Icon.png": "/static/media/Share Icon.ab812942.png"
+    "static/js/2.e96f2234.chunk.js.LICENSE.txt": "/static/js/2.e96f2234.chunk.js.LICENSE.txt",
+    "static/js/smartbanner.min.js": "/static/js/smartbanner.min.js",
+    "static/js/smartbanner.min.js.LICENSE.txt": "/static/js/smartbanner.min.js.LICENSE.txt",
+    "static/media/GearIcon.png": "/static/media/GearIcon.612d3e96.png",
+    "static/media/ShareIcon.png": "/static/media/ShareIcon.ab812942.png",
+    "static/media/google-play-badge.png": "/static/media/google-play-badge.b8a7e583.png",
+    "static/media/icon.png": "/static/media/icon.png",
+    "static/media/ios-banner.svg": "/static/media/ios-banner.8c4986ee.svg",
+    "static/smartbanner.min.css": "/static/smartbanner.min.css",
+    "static/smartbanner.min.css.map": "/static/smartbanner.min.css.map"
   },
   "entrypoints": [
     "static/js/runtime~app.27401809.js",
-    "static/js/2.11699ad3.chunk.js",
-    "static/js/app.cc92f89f.chunk.js"
+    "static/js/2.e96f2234.chunk.js",
+    "static/js/app.e08d9b9f.chunk.js"
   ]
 }
