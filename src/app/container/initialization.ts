@@ -2,7 +2,6 @@ import '../l10n';
 
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-import { Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -16,18 +15,10 @@ import store from './store';
 // Assets loading
 //
 const cacheFonts = fonts => fonts.map(font => Font.loadAsync(font));
-const cacheImages = images => images.map((image) => {
-	if (typeof image === 'string') {
-		return Image.prefetch(image);
-	}
-	return Asset.fromModule(image).downloadAsync();
-});
 
 const loadAssetsAsync = async () => Promise.all([
-	...cacheImages([
-		// 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-		// require('../../assets/images/circle.jpg'),
-	]),
+	Asset.loadAsync(require('../screens/ShareIcon.png')),
+	Asset.loadAsync(require('../screens/GearIcon.png')),
 	...cacheFonts([
 		{
 			FredokaOne: require('../../../assets/fonts/FredokaOne.ttf'),

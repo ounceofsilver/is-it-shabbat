@@ -96,13 +96,13 @@ export default ({
 					<View style={{ height: footerToolbarHeight } as StyleProp<ViewStyle>} />
 					<Footer>
 						<Pressable onPress={() => navigate('Settings')}>
-							<Image source={require('./Gear Icon.png')} style={{ width: 36, height: 36 }} />
+							<Image source={require('./GearIcon.png')} style={{ width: 36, height: 36 }} />
 						</Pressable>
 						<Pressable onPress={() => Share.share({
 								message: i18n.t('share.message'),
 								url: 'https://isitshabbat.net',
 						})}>
-							<Image source={require('./Share Icon.png')} style={{ width: 36, height: 36 }} />
+							<Image source={require('./ShareIcon.png')} style={{ width: 36, height: 36 }} />
 						</Pressable>
 					</Footer>
 		</BackgroundView>
