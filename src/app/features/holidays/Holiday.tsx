@@ -12,7 +12,7 @@ interface IHolidayProps {
 }
 
 export const Holiday = ({
-	holiday: { title, date },
+	holiday: { title, date, hdate },
 }: IHolidayProps) => {
 	const now = useTime(100);
 
@@ -25,8 +25,7 @@ export const Holiday = ({
 	return (
 		<CenteredContainer>
 			<HolidayTitleText>
-				{/* TODO: Localize holiday titles */}
-				{title.replace('Rosh Chodesh ', '')}
+				{title}
 			</HolidayTitleText>
 			<ToggleThroughStates>
 				{[
@@ -39,11 +38,16 @@ export const Holiday = ({
 						<HolidaySubtitleText key={2}>
 							{date.toLocaleString({
 								day: '2-digit',
+								month: 'short',
 								hour: '2-digit',
 								minute: '2-digit',
-								month: 'short',
 								weekday: 'short',
 							})}
+						</HolidaySubtitleText>
+					),
+					(
+						<HolidaySubtitleText key={3}>
+							{hdate}
 						</HolidaySubtitleText>
 					),
 				]}

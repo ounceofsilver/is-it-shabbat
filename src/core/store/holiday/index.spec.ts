@@ -69,7 +69,7 @@ describe('holidays', () => {
 		specialShabbatim: false,
 		fasts: false,
 		hillel: true,
-		// TODO(jafulfor): overrideHillel?
+		// TODO(jafulfor): code to handle being in Israel?
 	};
 
 	const holiday1: IHoliday = {
