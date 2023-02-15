@@ -9,7 +9,6 @@ npm-debug.*
 *.mobileprovision
 .watchmanconfig
 package-lock.json
-yarn.lock
 .scannerwork
 .nyc_output
 coverage
