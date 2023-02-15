@@ -15,7 +15,7 @@
     "ci": "yarn && yarn test --ci --coverage",
     "tdd": "yarn test --watch",
     "web:start": "expo start --web",
-    "web:build": "./build.sh",
+    "web:build": "expo export:web",
     "web:local:serve": "lite-server --baseDir='web-build'",
     "web:local": "yarn web:build && yarn web:local:serve",
     "web:e2e:open": "cypress open",
